@@ -1,11 +1,29 @@
 <script setup lang="ts">
 import { ArrowRightEndOnRectangleIcon } from '@heroicons/vue/24/solid'
 import { useRouter } from 'vue-router'
+import { BAD_LOGIN, useAuthenticationStore, type UserCredentials } from '../AuthenticationStore'
+import { reactive, ref } from 'vue'
 
 const router = useRouter()
+const authenticationStore = useAuthenticationStore()
 
-const onSubmit = () => {
-  router.push('/welcome')
+const data = reactive<UserCredentials>({
+  username: '',
+  password: '',
+})
+
+const errorMsg = ref('')
+
+const onSubmit = async () => {
+  try {
+    errorMsg.value = ''
+    await authenticationStore.login(data)
+    router.push('/welcome')
+  } catch (err) {
+    if (err instanceof Error && err.message === BAD_LOGIN) {
+      errorMsg.value = BAD_LOGIN
+    }
+  }
 }
 </script>
 
@@ -16,15 +34,15 @@ const onSubmit = () => {
       <form @submit.prevent="onSubmit()">
         <label>
           <span>Identifiant</span>
-          <input type="text" placeholder="Ex: admin" />
+          <input type="text" placeholder="Ex: admin" v-model="data.username" />
           <span class="error">{{ '' }}</span>
         </label>
         <label>
           <span>Mot de passe</span>
-          <input type="password" />
+          <input type="password" v-model="data.password" />
           <span class="error">{{ '' }}</span>
         </label>
-        <div class="error">{{ '' }}</div>
+        <div class="error">{{ errorMsg }}</div>
         <button class="primary">
           <ArrowRightEndOnRectangleIcon class="size-6" />
           <span>Se connecter</span>
