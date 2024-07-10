@@ -1,4 +1,6 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { ArrowRightEndOnRectangleIcon } from '@heroicons/vue/24/solid'
+</script>
 
 <template>
   <main class="flex grow items-center justify-center">
@@ -16,7 +18,10 @@
           <span class="error">{{ '' }}</span>
         </label>
         <div class="error">{{ '' }}</div>
-        <button class="primary">Se connecter</button>
+        <button class="primary">
+          <ArrowRightEndOnRectangleIcon class="size-6" />
+          <span>Se connecter</span>
+        </button>
       </form>
     </div>
   </main>
