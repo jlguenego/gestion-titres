@@ -1,5 +1,5 @@
 <template>
   <div class="grow">
-    <router-outlet></router-outlet>
+    <router-view></router-view>
   </div>
 </template>
