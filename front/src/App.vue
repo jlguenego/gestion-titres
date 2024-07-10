@@ -1,3 +1,11 @@
+<script lang="ts" setup>
+import HeaderLayout from './layout/HeaderLayout.vue'
+import BodyLayout from './layout/BodyLayout.vue'
+import FooterLayout from './layout/FooterLayout.vue'
+</script>
+
 <template>
-  <h1 class="text-3xl font-bold underline">Hello world!</h1>
+  <HeaderLayout />
+  <BodyLayout />
+  <FooterLayout />
 </template>
