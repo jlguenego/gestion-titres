@@ -18,16 +18,16 @@
     background-size: cover;
   }
 
-  main {
-    @apply p-2;
-  }
-
   .page {
     @apply mx-auto flex w-full flex-col items-center rounded-2xl bg-white p-4;
   }
 
   h1 {
     @apply mb-12 font-bold;
+  }
+
+  h2 {
+    @apply w-full font-bold;
   }
 
   form {
