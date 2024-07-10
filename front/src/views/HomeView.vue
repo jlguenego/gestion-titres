@@ -4,7 +4,7 @@ import { ArrowRightEndOnRectangleIcon } from '@heroicons/vue/24/solid'
 
 <template>
   <div class="flex h-48 flex-col items-center justify-center gap-4 p-2">
-    <span class="text-center text-4xl font-bold text-white">
+    <span class="text-center text-2xl font-bold text-white md:text-4xl">
       La gestion efficace de vos titres !
     </span>
     <RouterLink to="/login" class="button">

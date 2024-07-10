@@ -2,7 +2,7 @@
 const menus = [
   { label: 'Gérer les utilisateurs', to: '/users' },
   { label: 'Gérer les rôles', to: '/roles' },
-  { label: 'Gérer les privilèges', to: '/privileges' }
+  { label: 'Gérer les privilèges', to: '/privileges' },
 ]
 </script>
 

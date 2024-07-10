@@ -4,6 +4,6 @@ export const authenticationRoutes = [
   {
     path: '/login',
     name: 'login',
-    component: LoginView
-  }
+    component: LoginView,
+  },
 ]
