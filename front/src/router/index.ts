@@ -1,6 +1,7 @@
 import { authenticationRoutes } from '@/authnz/authentication.routes'
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
+import WelcomeView from '../views/WelcomeView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -11,6 +12,11 @@ const router = createRouter({
       component: HomeView
     },
     ...authenticationRoutes,
+    {
+      path: '/welcome',
+      name: 'welcome',
+      component: WelcomeView
+    },
     {
       path: '/legal',
       name: 'legal',

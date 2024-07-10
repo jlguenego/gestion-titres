@@ -1,12 +1,19 @@
 <script setup lang="ts">
 import { ArrowRightEndOnRectangleIcon } from '@heroicons/vue/24/solid'
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
+
+const onSubmit = () => {
+  router.push('/welcome')
+}
 </script>
 
 <template>
   <main class="flex grow items-center justify-center">
     <div class="page max-w-96">
       <h1>Connexion</h1>
-      <form>
+      <form @submit.prevent="onSubmit()">
         <label>
           <span>Identifiant</span>
           <input type="text" placeholder="Ex: admin" />
