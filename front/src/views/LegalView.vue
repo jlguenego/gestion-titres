@@ -1,6 +1,12 @@
+<script lang="ts" setup>
+import { VueComponent } from '../markdown/LegalContent.md'
+</script>
+
 <template>
   <main>
-    <h1>Mentions Légales</h1>
+    <div class="page h-full">
+      <VueComponent />
+    </div>
   </main>
 </template>
 
