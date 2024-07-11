@@ -1,18 +1,7 @@
 <script setup lang="ts">
-const users = [
-  { label: 'Jean-Louis GUENEGO', to: '/' },
-  { label: 'Betina GERECHT', to: '/' },
-  { label: 'Yann LEGEREC', to: '/' },
-  { label: 'Jean-Louis GUENEGO', to: '/' },
-  { label: 'Betina GERECHT', to: '/' },
-  { label: 'Yann LEGEREC', to: '/' },
-  { label: 'Jean-Louis GUENEGO', to: '/' },
-  { label: 'Betina GERECHT', to: '/' },
-  { label: 'Yann LEGEREC', to: '/' },
-  { label: 'Jean-Louis GUENEGO', to: '/' },
-  { label: 'Betina GERECHT', to: '/' },
-  { label: 'Yann LEGEREC', to: '/' },
-]
+import { useUserStore } from '@/authnz/UserStore'
+
+const userStore = useUserStore()
 </script>
 
 <template>
@@ -21,8 +10,13 @@ const users = [
       <h1>Liste des utilisateurs</h1>
 
       <nav class="flex flex-col gap-2">
-        <RouterLink v-for="item in users" :key="item.label" :to="item.to" class="button">
-          {{ item.label }}
+        <RouterLink
+          v-for="item in userStore.users"
+          :key="item.displayName"
+          :to="'/users/' + item.username"
+          class="button"
+        >
+          {{ item.displayName }}
         </RouterLink>
       </nav>
     </div>
