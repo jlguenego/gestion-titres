@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ArrowRightEndOnRectangleIcon } from '@heroicons/vue/24/solid'
+import { ArrowRightEndOnRectangleIcon } from '@heroicons/vue/24/outline'
 </script>
 
 <template>

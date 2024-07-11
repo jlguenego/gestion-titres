@@ -10,4 +10,8 @@
     @apply bg-gray-800 text-white;
     @apply hover:bg-gray-700;
   }
+
+  .layout {
+    @apply rounded-full text-black hover:text-opacity-80 hover:shadow-2xl hover:shadow-black;
+  }
 }
