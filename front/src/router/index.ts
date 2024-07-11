@@ -3,6 +3,7 @@ import UserView from '@/views/UserView.vue'
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import WelcomeView from '../views/WelcomeView.vue'
+import { useAuthenticationStore } from '@/authnz/AuthenticationStore'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -29,6 +30,18 @@ const router = createRouter({
       component: () => import('../views/LegalView.vue'),
     },
   ],
+})
+
+// authentication guards
+router.beforeEach((to) => {
+  const authenticationStore = useAuthenticationStore()
+  if (authenticationStore.user === undefined) {
+    const anonymousAllowedPaths = ['/', '/login']
+    if (!anonymousAllowedPaths.includes(to.path)) {
+      return false
+    }
+  }
+  return true
 })
 
 export default router
