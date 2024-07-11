@@ -14,4 +14,8 @@
   .layout {
     @apply rounded-full text-black hover:bg-gray-100 hover:text-opacity-80 hover:shadow-2xl hover:shadow-black;
   }
+
+  .danger {
+    @apply bg-red-500 text-white hover:bg-red-600 active:bg-red-700;
+  }
 }
