@@ -1,15 +1,9 @@
 import type { PiniaPlugin } from 'pinia'
 
-export const piniaPersist: PiniaPlugin = ({ options, store }) => {
-  console.log('store: ', store)
-  console.log('options: ', options)
-
+export const piniaPersist: PiniaPlugin = ({ store }) => {
   const key = `piniaState.${store.$id}`
 
   store.$subscribe((mutation, state) => {
-    console.log('mutation: ', mutation)
-    console.log('state: ', state)
-
     localStorage.setItem(key, JSON.stringify(state))
   })
 
