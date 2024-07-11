@@ -1,5 +1,8 @@
 <script setup lang="ts">
+import { useAuthenticationStore } from '@/authnz/AuthenticationStore'
 import { ArrowRightEndOnRectangleIcon } from '@heroicons/vue/24/outline'
+
+const authenticationStore = useAuthenticationStore()
 </script>
 
 <template>
@@ -7,9 +10,13 @@ import { ArrowRightEndOnRectangleIcon } from '@heroicons/vue/24/outline'
     <span class="text-center text-2xl font-bold text-white sm:text-4xl">
       La gestion efficace de vos titres !
     </span>
-    <RouterLink to="/login" class="button">
+    <RouterLink v-if="authenticationStore.user === undefined" to="/login" class="button">
       <ArrowRightEndOnRectangleIcon class="size-6" />
       <span>Se connecter</span>
+    </RouterLink>
+    <RouterLink v-else to="/welcome" class="button">
+      <ArrowRightEndOnRectangleIcon class="size-6" />
+      <span>Démarrer</span>
     </RouterLink>
   </div>
 </template>
