@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import { ArrowRightEndOnRectangleIcon } from '@heroicons/vue/24/solid'
 import { useRouter } from 'vue-router'
-import { BAD_LOGIN, useAuthenticationStore, type UserCredentials } from '../AuthenticationStore'
+import { useAuthenticationStore } from '../AuthenticationStore'
 import { reactive, ref } from 'vue'
+import type { UserCredentials } from '../interfaces/UserCredentials'
 
 const router = useRouter()
 const authenticationStore = useAuthenticationStore()
@@ -20,8 +21,8 @@ const onSubmit = async () => {
     await authenticationStore.login(data)
     router.push('/welcome')
   } catch (err) {
-    if (err instanceof Error && err.message === BAD_LOGIN) {
-      errorMsg.value = BAD_LOGIN
+    if (err instanceof Error) {
+      errorMsg.value = err.message
     }
   }
 }
