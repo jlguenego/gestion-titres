@@ -6,7 +6,7 @@ import { ArrowPathIcon, PlusIcon } from '@heroicons/vue/24/outline'
 const userStore = useUserStore()
 
 const getImage = (user: User) => {
-  if (user.gender === undefined) {
+  if (user.gender === undefined || user.gender === Gender.OTHER) {
     return '/user-nogender.svg'
   }
   return user.gender === Gender.MALE ? '/user-male.svg' : '/user-female.svg'
