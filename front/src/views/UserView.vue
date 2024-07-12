@@ -16,7 +16,11 @@ const userStore = useUserStore()
           :to="'/users/' + item.username"
           class="button"
         >
-          {{ item.displayName }}
+          <img src="/user-male.svg" alt="Photo utilisateur" />
+          <span>{{ item.displayName }}</span>
+          <span>{{ item.jobTitle }}</span>
+          <span>{{ item.email }}</span>
+          <span>{{ item.phone }}</span>
         </RouterLink>
       </nav>
     </div>
