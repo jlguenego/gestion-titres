@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { Gender, type User } from '@/authnz/interfaces/User'
 import { useUserStore } from '@/authnz/UserStore'
+import { ArrowPathIcon, PlusIcon } from '@heroicons/vue/24/outline'
 
 const userStore = useUserStore()
 
@@ -17,23 +18,33 @@ const getImage = (user: User) => {
     <div class="page h-full max-w-2xl">
       <h1>Liste des utilisateurs</h1>
 
-      <ul class="flex w-full max-w-md flex-col gap-2">
-        <li
-          v-for="item in userStore.users"
-          :key="item.displayName"
-          class="flex w-full flex-wrap justify-center gap-x-8 gap-y-4 rounded-xl border p-4"
-        >
-          <RouterLink :to="'/users/' + item.username">
-            <img :src="getImage(item)" alt="Photo utilisateur" class="h-32 rounded-full" />
+      <div class="flex flex-col gap-2">
+        <nav class="flex gap-2">
+          <button title="Rafraîchir">
+            <ArrowPathIcon class="size-6" />
+          </button>
+          <RouterLink to="/users/add" title="Ajouter" class="button">
+            <PlusIcon class="size-6" />
           </RouterLink>
-          <div class="flex flex-col items-center justify-center gap-1">
-            <span class="text-xl">{{ item.displayName }}</span>
-            <span class="font-bold">{{ item.username }}</span>
-            <span>{{ item.jobTitle }}</span>
-            <span class="text-gray-500">{{ item.email }}</span>
-          </div>
-        </li>
-      </ul>
+        </nav>
+        <ul class="flex w-full max-w-md flex-col gap-2">
+          <li
+            v-for="item in userStore.users"
+            :key="item.displayName"
+            class="flex w-full flex-wrap justify-center gap-x-8 gap-y-4 rounded-xl border p-4"
+          >
+            <RouterLink :to="'/users/' + item.username">
+              <img :src="getImage(item)" alt="Photo utilisateur" class="h-32 rounded-full" />
+            </RouterLink>
+            <div class="flex flex-col items-center justify-center gap-1">
+              <span class="text-xl">{{ item.displayName }}</span>
+              <span class="font-bold">{{ item.username }}</span>
+              <span>{{ item.jobTitle }}</span>
+              <span class="text-gray-500">{{ item.email }}</span>
+            </div>
+          </li>
+        </ul>
+      </div>
     </div>
   </main>
 </template>

@@ -31,7 +31,7 @@ const onSubmit = async () => {
 <template>
   <main class="flex grow items-center justify-center">
     <div class="page max-w-96">
-      <h1>Connexion</h1>
+      <h1>Ajout d'un nouvel utilisateur</h1>
       <form @submit.prevent="onSubmit()">
         <label>
           <span>Identifiant</span>

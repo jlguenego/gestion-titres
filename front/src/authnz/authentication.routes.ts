@@ -3,6 +3,7 @@ import type { NavigationGuard } from 'vue-router'
 import { useAuthenticationStore } from './AuthenticationStore'
 import CurrentUserView from './views/CurrentUserView.vue'
 import LoginView from './views/LoginView.vue'
+import UserAddView from './views/UserAddView.vue'
 
 const LOGIN_PATH = '/login'
 const anonymousAllowedPaths = ['/', '/legal']
@@ -17,6 +18,11 @@ export const authenticationRoutes = [
     path: '/current-user',
     name: 'current-user',
     component: CurrentUserView,
+  },
+  {
+    path: '/users/add',
+    name: 'add-user',
+    component: UserAddView,
   },
 ]
 
