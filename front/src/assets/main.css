@@ -18,6 +18,10 @@
     background-size: cover;
   }
 
+  main {
+    @apply flex grow items-start;
+  }
+
   .page {
     @apply mx-auto flex w-full flex-col items-center rounded-2xl bg-white p-4;
   }

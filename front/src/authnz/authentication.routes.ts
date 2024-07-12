@@ -1,9 +1,15 @@
+import { NOTFOUND_NAME } from '@/router/constants'
+import type { NavigationGuard } from 'vue-router'
+import { useAuthenticationStore } from './AuthenticationStore'
 import CurrentUserView from './views/CurrentUserView.vue'
 import LoginView from './views/LoginView.vue'
 
+const LOGIN_PATH = '/login'
+const anonymousAllowedPaths = ['/', LOGIN_PATH]
+
 export const authenticationRoutes = [
   {
-    path: '/login',
+    path: LOGIN_PATH,
     name: 'login',
     component: LoginView,
   },
@@ -13,3 +19,19 @@ export const authenticationRoutes = [
     component: CurrentUserView,
   },
 ]
+
+export const authenticationGuard: NavigationGuard = (to) => {
+  console.log('to: ', to)
+
+  if (to.name === NOTFOUND_NAME) {
+    return true
+  }
+
+  const authenticationStore = useAuthenticationStore()
+  if (authenticationStore.user === undefined) {
+    if (!anonymousAllowedPaths.includes(to.path)) {
+      return LOGIN_PATH
+    }
+  }
+  return true
+}

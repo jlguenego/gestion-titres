@@ -1,9 +1,10 @@
-import { authenticationRoutes } from '@/authnz/authentication.routes'
+import { authenticationGuard, authenticationRoutes } from '@/authnz/authentication.routes'
 import UserView from '@/views/UserView.vue'
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import WelcomeView from '../views/WelcomeView.vue'
-import { useAuthenticationStore } from '@/authnz/AuthenticationStore'
+import NotFoundView from '../views/NotFoundView.vue'
+import { NOTFOUND_NAME } from './constants'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -29,16 +30,20 @@ const router = createRouter({
       name: 'legal',
       component: () => import('../views/LegalView.vue'),
     },
+    {
+      path: '/:pathMatch(.*)*',
+      name: NOTFOUND_NAME,
+      component: NotFoundView,
+    },
   ],
 })
 
 // authentication guards
-router.beforeEach((to) => {
-  const authenticationStore = useAuthenticationStore()
-  if (authenticationStore.user === undefined) {
-    const anonymousAllowedPaths = ['/', '/login']
-    if (!anonymousAllowedPaths.includes(to.path)) {
-      return false
+router.beforeEach((to, from) => {
+  for (const guard of [authenticationGuard]) {
+    const result = guard(to, from, () => {})
+    if (result !== true) {
+      return result
     }
   }
   return true
