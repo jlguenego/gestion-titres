@@ -61,7 +61,7 @@ onMounted(() => {
             <legend>Identité</legend>
             <label>
               <span>Mme./Mr.</span>
-              <select name="" id="" autocomplete="off">
+              <select name="" id="" autocomplete="off" v-model="newUser.gender">
                 <option :value="Gender.OTHER" default></option>
                 <option :value="Gender.FEMALE">Femme</option>
                 <option :value="Gender.FEMALE">Homme</option>
