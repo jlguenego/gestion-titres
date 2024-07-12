@@ -5,7 +5,7 @@ import CurrentUserView from './views/CurrentUserView.vue'
 import LoginView from './views/LoginView.vue'
 
 const LOGIN_PATH = '/login'
-const anonymousAllowedPaths = ['/', LOGIN_PATH]
+const anonymousAllowedPaths = ['/', '/legal']
 
 export const authenticationRoutes = [
   {
@@ -29,7 +29,7 @@ export const authenticationGuard: NavigationGuard = (to) => {
 
   const authenticationStore = useAuthenticationStore()
   if (authenticationStore.user === undefined) {
-    if (!anonymousAllowedPaths.includes(to.path)) {
+    if (![...anonymousAllowedPaths, LOGIN_PATH].includes(to.path)) {
       return LOGIN_PATH
     }
   }
