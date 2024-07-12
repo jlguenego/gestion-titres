@@ -17,8 +17,8 @@ const getImage = (user: User) => {
     <div class="page h-full max-w-2xl">
       <h1>Liste des utilisateurs</h1>
 
-      <nav class="flex w-full max-w-md flex-col gap-2">
-        <div
+      <ul class="flex w-full max-w-md flex-col gap-2">
+        <li
           v-for="item in userStore.users"
           :key="item.displayName"
           class="flex w-full flex-wrap justify-center gap-x-8 gap-y-4 rounded-xl border p-4"
@@ -32,8 +32,8 @@ const getImage = (user: User) => {
             <span>{{ item.jobTitle }}</span>
             <span class="text-gray-500">{{ item.email }}</span>
           </div>
-        </div>
-      </nav>
+        </li>
+      </ul>
     </div>
   </main>
 </template>
