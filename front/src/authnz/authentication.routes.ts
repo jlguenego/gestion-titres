@@ -4,6 +4,7 @@ import { useAuthenticationStore } from './AuthenticationStore'
 import CurrentUserView from './views/CurrentUserView.vue'
 import LoginView from './views/LoginView.vue'
 import UserAddView from './views/UserAddView.vue'
+import UserDetailView from './views/UserDetailView.vue'
 
 const LOGIN_PATH = '/login'
 const anonymousAllowedPaths = ['/', '/legal']
@@ -20,9 +21,14 @@ export const authenticationRoutes = [
     component: CurrentUserView,
   },
   {
-    path: '/users/add',
+    path: '/forms/new-user',
     name: 'add-user',
     component: UserAddView,
+  },
+  {
+    path: '/users/:username',
+    name: 'user-detail',
+    component: UserDetailView,
   },
 ]
 

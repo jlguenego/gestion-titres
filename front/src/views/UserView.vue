@@ -23,7 +23,7 @@ const getImage = (user: User) => {
           <button title="Rafraîchir">
             <ArrowPathIcon class="size-6" />
           </button>
-          <RouterLink to="/users/add" title="Ajouter" class="button">
+          <RouterLink to="/forms/new-user" title="Ajouter" class="button">
             <PlusIcon class="size-6" />
           </RouterLink>
         </nav>
