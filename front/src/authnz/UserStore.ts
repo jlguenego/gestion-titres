@@ -2,6 +2,7 @@ import type { New } from '@/interfaces/utilities'
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
 import { api } from './api'
+import { firstUser } from './data/FirstUser'
 import type { User } from './interfaces/User'
 
 export const useUserStore = defineStore('user', () => {
@@ -12,11 +13,7 @@ export const useUserStore = defineStore('user', () => {
     users.value = await api.retrieveAll<User>('user')()
     console.log('users.value: ', users.value)
     if (users.value && users.value.length === 0) {
-      await api.add<User>('user')({
-        username: 'admin',
-        password: 'truc1234!',
-        displayName: 'Jean-Louis GUENEGO',
-      })
+      await api.add<User>('user')(firstUser)
       users.value = await api.retrieveAll<User>('user')()
     }
   }
