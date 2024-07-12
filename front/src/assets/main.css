@@ -6,33 +6,10 @@
 @tailwind components;
 @tailwind utilities;
 
-::-webkit-scrollbar {
-  display: none;
-}
-
-body {
-  position: relative;
-  display: block;
-}
-
-.bg-montceaux {
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  z-index: -1;
-  img {
-    display: flex;
-    width: 100vw;
-    height: 100%;
-    object-fit: cover;
-  }
-}
-
 #app {
-  @apply flex min-h-screen flex-col justify-between px-2 sm:px-4;
+  @apply flex h-screen w-screen flex-col justify-between overflow-y-auto px-2 sm:px-4;
   font-family: 'Inter', sans-serif;
+  scrollbar-gutter: stable both-edges;
 }
 
 @layer components {
