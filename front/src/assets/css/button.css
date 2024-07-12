@@ -1,8 +1,9 @@
 @layer components {
   button,
   .button {
-    @apply flex items-center justify-center gap-2 rounded-lg bg-gray-100 px-4 py-2;
+    @apply flex items-center justify-center gap-2 rounded-lg bg-gray-100 px-4 py-2 shadow-lg;
     @apply hover:bg-gray-200;
+    @apply active:shadow-md;
     @apply disabled:text-gray-400;
   }
 
