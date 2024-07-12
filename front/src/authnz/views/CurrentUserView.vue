@@ -13,7 +13,7 @@ const handleLogout = async () => {
 
 <template>
   <main class="flex grow items-start justify-center" v-if="authenticationStore.user">
-    <div class="page max-w-96">
+    <div class="page max-w-96 gap-9">
       <h1>Utilisateur : {{ authenticationStore.user.displayName }}</h1>
       <button class="danger" @click="handleLogout()">Se déconnecter</button>
     </div>

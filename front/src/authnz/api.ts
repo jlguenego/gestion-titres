@@ -37,6 +37,19 @@ class API {
     }
   }
 
+  replace<T extends ObjectWithId>(resourceName: string) {
+    return async (resource: T) => {
+      const resources = await this.retrieveAll<T>(resourceName)()
+      const key = `backEnd.${resourceName}`
+      const index = resources.findIndex((r) => r.id === resource.id)
+      if (index === -1) {
+        throw new Error(ErrorMessage.RESSOURCE_NOT_FOUND)
+      }
+      resources.splice(index, 1, resource)
+      localStorage.setItem(key, JSON.stringify(resources))
+    }
+  }
+
   retrieveAll<T extends ObjectWithId>(resourceName: string) {
     return async (): Promise<T[]> => {
       console.log('retrieveAll')

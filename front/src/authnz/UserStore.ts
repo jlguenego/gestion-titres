@@ -28,5 +28,10 @@ export const useUserStore = defineStore('user', () => {
     users.value = await api.retrieveAll<User>('user')()
   }
 
-  return { users, refresh, add, remove }
+  const replace = async (user: User) => {
+    await api.replace<User>('user')(user)
+    users.value = await api.retrieveAll<User>('user')()
+  }
+
+  return { users, refresh, add, remove, replace }
 })

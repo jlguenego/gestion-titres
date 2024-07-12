@@ -13,9 +13,10 @@
 
 @layer components {
   .bg-montceaux {
-    background-color: red;
+    background-color: hsl(120, 100%, 10%);
     background-image: url('/montceaux.jpg');
     background-size: cover;
+    background-repeat: no-repeat;
   }
 
   main {
@@ -27,7 +28,7 @@
   }
 
   h1 {
-    @apply mb-12 font-bold;
+    @apply font-bold;
   }
 
   h2 {
@@ -49,11 +50,13 @@
       @apply flex flex-col;
 
       input {
-        @apply rounded-lg bg-gray-50 p-2;
+        @apply rounded-lg border border-gray-400 p-2;
+        @apply disabled:border-gray-50 disabled:bg-gray-50;
       }
 
       select {
-        @apply rounded-lg bg-gray-50 p-2;
+        @apply rounded-lg border border-gray-400 p-2;
+        @apply disabled:border-gray-50 disabled:bg-gray-50;
       }
 
       span.error {

@@ -1,4 +1,8 @@
 <script setup lang="ts">
+import { useAuthenticationStore } from '@/authnz/AuthenticationStore'
+
+const authenticationStore = useAuthenticationStore()
+
 const menus = [
   { label: 'Gérer les utilisateurs', to: '/users' },
   { label: 'Gérer les rôles', to: '/roles' },
@@ -7,8 +11,8 @@ const menus = [
 </script>
 
 <template>
-  <div class="page h-full">
-    <h1>Bienvenue Jean-Louis GUENEGO !</h1>
+  <div class="page h-full" v-if="authenticationStore.user">
+    <h1>Bienvenue {{ authenticationStore.user.displayName }} !</h1>
     <p>Vos rôles : Admin, Gérant de portefeuille Truc, Gérant du portefeuille Trac</p>
     <p>Voici vos modules</p>
     <nav class="flex flex-wrap gap-2">

@@ -15,7 +15,7 @@ const getImage = (user: User) => {
 
 <template>
   <main class="grow">
-    <div class="page h-full max-w-2xl">
+    <div class="page h-full max-w-2xl gap-9">
       <h1>Liste des utilisateurs</h1>
 
       <div class="flex flex-col gap-2">
