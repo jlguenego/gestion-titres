@@ -27,23 +27,22 @@ const getImage = (user: User) => {
             <PlusIcon class="size-6" />
           </RouterLink>
         </nav>
-        <ul class="flex w-full max-w-md flex-col gap-2">
-          <li
+        <div class="flex w-full max-w-md flex-col gap-2">
+          <RouterLink
+            :to="'/users/' + item.username"
             v-for="item in userStore.users"
             :key="item.displayName"
-            class="flex w-full flex-wrap justify-center gap-x-8 gap-y-4 rounded-xl border p-4"
+            class="flex w-full flex-wrap justify-center gap-x-8 gap-y-4 rounded-xl border p-4 hover:bg-gray-50"
           >
-            <RouterLink :to="'/users/' + item.username">
-              <img :src="getImage(item)" alt="Photo utilisateur" class="h-32 rounded-full" />
-            </RouterLink>
-            <div class="flex flex-col items-center justify-center gap-1">
+            <img :src="getImage(item)" alt="Photo utilisateur" class="h-32 rounded-full" />
+            <div class="flex grow flex-col items-center justify-center gap-1">
               <span class="text-xl">{{ item.displayName }}</span>
               <span class="font-bold">{{ item.username }}</span>
               <span>{{ item.jobTitle }}</span>
               <span class="text-gray-500">{{ item.email }}</span>
             </div>
-          </li>
-        </ul>
+          </RouterLink>
+        </div>
       </div>
     </div>
   </main>

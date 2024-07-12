@@ -4,10 +4,12 @@ import { PlusIcon } from '@heroicons/vue/24/outline'
 import { onMounted, reactive, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { Gender, type User } from '../interfaces/User'
+import { useUserStore } from '../UserStore'
 
 const router = useRouter()
+const userStore = useUserStore()
 
-const data = reactive<New<User>>({
+const newUser = reactive<New<User>>({
   username: '',
   password: '',
   displayName: '',
@@ -22,6 +24,7 @@ const errorMsg = ref('')
 const onSubmit = async () => {
   try {
     errorMsg.value = ''
+    await userStore.add({ ...newUser })
     router.push('/users')
   } catch (err) {
     if (err instanceof Error) {
@@ -45,12 +48,12 @@ onMounted(() => {
             <legend>Information de connexion</legend>
             <label>
               <span>Identifiant *</span>
-              <input type="text" placeholder="Ex: admin" v-model="data.username" v-focus />
+              <input type="text" placeholder="Ex: admin" v-model="newUser.username" v-focus />
               <span class="error">{{ '' }}</span>
             </label>
             <label>
               <span>Mot de passe *</span>
-              <input type="password" v-model="data.password" autocomplete="new-password" />
+              <input type="password" v-model="newUser.password" autocomplete="new-password" />
               <span class="error">{{ '' }}</span>
             </label>
           </fieldset>
@@ -69,7 +72,7 @@ onMounted(() => {
               <span>Nom d'affichage *</span>
               <input
                 type="text"
-                v-model="data.displayName"
+                v-model="newUser.displayName"
                 placeholder="Ex: Marcel DUPOND"
                 autocomplete="off"
               />
@@ -77,12 +80,12 @@ onMounted(() => {
             </label>
             <label>
               <span>Email *</span>
-              <input type="text" v-model="data.email" />
+              <input type="text" v-model="newUser.email" />
               <span class="error">{{ '' }}</span>
             </label>
             <label>
               <span>Fonction</span>
-              <input type="text" placeholder="Ex: Responsable DSI" v-model="data.jobTitle" />
+              <input type="text" placeholder="Ex: Responsable DSI" v-model="newUser.jobTitle" />
               <span class="error">{{ '' }}</span>
             </label>
           </fieldset>
