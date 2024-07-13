@@ -4,7 +4,7 @@ import { HomeIcon } from '@heroicons/vue/24/outline'
 
 <template>
   <main>
-    <div class="page w-full">
+    <div class="page w-full gap-12 p-12">
       <h1 class="text-2xl">Page non trouvée... 😭</h1>
       <RouterLink to="/" class="button primary">
         <HomeIcon class="size-6" />

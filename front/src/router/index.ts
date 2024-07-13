@@ -38,15 +38,13 @@ const router = createRouter({
   ],
 })
 
+// router.beforeEach((to, from, next) => {
+//   console.log(to);
+//   document.title = to.meta.title;
+//   next();
+// });
+
 // authentication guards
-router.beforeEach((to, from) => {
-  for (const guard of [authenticationGuard]) {
-    const result = guard(to, from, () => {})
-    if (result !== true) {
-      return result
-    }
-  }
-  return true
-})
+router.beforeEach(authenticationGuard)
 
 export default router
