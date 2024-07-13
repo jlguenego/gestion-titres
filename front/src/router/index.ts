@@ -35,7 +35,6 @@ const router = createRouter({
       path: '/:pathMatch(.*)*',
       name: NOTFOUND_NAME,
       component: NotFoundView,
-      meta: { title: 'Page non trouvée' },
     },
   ],
 })
