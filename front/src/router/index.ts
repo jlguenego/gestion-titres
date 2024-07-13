@@ -2,9 +2,10 @@ import { authenticationGuard, authenticationRoutes } from '@/authnz/authenticati
 import UserView from '@/views/UserView.vue'
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
-import WelcomeView from '../views/WelcomeView.vue'
 import NotFoundView from '../views/NotFoundView.vue'
+import WelcomeView from '../views/WelcomeView.vue'
 import { NOTFOUND_NAME } from './constants'
+import { titleGuard } from './TitleGuard'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -34,17 +35,12 @@ const router = createRouter({
       path: '/:pathMatch(.*)*',
       name: NOTFOUND_NAME,
       component: NotFoundView,
+      meta: { title: 'Page non trouvée' },
     },
   ],
 })
 
-// router.beforeEach((to, from, next) => {
-//   console.log(to);
-//   document.title = to.meta.title;
-//   next();
-// });
-
-// authentication guards
 router.beforeEach(authenticationGuard)
+router.afterEach(titleGuard)
 
 export default router
