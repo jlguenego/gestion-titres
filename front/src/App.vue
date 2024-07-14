@@ -1,15 +1,16 @@
 <script lang="ts" setup>
-import HeaderLayout from './layout/HeaderLayout.vue'
+import { onMounted } from 'vue'
+import { database } from './authnz/data/database'
+import { useUserStore } from './authnz/stores/UserStore'
 import BodyLayout from './layout/BodyLayout.vue'
 import FooterLayout from './layout/FooterLayout.vue'
-import { useUserStore } from './authnz/stores/UserStore'
-import { onMounted } from 'vue'
+import HeaderLayout from './layout/HeaderLayout.vue'
 
 const userStore = useUserStore()
 
 onMounted(async () => {
   if (userStore.users === undefined) {
-    await userStore.refresh()
+    await database.init()
   }
 })
 </script>

@@ -1,1 +1,1 @@
-export type Functionality = 'user:create' | 'user:modify' | 'user:list'
+export type Functionality = 'user:create' | 'user:modify' | 'user:list' | 'all'
