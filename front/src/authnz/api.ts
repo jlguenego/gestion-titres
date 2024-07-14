@@ -3,11 +3,15 @@ import { ErrorMessage } from './interfaces/ErrorMessage'
 import type { User } from './interfaces/User'
 import type { UserCredentials } from './interfaces/UserCredentials'
 
+const getKey = (resourceName: string) => {
+  return `backEnd.${resourceName}`
+}
+
 class API {
   add<T extends ObjectWithId>(resourceName: string) {
     return async (newResource: New<T>) => {
       const resources = await this.retrieveAll<T>(resourceName)()
-      const key = `backEnd.${resourceName}`
+      const key = getKey(resourceName)
       const resource: T = { ...newResource, id: window.crypto.randomUUID() } as T
       resources.push(resource)
       localStorage.setItem(key, JSON.stringify(resources))
@@ -31,7 +35,7 @@ class API {
   remove<T extends ObjectWithId>(resourceName: string) {
     return async (ids: string[]) => {
       const resources = await this.retrieveAll<T>(resourceName)()
-      const key = `backEnd.${resourceName}`
+      const key = getKey(resourceName)
       const filteredResources = resources.filter((r) => ids.includes(r.id))
       localStorage.setItem(key, JSON.stringify(filteredResources))
     }
@@ -40,7 +44,7 @@ class API {
   replace<T extends ObjectWithId>(resourceName: string) {
     return async (resource: T) => {
       const resources = await this.retrieveAll<T>(resourceName)()
-      const key = `backEnd.${resourceName}`
+      const key = getKey(resourceName)
       const index = resources.findIndex((r) => r.id === resource.id)
       if (index === -1) {
         throw new Error(ErrorMessage.RESSOURCE_NOT_FOUND)
@@ -53,7 +57,7 @@ class API {
   retrieveAll<T extends ObjectWithId>(resourceName: string) {
     return async (): Promise<T[]> => {
       console.log('retrieveAll')
-      const key = `backEnd.${resourceName}`
+      const key = getKey(resourceName)
       const str = localStorage.getItem(key)
       console.log('str: ', str)
       if (str === null) {
