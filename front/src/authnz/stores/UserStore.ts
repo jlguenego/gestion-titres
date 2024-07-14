@@ -1,9 +1,9 @@
 import type { New } from '@/interfaces/utilities'
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
-import { firstUser } from './data/FirstUser'
-import type { User } from './interfaces/User'
-import { ResourceAPI } from './ResourceAPI'
+import { firstUser } from '../data/FirstUser'
+import type { User } from '../interfaces/User'
+import { ResourceAPI } from '../ResourceAPI'
 
 const api = new ResourceAPI<User>('user')
 

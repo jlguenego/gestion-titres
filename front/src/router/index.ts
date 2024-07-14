@@ -1,5 +1,4 @@
 import { authenticationGuard, authenticationRoutes } from '@/authnz/authentication.routes'
-import UserView from '@/views/UserView.vue'
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import NotFoundView from '../views/NotFoundView.vue'
@@ -20,11 +19,6 @@ const router = createRouter({
       path: '/welcome',
       name: 'welcome',
       component: WelcomeView,
-    },
-    {
-      path: '/users',
-      name: 'users',
-      component: UserView,
     },
     {
       path: '/legal',

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ArrowRightEndOnRectangleIcon } from '@heroicons/vue/24/outline'
 import { useRouter } from 'vue-router'
-import { useAuthenticationStore } from '../AuthenticationStore'
+import { useAuthenticationStore } from '../stores/AuthenticationStore'
 import { reactive, ref } from 'vue'
 import type { UserCredentials } from '../interfaces/UserCredentials'
 

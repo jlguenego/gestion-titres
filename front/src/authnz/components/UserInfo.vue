@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { UserIcon } from '@heroicons/vue/24/outline'
-import { useAuthenticationStore } from '../AuthenticationStore'
+import { useAuthenticationStore } from '../stores/AuthenticationStore'
 
 const authenticationStore = useAuthenticationStore()
 </script>

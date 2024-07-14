@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { Gender, type User } from '@/authnz/interfaces/User'
-import { useUserStore } from '@/authnz/UserStore'
+import { useUserStore } from '@/authnz/stores/UserStore'
 import { ArrowPathIcon, PlusIcon } from '@heroicons/vue/24/outline'
 
 const userStore = useUserStore()

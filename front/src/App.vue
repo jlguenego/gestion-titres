@@ -2,7 +2,7 @@
 import HeaderLayout from './layout/HeaderLayout.vue'
 import BodyLayout from './layout/BodyLayout.vue'
 import FooterLayout from './layout/FooterLayout.vue'
-import { useUserStore } from './authnz/UserStore'
+import { useUserStore } from './authnz/stores/UserStore'
 import { onMounted } from 'vue'
 
 const userStore = useUserStore()

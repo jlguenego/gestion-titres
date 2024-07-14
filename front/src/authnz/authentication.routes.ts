@@ -1,10 +1,12 @@
 import { NOTFOUND_NAME } from '@/router/constants'
 import type { NavigationGuard } from 'vue-router'
-import { useAuthenticationStore } from './AuthenticationStore'
+import { useAuthenticationStore } from './stores/AuthenticationStore'
 import CurrentUserView from './views/CurrentUserView.vue'
 import LoginView from './views/LoginView.vue'
+import PrivilegeView from './views/PrivilegeView.vue'
 import UserAddView from './views/UserAddView.vue'
 import UserDetailView from './views/UserDetailView.vue'
+import UserView from './views/UserView.vue'
 
 const LOGIN_PATH = '/login'
 const anonymousAllowedPaths = ['/', '/legal']
@@ -29,6 +31,16 @@ export const authenticationRoutes = [
     path: '/users/:username',
     name: 'user-detail',
     component: UserDetailView,
+  },
+  {
+    path: '/users',
+    name: 'users',
+    component: UserView,
+  },
+  {
+    path: '/privileges',
+    name: 'privileges',
+    component: PrivilegeView,
   },
 ]
 

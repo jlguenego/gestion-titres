@@ -4,7 +4,7 @@ import { PlusIcon } from '@heroicons/vue/24/outline'
 import { onMounted, reactive, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { Gender, type User } from '../interfaces/User'
-import { useUserStore } from '../UserStore'
+import { useUserStore } from '../stores/UserStore'
 
 const router = useRouter()
 const userStore = useUserStore()

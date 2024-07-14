@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useAuthenticationStore } from '@/authnz/AuthenticationStore'
+import { useAuthenticationStore } from '@/authnz/stores/AuthenticationStore'
 import { ArrowRightEndOnRectangleIcon } from '@heroicons/vue/24/outline'
 
 const authenticationStore = useAuthenticationStore()

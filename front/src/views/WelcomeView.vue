@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useAuthenticationStore } from '@/authnz/AuthenticationStore'
+import { useAuthenticationStore } from '@/authnz/stores/AuthenticationStore'
 
 const authenticationStore = useAuthenticationStore()
 
