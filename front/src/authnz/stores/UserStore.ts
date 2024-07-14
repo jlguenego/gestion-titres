@@ -1,7 +1,6 @@
 import type { New } from '@/interfaces/utilities'
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
-import { firstUser } from '../data/FirstUser'
 import type { User } from '../interfaces/User'
 import { ResourceAPI } from '../ResourceAPI'
 
@@ -12,10 +11,6 @@ export const useUserStore = defineStore('user', () => {
 
   const refresh = async () => {
     users.value = await api.retrieveAll()
-    if (users.value && users.value.length === 0) {
-      await api.add(firstUser)
-      users.value = await api.retrieveAll()
-    }
   }
 
   const add = async (newUser: New<User>) => {

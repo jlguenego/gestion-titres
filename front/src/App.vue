@@ -7,7 +7,6 @@ import FooterLayout from './layout/FooterLayout.vue'
 import HeaderLayout from './layout/HeaderLayout.vue'
 
 const userStore = useUserStore()
-
 onMounted(async () => {
   if (userStore.users === undefined) {
     await database.init()

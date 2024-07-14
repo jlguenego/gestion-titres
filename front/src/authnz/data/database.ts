@@ -8,6 +8,10 @@ export const privilegeApi = new ResourceAPI<Privilege>('privilege')
 
 class Database {
   async init() {
+    const users = await userApi.retrieveAll()
+    if (users.length > 0) {
+      return
+    }
     await privilegeApi.add(adminPrivilege)
     await userApi.add(firstUser)
   }

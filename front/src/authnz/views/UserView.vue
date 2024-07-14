@@ -2,6 +2,7 @@
 import { Gender, type User } from '@/authnz/interfaces/User'
 import { useUserStore } from '@/authnz/stores/UserStore'
 import { ArrowPathIcon, PlusIcon } from '@heroicons/vue/24/outline'
+import { onMounted } from 'vue'
 
 const userStore = useUserStore()
 
@@ -11,6 +12,10 @@ const getImage = (user: User) => {
   }
   return user.gender === Gender.MALE ? '/user-male.svg' : '/user-female.svg'
 }
+
+onMounted(async () => {
+  await userStore.refresh()
+})
 </script>
 
 <template>
