@@ -13,14 +13,6 @@
 }
 
 @layer components {
-  main {
-    @apply flex grow items-start;
-  }
-
-  .page {
-    @apply mx-auto flex w-full flex-col items-center rounded-2xl bg-white p-4 shadow-lg;
-  }
-
   h1 {
     @apply font-bold;
   }

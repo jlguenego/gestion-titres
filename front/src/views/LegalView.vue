@@ -4,8 +4,8 @@ import { VueComponent } from '../markdown/LegalContent.md'
 
 <template>
   <main>
-    <div class="page h-full">
+    <PageLayout class="h-full">
       <VueComponent />
-    </div>
+    </PageLayout>
   </main>
 </template>

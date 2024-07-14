@@ -1,5 +1,5 @@
 <template>
-  <div class="flex grow justify-center">
+  <main class="flex grow items-start justify-center">
     <router-view></router-view>
-  </div>
+  </main>
 </template>
