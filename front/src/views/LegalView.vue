@@ -4,7 +4,10 @@ import { VueComponent } from '../markdown/LegalContent.md'
 
 <template>
   <main>
-    <PageLayout class="h-full">
+    <PageLayout>
+      <HeaderPage :showMenu="false">
+        <h1>Mentions Légales</h1>
+      </HeaderPage>
       <VueComponent />
     </PageLayout>
   </main>
