@@ -19,7 +19,7 @@ const handleToggleMenu = () => {
 
 <template>
   <button v-if="authenticationStore.user" @click="handleToggleMenu()" class="layout p-2 sm:px-4">
-    <Bars3Icon class="size-6" />
+    <Bars3Icon class="size-6 sm:hidden" />
     <UserIcon class="size-6" />
     <span class="hidden sm:inline">{{ authenticationStore.user.displayName }}</span>
   </button>
