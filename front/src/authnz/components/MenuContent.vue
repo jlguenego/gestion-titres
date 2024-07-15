@@ -1,5 +1,6 @@
 <script setup lang="ts">
 const menus = [
+  { label: 'Accueil', to: '/welcome' },
   { label: 'Gérer les utilisateurs', to: '/users' },
   { label: 'Gérer les rôles', to: '/roles' },
   { label: 'Gérer les privilèges', to: '/privileges' },
