@@ -1,11 +1,10 @@
 <script setup lang="ts">
-import { PencilIcon } from '@heroicons/vue/24/outline'
+import { FolderArrowDownIcon, PencilIcon } from '@heroicons/vue/24/outline'
 import { onMounted, reactive, ref } from 'vue'
-import { useRoute, useRouter } from 'vue-router'
+import { useRoute } from 'vue-router'
 import { Gender, type User } from '../interfaces/User'
 import { useUserStore } from '../stores/UserStore'
 
-const router = useRouter()
 const route = useRoute()
 const userStore = useUserStore()
 
@@ -31,7 +30,6 @@ const onSubmit = async () => {
   try {
     errorMsg.value = ''
     await userStore.replace({ ...user })
-    router.push('/users')
   } catch (err) {
     if (err instanceof Error) {
       errorMsg.value = err.message
@@ -133,7 +131,7 @@ onMounted(async () => {
         <div class="error">{{ errorMsg }}</div>
         <div class="flex h-12 flex-col">
           <button class="primary" v-if="isEditing">
-            <PencilIcon class="size-6" />
+            <FolderArrowDownIcon class="size-6" />
             <span>Enregistrer les modifications</span>
           </button>
         </div>
