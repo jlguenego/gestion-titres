@@ -4,7 +4,7 @@ import { VueComponent } from '../markdown/LegalContent.md'
 
 <template>
   <PageLayout>
-    <HeaderPage :showMenu="false">
+    <HeaderPage :menu="false">
       <h1>Mentions Légales</h1>
     </HeaderPage>
     <MainPage>

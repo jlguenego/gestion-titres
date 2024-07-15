@@ -1,14 +1,10 @@
 <script setup lang="ts">
 import { useAuthenticationStore } from '@/authnz/stores/AuthenticationStore'
-import { useRouter } from 'vue-router'
 import PageLayout from '@/layout/page/PageLayout.vue'
-import { useMenuStore } from '@/layout/stores/MenuStore'
+import { useRouter } from 'vue-router'
 
 const authenticationStore = useAuthenticationStore()
-const menuStore = useMenuStore()
 const router = useRouter()
-
-menuStore.openMenu()
 
 const handleLogout = async () => {
   await authenticationStore.logout()

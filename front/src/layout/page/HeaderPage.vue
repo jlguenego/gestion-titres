@@ -6,10 +6,10 @@ const menuStore = useMenuStore()
 
 withDefaults(
   defineProps<{
-    showMenu: boolean
+    menu: boolean
   }>(),
   {
-    showMenu: true,
+    menu: true,
   },
 )
 </script>
@@ -20,7 +20,7 @@ withDefaults(
       <button
         @click="menuStore.toggleMenu()"
         class="hidden bg-transparent text-white sm:flex"
-        v-if="menuStore.showMenu === false && $props.showMenu"
+        v-if="menuStore.showMenu === false && $props.menu"
       >
         <Bars3Icon class="size-6" />
       </button>
