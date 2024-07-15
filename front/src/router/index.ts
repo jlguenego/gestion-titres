@@ -3,6 +3,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import NotFoundView from '../views/NotFoundView.vue'
 import { NOTFOUND_NAME } from './constants'
+import { responsiveGuard } from './ResponsiveGuard'
 import { titleGuard } from './TitleGuard'
 
 const router = createRouter({
@@ -29,5 +30,6 @@ const router = createRouter({
 
 router.beforeEach(authenticationGuard)
 router.afterEach(titleGuard)
+router.afterEach(responsiveGuard)
 
 export default router
