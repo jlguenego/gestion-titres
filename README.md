@@ -1,8 +1,7 @@
 # Todo
 
 - header de page, footer de page
-- loading au debut
-- css que sur div#app et pas au dessus
+- loading au debut avec chargement de base si besoin
 - composant d'edition
 - lister les roles (avec un role admin initial)
 - ajouter des roles
