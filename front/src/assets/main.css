@@ -16,7 +16,7 @@
 
 @layer components {
   h1 {
-    @apply font-bold;
+    @apply text-center font-bold;
   }
 
   h2 {

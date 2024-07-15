@@ -20,9 +20,9 @@ const menus = [
 
 <template>
   <PageLayout class="self-stretch" v-if="authenticationStore.user">
-    <header>
+    <HeaderPage>
       <h1>Bienvenue {{ authenticationStore.user.displayName }} !</h1>
-    </header>
+    </HeaderPage>
     <main class="grow">
       <p>Vos rôles : Admin, Gérant de portefeuille Truc, Gérant du portefeuille Trac</p>
       <p>Voici vos modules</p>
