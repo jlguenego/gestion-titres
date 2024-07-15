@@ -15,7 +15,12 @@ onMounted(async () => {
 </script>
 
 <template>
-  <HeaderLayout />
-  <BodyLayout />
-  <FooterLayout />
+  <div role="none" class="fixed bottom-0 left-0 right-0 top-0 -z-50">
+    <img src="/montceaux.jpg" class="flex h-screen w-screen object-cover" />
+  </div>
+  <div class="layout flex h-screen w-screen flex-col justify-between overflow-y-auto px-2 sm:px-4">
+    <HeaderLayout />
+    <BodyLayout />
+    <FooterLayout />
+  </div>
 </template>

@@ -5,18 +5,18 @@
     @apply hover:bg-gray-200;
     @apply active:shadow-md;
     @apply disabled:text-gray-400;
-  }
 
-  .primary {
-    @apply bg-gray-800 text-white;
-    @apply hover:bg-gray-700;
-  }
+    &.layout {
+      @apply rounded-full text-black hover:bg-gray-100 hover:text-opacity-80 hover:shadow-2xl hover:shadow-black;
+    }
 
-  .layout {
-    @apply rounded-full text-black hover:bg-gray-100 hover:text-opacity-80 hover:shadow-2xl hover:shadow-black;
-  }
+    &.primary {
+      @apply bg-gray-800 text-white;
+      @apply hover:bg-gray-700;
+    }
 
-  .danger {
-    @apply bg-red-500 text-white hover:bg-red-600 active:bg-red-700;
+    &.danger {
+      @apply bg-red-500 text-white hover:bg-red-600 active:bg-red-700;
+    }
   }
 }

@@ -7,9 +7,11 @@
 @tailwind utilities;
 
 #app {
-  @apply flex h-screen w-screen flex-col justify-between overflow-y-auto px-2 sm:px-4;
-  font-family: 'Inter', sans-serif;
-  scrollbar-gutter: stable both-edges;
+  @apply fixed block;
+  .layout {
+    font-family: 'Inter', sans-serif;
+    scrollbar-gutter: stable both-edges;
+  }
 }
 
 @layer components {
