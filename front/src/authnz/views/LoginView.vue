@@ -19,7 +19,7 @@ const onSubmit = async () => {
   try {
     errorMsg.value = ''
     await authenticationStore.login(data)
-    router.push('/welcome')
+    router.replace('/welcome')
   } catch (err) {
     if (err instanceof Error) {
       errorMsg.value = err.message
