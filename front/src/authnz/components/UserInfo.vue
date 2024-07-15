@@ -10,7 +10,7 @@ const route = useRoute()
 const router = useRouter()
 
 const handleToggleMenu = () => {
-  menuStore.openMenu()
+  menuStore.toggleMenu()
   if (route.path === '/') {
     router.push('/welcome')
   }

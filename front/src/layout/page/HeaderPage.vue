@@ -19,7 +19,7 @@ withDefaults(
     <nav class="flex">
       <button
         @click="menuStore.toggleMenu()"
-        class="bg-transparent text-white"
+        class="hidden bg-transparent text-white sm:flex"
         v-if="menuStore.showMenu === false && $props.showMenu"
       >
         <Bars3Icon class="size-6" />
