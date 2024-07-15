@@ -15,7 +15,10 @@ const responsiveStore = useResponsiveStore()
   >
     <header class="flex w-full items-center justify-between bg-black text-white">
       <h1 class="px-4">Menu</h1>
-      <button @click="menuStore.toggleMenu()" class="bg-transparent text-white">
+      <button
+        @click="menuStore.toggleMenu()"
+        class="button hidden rounded-none bg-transparent text-white hover:bg-gray-700 sm:flex"
+      >
         <XMarkIcon class="size-6" />
       </button>
     </header>

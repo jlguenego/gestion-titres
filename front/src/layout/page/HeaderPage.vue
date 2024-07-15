@@ -19,17 +19,20 @@ withDefaults(
     <nav class="flex">
       <button
         @click="menuStore.toggleMenu()"
-        class="hidden bg-transparent text-white sm:flex"
+        class="hidden rounded-none bg-transparent text-white hover:bg-gray-700 sm:flex"
         v-if="menuStore.showMenu === false && $props.menu"
       >
         <Bars3Icon class="size-6" />
       </button>
-      <button @click="$router.back()" class="bg-transparent text-white">
+      <button
+        @click="$router.back()"
+        class="flex rounded-none bg-transparent text-white hover:bg-gray-700"
+      >
         <ChevronLeftIcon class="size-6" />
       </button>
     </nav>
     <slot></slot>
-    <RouterLink to="/" class="button bg-transparent text-white">
+    <RouterLink to="/" class="button flex rounded-none bg-transparent text-white hover:bg-gray-700">
       <XMarkIcon class="size-6" />
     </RouterLink>
   </header>
