@@ -56,84 +56,88 @@ onMounted(async () => {
 </script>
 
 <template>
-  <PageLayout class="max-w-3xl">
-    <h1>Détail d'un utilisateur</h1>
-    <form @submit.prevent="onSubmit()">
-      <nav>
-        <button type="button" @click="selectEditMode()">
-          <PencilIcon class="size-6" />
-        </button>
-      </nav>
-      <div class="flex flex-wrap gap-4">
-        <fieldset>
-          <legend>Information de connexion</legend>
-          <label>
-            <span>Identifiant *</span>
-            <input
-              type="text"
-              placeholder="Ex: admin"
-              v-model="user.username"
-              :disabled="!isEditing"
-            />
-            <span class="error">{{ '' }}</span>
-          </label>
-          <label>
-            <span>Mot de passe *</span>
-            <input
-              type="password"
-              v-model="user.password"
-              autocomplete="new-password"
-              :disabled="!isEditing"
-            />
-            <span class="error">{{ '' }}</span>
-          </label>
-        </fieldset>
-        <fieldset>
-          <legend>Identité</legend>
-          <label>
-            <span>Mme./Mr.</span>
-            <select name="" id="" autocomplete="off" v-model="user.gender" :disabled="!isEditing">
-              <option :value="Gender.OTHER"></option>
-              <option :value="Gender.FEMALE">Femme</option>
-              <option :value="Gender.MALE">Homme</option>
-            </select>
-            <span class="error">{{ '' }}</span>
-          </label>
-          <label>
-            <span>Nom d'affichage *</span>
-            <input
-              type="text"
-              v-model="user.displayName"
-              placeholder="Ex: Marcel DUPOND"
-              :disabled="!isEditing"
-            />
-            <span class="error">{{ '' }}</span>
-          </label>
-          <label>
-            <span>Email *</span>
-            <input type="text" v-model="user.email" :disabled="!isEditing" />
-            <span class="error">{{ '' }}</span>
-          </label>
-          <label>
-            <span>Fonction</span>
-            <input
-              type="text"
-              placeholder="Ex: Responsable DSI"
-              v-model="user.jobTitle"
-              :disabled="!isEditing"
-            />
-            <span class="error">{{ '' }}</span>
-          </label>
-        </fieldset>
-      </div>
+  <PageLayout>
+    <HeaderPage>
+      <h1>Détail d'un utilisateur</h1>
+    </HeaderPage>
+    <MainPage>
+      <form @submit.prevent="onSubmit()">
+        <nav>
+          <button type="button" @click="selectEditMode()">
+            <PencilIcon class="size-6" />
+          </button>
+        </nav>
+        <div class="flex flex-wrap gap-4">
+          <fieldset>
+            <legend>Information de connexion</legend>
+            <label>
+              <span>Identifiant *</span>
+              <input
+                type="text"
+                placeholder="Ex: admin"
+                v-model="user.username"
+                :disabled="!isEditing"
+              />
+              <span class="error">{{ '' }}</span>
+            </label>
+            <label>
+              <span>Mot de passe *</span>
+              <input
+                type="password"
+                v-model="user.password"
+                autocomplete="new-password"
+                :disabled="!isEditing"
+              />
+              <span class="error">{{ '' }}</span>
+            </label>
+          </fieldset>
+          <fieldset>
+            <legend>Identité</legend>
+            <label>
+              <span>Mme./Mr.</span>
+              <select name="" id="" autocomplete="off" v-model="user.gender" :disabled="!isEditing">
+                <option :value="Gender.OTHER"></option>
+                <option :value="Gender.FEMALE">Femme</option>
+                <option :value="Gender.MALE">Homme</option>
+              </select>
+              <span class="error">{{ '' }}</span>
+            </label>
+            <label>
+              <span>Nom d'affichage *</span>
+              <input
+                type="text"
+                v-model="user.displayName"
+                placeholder="Ex: Marcel DUPOND"
+                :disabled="!isEditing"
+              />
+              <span class="error">{{ '' }}</span>
+            </label>
+            <label>
+              <span>Email *</span>
+              <input type="text" v-model="user.email" :disabled="!isEditing" />
+              <span class="error">{{ '' }}</span>
+            </label>
+            <label>
+              <span>Fonction</span>
+              <input
+                type="text"
+                placeholder="Ex: Responsable DSI"
+                v-model="user.jobTitle"
+                :disabled="!isEditing"
+              />
+              <span class="error">{{ '' }}</span>
+            </label>
+          </fieldset>
+        </div>
 
-      <div class="error">{{ errorMsg }}</div>
-      <div class="flex h-12 flex-col">
-        <button class="primary" v-if="isEditing">
-          <PencilIcon class="size-6" />
-          <span>Modifier</span>
-        </button>
-      </div>
-    </form>
+        <div class="error">{{ errorMsg }}</div>
+        <div class="flex h-12 flex-col">
+          <button class="primary" v-if="isEditing">
+            <PencilIcon class="size-6" />
+            <span>Modifier</span>
+          </button>
+        </div>
+      </form>
+    </MainPage>
   </PageLayout>
 </template>
