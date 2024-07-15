@@ -1,10 +1,5 @@
 <script setup lang="ts">
-import {
-  ArrowLeftIcon,
-  ChevronLeftIcon,
-  FolderArrowDownIcon,
-  PencilIcon,
-} from '@heroicons/vue/24/outline'
+import { ChevronLeftIcon, FolderArrowDownIcon, PencilIcon } from '@heroicons/vue/24/outline'
 import { onMounted, reactive, ref, watch } from 'vue'
 import { useRoute } from 'vue-router'
 import { Gender, type User } from '../interfaces/User'
@@ -61,6 +56,7 @@ const onSubmit = async () => {
     errorMsg.value = ''
     await userStore.replace({ ...user })
     Object.assign(originalUser, user)
+    isEditing.value = false
   } catch (err) {
     if (err instanceof Error) {
       errorMsg.value = err.message

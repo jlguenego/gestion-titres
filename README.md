@@ -1,6 +1,9 @@
 # Todo
 
-- header de page, footer de page
+- revoir le CSS des boutons
+  - bouton papier, bouton plat
+  - bouton disabled
+  - entierement en tailwind de preference
 - composant d'edition
 - lister les roles (avec un role admin initial)
 - ajouter des roles
