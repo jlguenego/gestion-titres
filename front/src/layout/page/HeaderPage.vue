@@ -3,7 +3,7 @@ import { ChevronLeftIcon, XMarkIcon } from '@heroicons/vue/24/outline'
 </script>
 
 <template>
-  <header class="flex w-full justify-between bg-black text-white">
+  <header class="flex w-full items-center justify-between bg-black text-white">
     <button @click="$router.back()" class="bg-transparent text-white">
       <ChevronLeftIcon class="size-6" />
     </button>
