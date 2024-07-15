@@ -30,10 +30,7 @@ onMounted(async () => {
   >
     <span class="text-4xl font-bold">Gestion Titre</span>
     <span class="text-2xl">La gestion efficace de vos titres !</span>
-    <svg viewBox="-50 -50 100 100" class="h-40 w-40 animate-spin">
-      <circle cx="0" cy="0" r="20" fill="transparent" stroke="gray" stroke-width="5" />
-      <path d="M 0 20 A 20 20 0 0 0 20 0" fill="transparent" stroke="black" stroke-width="5" />
-    </svg>
+    <LoadingIcon class="h-40 w-40 animate-spin" />
   </div>
   <div v-else>
     <div role="none" class="fixed bottom-0 left-0 right-0 top-0 -z-50">
