@@ -30,7 +30,7 @@ const onSubmit = async () => {
 
 <template>
   <PageLayout class="max-w-96">
-    <HeaderPage>
+    <HeaderPage :showMenu="false">
       <h1>Connexion</h1>
     </HeaderPage>
     <MainPage>

@@ -3,6 +3,15 @@ import { Bars3Icon, ChevronLeftIcon, XMarkIcon } from '@heroicons/vue/24/outline
 import { useMenuStore } from '../stores/MenuStore'
 
 const menuStore = useMenuStore()
+
+withDefaults(
+  defineProps<{
+    showMenu: boolean
+  }>(),
+  {
+    showMenu: true,
+  },
+)
 </script>
 
 <template>
@@ -11,7 +20,7 @@ const menuStore = useMenuStore()
       <button
         @click="menuStore.toggleMenu()"
         class="bg-transparent text-white"
-        v-if="menuStore.showMenu === false"
+        v-if="menuStore.showMenu === false && $props.showMenu"
       >
         <Bars3Icon class="size-6" />
       </button>
