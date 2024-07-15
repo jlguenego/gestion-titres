@@ -63,7 +63,7 @@ onMounted(async () => {
     <MainPage>
       <form @submit.prevent="onSubmit()">
         <nav>
-          <button type="button" @click="selectEditMode()">
+          <button type="button" @click="selectEditMode()" title="Mode édition">
             <PencilIcon class="size-6" />
           </button>
         </nav>
@@ -134,7 +134,7 @@ onMounted(async () => {
         <div class="flex h-12 flex-col">
           <button class="primary" v-if="isEditing">
             <PencilIcon class="size-6" />
-            <span>Modifier</span>
+            <span>Enregistrer les modifications</span>
           </button>
         </div>
       </form>

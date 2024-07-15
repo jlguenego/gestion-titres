@@ -14,13 +14,13 @@ export default defineConfig({
     vue(),
     vueJsx(),
     mdPlugin({
-      mode: [Mode.VUE]
+      mode: [Mode.VUE],
     }),
-    vueDevTools()
+    vueDevTools(),
   ],
   resolve: {
     alias: {
-      '@': fileURLToPath(new URL('./src', import.meta.url))
-    }
-  }
+      '@': fileURLToPath(new URL('./src', import.meta.url)),
+    },
+  },
 })
