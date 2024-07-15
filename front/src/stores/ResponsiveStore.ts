@@ -1,11 +1,12 @@
 import { defineStore } from 'pinia'
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 
 export type ResponsiveMode = 'mobile' | 'desktop'
 
 const getMode = (): ResponsiveMode => {
   let result: ResponsiveMode = 'desktop'
-  if (window.screen.width < 640) {
+  console.log('window.innerWidth: ', window.innerWidth)
+  if (window.innerWidth < 640) {
     result = 'mobile'
   }
   console.log('getMode: ', result)
@@ -23,5 +24,8 @@ export const useResponsiveStore = defineStore('responsive', () => {
 
   init()
 
-  return { mode }
+  const isMobile = computed(() => mode.value === 'mobile')
+  const isDesktop = computed(() => mode.value === 'desktop')
+
+  return { mode, isMobile, isDesktop }
 })
