@@ -2,7 +2,7 @@
 
 <template>
   <main class="flex grow justify-center">
-    <div>
+    <div class="flex flex-col gap-2 p-4">
       <slot></slot>
     </div>
   </main>

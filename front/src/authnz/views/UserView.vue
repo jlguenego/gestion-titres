@@ -19,10 +19,12 @@ onMounted(async () => {
 </script>
 
 <template>
-  <PageLayout class="h-full max-w-2xl gap-9">
-    <h1>Liste des utilisateurs</h1>
+  <PageLayout class="h-full gap-9">
+    <HeaderPage>
+      <h1>Liste des utilisateurs</h1>
+    </HeaderPage>
 
-    <div class="flex flex-col gap-2">
+    <MainPage>
       <nav class="flex gap-2">
         <button title="Rafraîchir">
           <ArrowPathIcon class="size-6" />
@@ -47,6 +49,6 @@ onMounted(async () => {
           </div>
         </RouterLink>
       </div>
-    </div>
+    </MainPage>
   </PageLayout>
 </template>
