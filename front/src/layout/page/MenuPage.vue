@@ -11,7 +11,7 @@ const responsiveStore = useResponsiveStore()
   <aside
     v-if="responsiveStore.isDesktop"
     :class="{ hidden: !menuStore.showMenu }"
-    class="flex w-72 flex-col overflow-hidden rounded-2xl bg-white"
+    class="flex w-72 shrink-0 flex-col overflow-hidden rounded-2xl bg-white"
   >
     <header class="flex w-full items-center justify-between bg-black text-white">
       <h1 class="px-4">Menu</h1>

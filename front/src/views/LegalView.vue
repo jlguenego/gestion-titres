@@ -3,12 +3,12 @@ import { VueComponent } from '../markdown/LegalContent.md'
 </script>
 
 <template>
-  <main>
-    <PageLayout>
-      <HeaderPage :showMenu="false">
-        <h1>Mentions Légales</h1>
-      </HeaderPage>
+  <PageLayout>
+    <HeaderPage :showMenu="false">
+      <h1>Mentions Légales</h1>
+    </HeaderPage>
+    <MainPage>
       <VueComponent />
-    </PageLayout>
-  </main>
+    </MainPage>
+  </PageLayout>
 </template>
