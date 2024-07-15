@@ -1,0 +1,35 @@
+@layer components {
+  form {
+    @apply flex w-full flex-col gap-4;
+
+    fieldset {
+      @apply flex grow flex-col rounded-xl border p-2;
+
+      legend {
+        @apply p-2;
+      }
+    }
+
+    label {
+      @apply flex flex-col;
+
+      input {
+        @apply rounded-lg border border-gray-400 p-2;
+        @apply disabled:border-gray-50 disabled:bg-gray-50;
+      }
+
+      select {
+        @apply rounded-lg border border-gray-400 p-2;
+        @apply disabled:border-gray-50 disabled:bg-gray-50;
+      }
+
+      span.error {
+        @apply flex h-4 font-bold;
+      }
+    }
+
+    div.error {
+      @apply flex h-6 items-end justify-center font-bold;
+    }
+  }
+}

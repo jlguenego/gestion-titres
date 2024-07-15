@@ -4,7 +4,6 @@
     @apply flex items-center justify-center gap-2 rounded-lg bg-gray-100 px-4 py-2 shadow-lg;
     @apply hover:bg-gray-200;
     @apply active:shadow-md;
-    @apply disabled:text-gray-400;
 
     &.layout {
       @apply rounded-full text-black hover:bg-gray-100 hover:text-opacity-80 hover:shadow-2xl hover:shadow-black;
@@ -17,6 +16,10 @@
 
     &.danger {
       @apply bg-red-500 text-white hover:bg-red-600 active:bg-red-700;
+    }
+
+    &:disabled {
+      @apply bg-gray-200 text-gray-400 shadow-none hover:bg-gray-200 hover:shadow-none;
     }
   }
 }

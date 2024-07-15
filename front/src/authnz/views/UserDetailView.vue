@@ -1,6 +1,11 @@
 <script setup lang="ts">
-import { FolderArrowDownIcon, PencilIcon } from '@heroicons/vue/24/outline'
-import { onMounted, reactive, ref } from 'vue'
+import {
+  ArrowLeftIcon,
+  ChevronLeftIcon,
+  FolderArrowDownIcon,
+  PencilIcon,
+} from '@heroicons/vue/24/outline'
+import { onMounted, reactive, ref, watch } from 'vue'
 import { useRoute } from 'vue-router'
 import { Gender, type User } from '../interfaces/User'
 import { useUserStore } from '../stores/UserStore'
@@ -19,8 +24,33 @@ const user = reactive<User>({
   phone: '',
 })
 
+const originalUser = reactive<User>({
+  id: '',
+  username: '',
+  password: '',
+  displayName: '',
+  email: '',
+  jobTitle: '',
+  gender: undefined,
+  phone: '',
+})
+
 const errorMsg = ref('')
 const isEditing = ref(false)
+const isUserDifferent = ref(false)
+
+const check = () => {
+  if (isEditing.value === false) {
+    return
+  }
+  console.log('watch user: ', user)
+  const originalUserStr = JSON.stringify(originalUser)
+  const userStr = JSON.stringify(user)
+  isUserDifferent.value = originalUserStr !== userStr
+}
+
+watch(user, check)
+watch(originalUser, check)
 
 const selectEditMode = () => {
   isEditing.value = !isEditing.value
@@ -30,6 +60,7 @@ const onSubmit = async () => {
   try {
     errorMsg.value = ''
     await userStore.replace({ ...user })
+    Object.assign(originalUser, user)
   } catch (err) {
     if (err instanceof Error) {
       errorMsg.value = err.message
@@ -47,8 +78,12 @@ onMounted(async () => {
     return
   }
   const selectedUser = userStore.users.find((u) => u.username === username)
+  if (selectedUser === undefined) {
+    return
+  }
   console.log('selectedUser: ', selectedUser)
   Object.assign(user, selectedUser)
+  Object.assign(originalUser, selectedUser)
   console.log('finished loaded user', user)
 })
 </script>
@@ -59,7 +94,7 @@ onMounted(async () => {
       <h1>Détail d'un utilisateur</h1>
     </HeaderPage>
     <MainPage>
-      <form @submit.prevent="onSubmit()">
+      <form @submit.prevent="onSubmit()" class="shrink-0">
         <nav>
           <button type="button" @click="selectEditMode()" title="Mode édition">
             <PencilIcon class="size-6" />
@@ -129,10 +164,14 @@ onMounted(async () => {
         </div>
 
         <div class="error">{{ errorMsg }}</div>
-        <div class="flex h-12 flex-col">
-          <button class="primary" v-if="isEditing">
+        <div class="flex flex-col gap-2">
+          <button class="primary" v-if="isEditing && isUserDifferent">
             <FolderArrowDownIcon class="size-6" />
             <span>Enregistrer les modifications</span>
+          </button>
+          <button v-else @click="$router.back()">
+            <ChevronLeftIcon class="size-6" />
+            <span>Retour Liste des utilisateurs</span>
           </button>
         </div>
       </form>
