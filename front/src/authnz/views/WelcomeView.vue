@@ -23,7 +23,8 @@ const menus = [
     <HeaderPage>
       <h1>Bienvenue {{ authenticationStore.user.displayName }} !</h1>
     </HeaderPage>
-    <main class="grow">
+
+    <MainPage>
       <p>Vos rôles : Admin, Gérant de portefeuille Truc, Gérant du portefeuille Trac</p>
       <p>Voici vos modules</p>
       <nav class="flex flex-wrap gap-2">
@@ -31,9 +32,10 @@ const menus = [
           {{ item.label }}
         </RouterLink>
       </nav>
-    </main>
-    <footer>
+    </MainPage>
+
+    <FooterPage>
       <button class="danger" @click="handleLogout()">Se déconnecter</button>
-    </footer>
+    </FooterPage>
   </PageLayout>
 </template>
