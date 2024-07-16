@@ -7,6 +7,8 @@ import UserAddView from './views/UserAddView.vue'
 import UserDetailView from './views/UserDetailView.vue'
 import UserView from './views/UserView.vue'
 import WelcomeView from './views/WelcomeView.vue'
+import RoleView from './views/RoleView.vue'
+import DatabaseView from './views/DatabaseView.vue'
 
 const LOGIN_PATH = '/login'
 const anonymousAllowedPaths = ['/', '/legal']
@@ -42,6 +44,16 @@ export const authenticationRoutes = [
     path: '/privileges',
     name: 'privileges',
     component: PrivilegeView,
+  },
+  {
+    path: '/roles',
+    name: 'roles',
+    component: RoleView,
+  },
+  {
+    path: '/database',
+    name: 'database',
+    component: DatabaseView,
   },
 ]
 

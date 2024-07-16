@@ -1,5 +1,5 @@
 import type { New, ObjectWithId } from '@/interfaces/utilities'
-import { ErrorMessage } from './interfaces/ErrorMessage'
+import { ErrorMessage } from '../interfaces/ErrorMessage'
 
 const getKey = (resourceName: string) => {
   return `backEnd.${resourceName}`

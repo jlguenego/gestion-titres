@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
 import { computed, ref } from 'vue'
-import { api } from '../api'
+import { api } from '../api/api'
 import type { User } from '../interfaces/User'
 import type { UserCredentials } from '../interfaces/UserCredentials'
 

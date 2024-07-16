@@ -1,6 +1,6 @@
-import { ErrorMessage } from './interfaces/ErrorMessage'
-import type { User } from './interfaces/User'
-import type { UserCredentials } from './interfaces/UserCredentials'
+import { ErrorMessage } from '../interfaces/ErrorMessage'
+import type { User } from '../interfaces/User'
+import type { UserCredentials } from '../interfaces/UserCredentials'
 import { ResourceAPI } from './ResourceAPI'
 
 const resourceAPI = new ResourceAPI<User>('user')

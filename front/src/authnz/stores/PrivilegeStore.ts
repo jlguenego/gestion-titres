@@ -2,7 +2,7 @@ import type { New } from '@/interfaces/utilities'
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
 import type { Privilege } from '../interfaces/Privilege'
-import { ResourceAPI } from '../ResourceAPI'
+import { ResourceAPI } from '../api/ResourceAPI'
 
 const api = new ResourceAPI<Privilege>('privilege')
 

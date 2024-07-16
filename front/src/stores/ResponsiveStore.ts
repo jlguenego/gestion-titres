@@ -1,15 +1,14 @@
+import { isDesktop } from '@/utils/responsive'
 import { defineStore } from 'pinia'
 import { computed, ref } from 'vue'
 
 export type ResponsiveMode = 'mobile' | 'desktop'
 
 const getMode = (): ResponsiveMode => {
-  let result: ResponsiveMode = 'desktop'
-  console.log('window.innerWidth: ', window.innerWidth)
-  if (window.innerWidth < 640) {
-    result = 'mobile'
+  let result: ResponsiveMode = 'mobile'
+  if (isDesktop()) {
+    result = 'desktop'
   }
-  console.log('getMode: ', result)
   return result
 }
 

@@ -1,14 +1,13 @@
 <script setup lang="ts">
 import { useAuthenticationStore } from '@/authnz/stores/AuthenticationStore'
 import PageLayout from '@/layout/page/PageLayout.vue'
-import { useRouter } from 'vue-router'
+import { useMenuStore } from '@/layout/stores/MenuStore'
+import { isDesktop } from '@/utils/responsive'
 
 const authenticationStore = useAuthenticationStore()
-const router = useRouter()
-
-const handleLogout = async () => {
-  await authenticationStore.logout()
-  await router.replace('/')
+const menuStore = useMenuStore()
+if (isDesktop()) {
+  menuStore.openMenu()
 }
 
 const menus = [
@@ -33,9 +32,5 @@ const menus = [
         </RouterLink>
       </nav>
     </MainPage>
-
-    <FooterPage>
-      <button class="danger" @click="handleLogout()">Se déconnecter</button>
-    </FooterPage>
   </PageLayout>
 </template>
