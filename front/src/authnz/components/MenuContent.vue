@@ -21,7 +21,7 @@ const handleLogout = async () => {
 
 <template>
   <div class="flex h-full flex-col justify-between gap-6 py-4">
-    <nav class="flex flex-col divide-y">
+    <nav class="flex flex-col divide-y border-y border-gray-200">
       <RouterLink
         v-for="item in menus"
         :key="item.label"

@@ -28,7 +28,7 @@ onMounted(async () => {
         <div
           v-for="item in roleStore.roles"
           :key="item.name"
-          class="flex w-full flex-wrap justify-center gap-x-8 gap-y-4 rounded-xl border p-4 shadow-md hover:bg-gray-50 active:shadow-sm"
+          class="flex w-full flex-wrap justify-center gap-x-8 gap-y-4 rounded-xl border p-4 shadow-md"
         >
           <div class="flex grow flex-col items-center justify-center gap-1">
             <span class="text-2xl font-bold">{{ item.name }}</span>
@@ -37,7 +37,7 @@ onMounted(async () => {
               <span>Privilèges:</span>
               <RouterLink
                 :to="'/privileges/' + privilege"
-                class="rounded-full border p-2 shadow-md"
+                class="rounded-full border p-2 shadow-md hover:bg-gray-50 active:shadow-sm"
                 v-for="privilege in item.privileges"
                 :key="privilege"
               >
