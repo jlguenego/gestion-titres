@@ -8,7 +8,6 @@
 @tailwind utilities;
 
 #app {
-  @apply fixed block;
   .layout {
     font-family: 'Inter', sans-serif;
     scrollbar-gutter: stable both-edges;

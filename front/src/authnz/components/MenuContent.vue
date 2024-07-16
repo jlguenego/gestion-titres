@@ -9,7 +9,12 @@ const menus = [
 
 <template>
   <nav class="flex flex-col divide-y">
-    <RouterLink v-for="item in menus" :key="item.label" :to="item.to" class="flex p-2">
+    <RouterLink
+      v-for="item in menus"
+      :key="item.label"
+      :to="item.to"
+      class="flex p-2 hover:bg-gray-100"
+    >
       {{ item.label }}
     </RouterLink>
   </nav>
