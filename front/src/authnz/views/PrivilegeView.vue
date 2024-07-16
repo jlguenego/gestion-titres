@@ -9,6 +9,7 @@ onMounted(async () => {
   if (privilegeStore.privileges === undefined) {
     await privilegeStore.refresh()
   }
+  console.log('privilegeStore.privileges: ', privilegeStore.privileges)
 })
 </script>
 

@@ -5,7 +5,10 @@ import { onMounted } from 'vue'
 
 const roleStore = useRoleStore()
 onMounted(async () => {
-  roleStore.refresh()
+  if (roleStore.roles === undefined) {
+    await roleStore.refresh()
+  }
+  console.log('roleStore.roles: ', roleStore.roles)
 })
 </script>
 
@@ -17,7 +20,7 @@ onMounted(async () => {
 
     <MainPage>
       <nav class="flex gap-2">
-        <button title="Rafraîchir">
+        <button title="Rafraîchir" @click="roleStore.refresh()">
           <ArrowPathIcon class="size-6" />
         </button>
         <RouterLink to="/forms/new-user" title="Ajouter" class="button">

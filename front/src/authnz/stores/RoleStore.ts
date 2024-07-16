@@ -6,7 +6,7 @@ import type { Role } from '../interfaces/Role'
 
 const api = new ResourceAPI<Role>('role')
 
-export const useRoleStore = defineStore('privilege', () => {
+export const useRoleStore = defineStore('role', () => {
   const roles = ref<Role[] | undefined>()
 
   const refresh = async () => {
