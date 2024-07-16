@@ -3,11 +3,18 @@ import { HomeIcon } from '@heroicons/vue/24/outline'
 </script>
 
 <template>
-  <PageLayout class="w-full gap-12 p-12">
-    <h1 class="text-2xl">Page non trouvée... 😭</h1>
-    <RouterLink to="/" class="button primary">
-      <HomeIcon class="size-6" />
-      <span>Accueil</span>
-    </RouterLink>
+  <PageLayout class="self-stretch">
+    <HeaderPage>
+      <h1>Page non trouvée</h1>
+    </HeaderPage>
+    <MainPage>
+      <div class="flex grow flex-col justify-center gap-12">
+        <span class="text-3xl font-bold">Page non trouvée... 😭</span>
+        <RouterLink to="/" class="button primary">
+          <HomeIcon class="size-6" />
+          <span>Accueil</span>
+        </RouterLink>
+      </div>
+    </MainPage>
   </PageLayout>
 </template>
