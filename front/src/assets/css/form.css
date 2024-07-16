@@ -32,4 +32,12 @@
       @apply flex h-6 items-end justify-center font-bold;
     }
   }
+
+  .item-selectable {
+    @apply cursor-pointer rounded-xl border p-2 shadow-sm hover:bg-gray-100;
+
+    &.selected {
+      @apply bg-gray-200 hover:bg-gray-200;
+    }
+  }
 }

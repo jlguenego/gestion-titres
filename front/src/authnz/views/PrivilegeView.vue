@@ -38,9 +38,9 @@ onMounted(async () => {
             :to="'/privileges/' + privilege.name"
             v-for="privilege in privilegeStore.privileges"
             :key="privilege.name"
-            class="flex w-full flex-wrap justify-center gap-x-8 gap-y-4 rounded-xl border p-4 shadow-md hover:bg-gray-50 active:shadow-sm"
+            class="flex w-full flex-col gap-x-8 gap-y-4 rounded-xl border p-4 shadow-md hover:bg-gray-50 active:shadow-sm"
           >
-            <div class="flex flex-col">
+            <div class="flex flex-col items-start">
               <span class="text-xl font-bold">{{ privilege.name }}</span>
               <span class="text-gray-500">{{ privilege.description }}</span>
             </div>
