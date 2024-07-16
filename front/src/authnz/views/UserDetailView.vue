@@ -58,7 +58,7 @@ const onSubmit = async () => {
     Object.assign(originalUser, user)
     check()
     isEditing.value = false
-    message.value = 'Enregistré avec succes.'
+    message.value = 'Enregistré avec succès.'
   } catch (err) {
     if (err instanceof Error) {
       message.value = err.message
