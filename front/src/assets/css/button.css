@@ -1,25 +1,28 @@
 @layer components {
   button,
   .button {
-    @apply flex items-center justify-center gap-2 rounded-lg bg-gray-100 px-4 py-2 shadow-lg;
-    @apply hover:bg-gray-200;
+    @apply flex items-center justify-center gap-2 rounded-lg bg-gray-50 px-4 py-2 shadow-lg;
+    @apply hover:bg-gray-100;
     @apply active:shadow-md;
 
-    &.layout {
-      @apply rounded-full text-black hover:bg-gray-100 hover:text-opacity-80 hover:shadow-2xl hover:shadow-black;
-    }
+    @apply disabled:bg-gray-200 disabled:text-gray-400 disabled:shadow-none;
 
     &.primary {
       @apply bg-gray-800 text-white;
       @apply hover:bg-gray-700;
+      @apply active:bg-gray-600;
     }
 
     &.danger {
-      @apply bg-red-500 text-white hover:bg-red-600 active:bg-red-700;
+      @apply bg-red-500 text-white;
+      @apply hover:bg-red-600;
+      @apply active:bg-red-700;
     }
 
-    &:disabled {
-      @apply bg-gray-200 text-gray-400 shadow-none hover:bg-gray-200 hover:shadow-none;
+    &.layout {
+      @apply rounded-full text-black;
+      @apply px-4;
+      @apply hover:bg-gray-100 hover:text-opacity-80 hover:shadow-2xl hover:shadow-black;
     }
   }
 }

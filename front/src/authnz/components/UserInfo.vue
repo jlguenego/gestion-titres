@@ -20,9 +20,9 @@ const handleClick = () => {
 </script>
 
 <template>
-  <button v-if="authenticationStore.user" @click="handleClick()" class="layout p-2 sm:px-4">
+  <button v-if="authenticationStore.user" @click="handleClick()" class="layout">
     <Bars3Icon class="size-6 sm:hidden" />
-    <UserIcon class="size-6" />
+    <UserIcon class="hidden size-6 sm:inline" />
     <span class="hidden sm:inline">{{ authenticationStore.user.displayName }}</span>
   </button>
 </template>
