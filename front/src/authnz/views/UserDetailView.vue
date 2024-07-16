@@ -30,43 +30,44 @@ const originalUser = reactive<User>({
   phone: '',
 })
 
-const errorMsg = ref('')
+const message = ref('')
 const isEditing = ref(false)
 const isUserDifferent = ref(false)
 
 const check = () => {
+  message.value = ''
   if (isEditing.value === false) {
     return
   }
-  console.log('watch user: ', user)
   const originalUserStr = JSON.stringify(originalUser)
   const userStr = JSON.stringify(user)
   isUserDifferent.value = originalUserStr !== userStr
 }
 
 watch(user, check)
-watch(originalUser, check)
 
 const selectEditMode = () => {
+  message.value = ''
   isEditing.value = !isEditing.value
 }
 
 const onSubmit = async () => {
   try {
-    errorMsg.value = ''
+    message.value = ''
     await userStore.replace({ ...user })
     Object.assign(originalUser, user)
+    check()
     isEditing.value = false
+    message.value = 'Enregistré avec succes.'
   } catch (err) {
     if (err instanceof Error) {
-      errorMsg.value = err.message
+      message.value = err.message
     }
   }
 }
 
 onMounted(async () => {
   const username = route.params.username
-  console.log('username: ', username)
   if (userStore.users === undefined) {
     await userStore.refresh()
   }
@@ -77,10 +78,9 @@ onMounted(async () => {
   if (selectedUser === undefined) {
     return
   }
-  console.log('selectedUser: ', selectedUser)
   Object.assign(user, selectedUser)
   Object.assign(originalUser, selectedUser)
-  console.log('finished loaded user', user)
+  check()
 })
 </script>
 
@@ -159,7 +159,7 @@ onMounted(async () => {
           </fieldset>
         </div>
 
-        <div class="error">{{ errorMsg }}</div>
+        <div class="error">{{ message }}</div>
         <div class="flex flex-col gap-2">
           <button class="primary" v-if="isEditing && isUserDifferent">
             <FolderArrowDownIcon class="size-6" />

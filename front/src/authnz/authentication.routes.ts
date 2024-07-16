@@ -46,8 +46,6 @@ export const authenticationRoutes = [
 ]
 
 export const authenticationGuard: NavigationGuard = (to) => {
-  console.log('to: ', to)
-
   if (to.name === NOTFOUND_NAME) {
     return true
   }

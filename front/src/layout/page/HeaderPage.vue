@@ -6,7 +6,7 @@ const menuStore = useMenuStore()
 
 withDefaults(
   defineProps<{
-    menu: boolean
+    menu?: boolean
   }>(),
   {
     menu: true,

@@ -11,11 +11,8 @@ const userStore = useUserStore()
 const isLoading = ref(true)
 
 onMounted(async () => {
-  console.log('start app')
   await Promise.all([
     (async () => {
-      console.log('start app create database')
-      console.log('userStore.users: ', userStore.users)
       if (userStore.users === undefined) {
         await database.init()
       }

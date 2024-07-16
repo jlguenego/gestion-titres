@@ -6,7 +6,6 @@ import vueJsx from '@vitejs/plugin-vue-jsx'
 import vueDevTools from 'vite-plugin-vue-devtools'
 
 import { Mode, plugin as mdPlugin } from 'vite-plugin-markdown'
-console.log('mdPlugin: ', mdPlugin)
 
 // https://vitejs.dev/config/
 export default defineConfig({
