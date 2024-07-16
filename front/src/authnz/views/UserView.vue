@@ -40,7 +40,7 @@ onMounted(async () => {
           :key="item.displayName"
           class="flex w-full flex-wrap justify-center gap-x-8 gap-y-4 rounded-xl border p-4 shadow-md hover:bg-gray-50 active:shadow-sm"
         >
-          <img :src="getImage(item)" alt="Photo utilisateur" class="h-32 rounded-full" />
+          <img :src="getImage(item)" alt="Photo utilisateur" class="h-32 w-32 rounded-full" />
           <div class="flex grow flex-col items-center justify-center gap-1">
             <span class="text-xl">{{ item.displayName }}</span>
             <span class="font-bold">{{ item.username }}</span>

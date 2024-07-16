@@ -18,6 +18,7 @@ const responsiveStore = useResponsiveStore()
       <button
         @click="menuStore.toggleMenu()"
         class="button hidden rounded-none bg-transparent text-white hover:bg-gray-700 sm:flex"
+        title="Fermer"
       >
         <XMarkIcon class="size-6" />
       </button>

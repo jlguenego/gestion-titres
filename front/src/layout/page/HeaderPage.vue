@@ -27,12 +27,17 @@ withDefaults(
       <button
         @click="$router.back()"
         class="flex rounded-none bg-transparent text-white hover:bg-gray-700"
+        title="Page précédente"
       >
         <ChevronLeftIcon class="size-6" />
       </button>
     </nav>
     <slot></slot>
-    <RouterLink to="/" class="button flex rounded-none bg-transparent text-white hover:bg-gray-700">
+    <RouterLink
+      title="Fermer"
+      to="/"
+      class="button flex rounded-none bg-transparent text-white hover:bg-gray-700"
+    >
       <XMarkIcon class="size-6" />
     </RouterLink>
   </header>
