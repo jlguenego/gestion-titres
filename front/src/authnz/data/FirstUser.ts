@@ -15,4 +15,5 @@ export const firstUser: New<User> = {
 export const adminPrivilege: New<Privilege> = {
   name: 'admin',
   functionalities: ['all'],
+  description: "Un administrateur a accès à toutes les fonctionnalités de l'application",
 }

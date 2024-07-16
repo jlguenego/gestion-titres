@@ -34,13 +34,14 @@ onMounted(async () => {
         </nav>
         <div class="flex w-full max-w-md flex-col gap-2">
           <RouterLink
-            :to="'/privileges/' + item.name"
-            v-for="item in privilegeStore.privileges"
-            :key="item.name"
+            :to="'/privileges/' + privilege.name"
+            v-for="privilege in privilegeStore.privileges"
+            :key="privilege.name"
             class="flex w-full flex-wrap justify-center gap-x-8 gap-y-4 rounded-xl border p-4 shadow-md hover:bg-gray-50 active:shadow-sm"
           >
-            <div class="flex grow flex-col items-center justify-center gap-1">
-              <span class="text-xl">{{ item.name }}</span>
+            <div class="flex flex-col">
+              <span class="text-xl font-bold">{{ privilege.name }}</span>
+              <span class="text-gray-500">{{ privilege.description }}</span>
             </div>
           </RouterLink>
         </div>
