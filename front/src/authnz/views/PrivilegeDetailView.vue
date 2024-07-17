@@ -84,7 +84,7 @@ onMounted(async () => {
 <template>
   <PageLayout>
     <HeaderPage>
-      <h1>Détail du privilège {{ privilege.name }}</h1>
+      <h1>Détails du privilège {{ privilege.name }}</h1>
     </HeaderPage>
     <MainPage>
       <form @submit.prevent="onSubmit()">

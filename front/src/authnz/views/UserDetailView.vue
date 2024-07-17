@@ -87,7 +87,7 @@ onMounted(async () => {
 <template>
   <PageLayout>
     <HeaderPage>
-      <h1>Détail d'un utilisateur</h1>
+      <h1>Détails d'un utilisateur</h1>
     </HeaderPage>
     <MainPage>
       <form @submit.prevent="onSubmit()" class="shrink-0">
