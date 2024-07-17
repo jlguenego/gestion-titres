@@ -3,7 +3,7 @@ import MenuContent from '@/authnz/components/MenuContent.vue'
 </script>
 
 <template>
-  <div class="flex grow gap-2 sm:items-start">
+  <div class="flex grow gap-2">
     <MenuPage>
       <MenuContent />
     </MenuPage>
