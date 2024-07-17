@@ -29,18 +29,20 @@ const toggleItem = async (item: Item) => {
 </script>
 
 <template>
-  <ul
+  <div
     class="flex flex-wrap gap-2 rounded-lg border border-gray-400 p-2"
-    :class="{ 'border-none': props.disabled, 'bg-gray-100': props.disabled }"
+    :class="{ 'border-transparent': props.disabled, 'bg-gray-100': props.disabled }"
   >
-    <li
+    <button
+      type="button"
       v-for="item in props.items"
       :key="item.id"
       @click="toggleItem(item)"
       class="item-selectable"
       :class="{ selected: isSelectedItem(item) }"
+      :disabled="props.disabled"
     >
       {{ item.name }}
-    </li>
-  </ul>
+    </button>
+  </div>
 </template>
