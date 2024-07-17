@@ -44,7 +44,7 @@ const check = () => {
   isUserDifferent.value = originalUserStr !== userStr
 }
 
-watch(user, check)
+watch(user, check, { deep: true })
 
 const selectEditMode = () => {
   message.value = ''

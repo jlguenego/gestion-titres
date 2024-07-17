@@ -32,10 +32,6 @@ const onSubmit = async () => {
     }
   }
 }
-
-onMounted(() => {
-  // data.username = ''
-})
 </script>
 
 <template>

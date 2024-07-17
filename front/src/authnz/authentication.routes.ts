@@ -4,6 +4,7 @@ import { useAuthenticationStore } from './stores/AuthenticationStore'
 import DatabaseView from './views/DatabaseView.vue'
 import LoginView from './views/LoginView.vue'
 import PrivilegeAddView from './views/PrivilegeAddView.vue'
+import PrivilegeDetailView from './views/PrivilegeDetailView.vue'
 import PrivilegeView from './views/PrivilegeView.vue'
 import RoleView from './views/RoleView.vue'
 import UserAddView from './views/UserAddView.vue'
@@ -50,6 +51,11 @@ export const authenticationRoutes = [
     path: '/forms/new-privilege',
     name: 'add-privilege',
     component: PrivilegeAddView,
+  },
+  {
+    path: '/privileges/:name',
+    name: 'privileges-detail',
+    component: PrivilegeDetailView,
   },
   {
     path: '/roles',
