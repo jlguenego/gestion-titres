@@ -1,6 +1,7 @@
 # Todo
 
 - revoir le CSS des boutons
+  - faire seulement des boutons avec la classe .button
   - bouton papier, bouton plat
   - bouton disabled
   - entierement en tailwind de preference

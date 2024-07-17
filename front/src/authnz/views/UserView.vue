@@ -26,7 +26,7 @@ onMounted(async () => {
 
     <MainPage>
       <nav class="flex gap-2">
-        <button title="Rafraîchir">
+        <button class="button" title="Rafraîchir">
           <ArrowPathIcon class="size-6" />
         </button>
         <RouterLink to="/forms/new-user" title="Ajouter" class="button">

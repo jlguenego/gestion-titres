@@ -20,7 +20,7 @@ onMounted(async () => {
 
     <MainPage>
       <nav class="flex gap-2">
-        <button title="Rafraîchir" @click="roleStore.refresh()">
+        <button class="button" title="Rafraîchir" @click="roleStore.refresh()">
           <ArrowPathIcon class="size-6" />
         </button>
         <RouterLink to="/forms/new-user" title="Ajouter" class="button">

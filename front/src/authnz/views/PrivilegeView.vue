@@ -26,7 +26,7 @@ onMounted(async () => {
 
       <div class="flex flex-col gap-2">
         <nav class="flex gap-2">
-          <button title="Rafraîchir">
+          <button class="button" title="Rafraîchir">
             <ArrowPathIcon class="size-6" />
           </button>
           <RouterLink to="/forms/new-privilege" title="Ajouter" class="button">

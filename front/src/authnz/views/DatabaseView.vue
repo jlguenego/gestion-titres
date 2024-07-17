@@ -24,7 +24,7 @@ const handleReset = async () => {
 
     <MainPage>
       <nav class="flex gap-2">
-        <button class="danger" @click="handleReset()">
+        <button class="button danger" @click="handleReset()">
           <TrashIcon class="size-6" />
           <span>Réinitialiser la base de données</span>
         </button>

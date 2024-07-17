@@ -17,6 +17,12 @@ const handleLogout = async () => {
   await authenticationStore.logout()
   await router.replace('/')
 }
+
+const menus = [
+  { label: 'Gérer les utilisateurs', to: '/users' },
+  { label: 'Gérer les rôles', to: '/roles' },
+  { label: 'Gérer les privilèges', to: '/privileges' },
+]
 </script>
 
 <template>
@@ -33,7 +39,7 @@ const handleLogout = async () => {
           {{ item.label }}
         </RouterLink>
       </nav>
-      <button class="danger self-center" @click="handleLogout()">Se deconnecter</button>
+      <button class="button danger self-center" @click="handleLogout()">Se deconnecter</button>
     </MainPage>
   </PageLayout>
 </template>

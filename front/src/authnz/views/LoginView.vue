@@ -46,7 +46,7 @@ const onSubmit = async () => {
           <span class="error">{{ '' }}</span>
         </label>
         <div class="error">{{ errorMsg }}</div>
-        <button class="primary">
+        <button class="button primary">
           <ArrowRightEndOnRectangleIcon class="size-6" />
           <span>Se connecter</span>
         </button>

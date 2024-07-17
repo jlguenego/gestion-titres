@@ -89,7 +89,7 @@ onMounted(async () => {
     <MainPage>
       <form @submit.prevent="onSubmit()">
         <nav>
-          <button type="button" @click="selectEditMode()" title="Mode édition">
+          <button class="button" type="button" @click="selectEditMode()" title="Mode édition">
             <PencilIcon class="size-6" />
           </button>
         </nav>
@@ -139,11 +139,11 @@ onMounted(async () => {
 
         <div class="error">{{ message }}</div>
         <div class="flex flex-col gap-2">
-          <button class="primary" v-if="isEditing && isPrivilegeDifferent">
+          <button class="button primary" v-if="isEditing && isPrivilegeDifferent">
             <FolderArrowDownIcon class="size-6" />
             <span>Enregistrer les modifications</span>
           </button>
-          <button v-else @click="$router.back()">
+          <button v-else class="button" @click="$router.back()">
             <ChevronLeftIcon class="size-6" />
             <span>Retour Liste des utilisateurs</span>
           </button>

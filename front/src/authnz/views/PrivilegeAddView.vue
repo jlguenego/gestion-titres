@@ -72,7 +72,7 @@ const onSubmit = async () => {
         </label>
 
         <div class="error">{{ errorMsg }}</div>
-        <button class="primary">
+        <button class="button primary">
           <PlusIcon class="size-6" />
           <span>Ajouter</span>
         </button>
