@@ -26,7 +26,7 @@ withDefaults(
       </button>
       <button
         @click="$router.back()"
-        class="flex rounded-none bg-transparent text-white hover:bg-gray-700"
+        class="button flex rounded-none bg-transparent text-white hover:bg-gray-700"
         title="Page précédente"
       >
         <ChevronLeftIcon class="size-6" />
