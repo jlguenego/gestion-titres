@@ -101,13 +101,13 @@ onMounted(async () => {
   }
   Object.assign(role, clone(selectedRole))
   Object.assign(originalRole, clone(selectedRole))
-  // privileges.value = role.privilegeIds.map((id) => {
-  //   const result = privilegeList.find((p) => p.id === id)
-  //   if (result === undefined) {
-  //     throw new Error('should not happen')
-  //   }
-  //   return result
-  // })
+  privileges.value = role.privilegeIds.map((id) => {
+    const result = privilegeList.find((p) => p.id === id)
+    if (result === undefined) {
+      throw new Error('should not happen')
+    }
+    return result
+  })
 })
 </script>
 
