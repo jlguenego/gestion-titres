@@ -11,6 +11,21 @@ const menus = [
   { label: 'Gérer les rôles', to: '/roles' },
   { label: 'Gérer les privilèges', to: '/privileges' },
   { label: 'Gérer la base de données', to: '/database' },
+  { label: 'Accueil', to: '/welcome' },
+  { label: 'Gérer les utilisateurs', to: '/users' },
+  { label: 'Gérer les rôles', to: '/roles' },
+  { label: 'Gérer les privilèges', to: '/privileges' },
+  { label: 'Gérer la base de données', to: '/database' },
+  { label: 'Accueil', to: '/welcome' },
+  { label: 'Gérer les utilisateurs', to: '/users' },
+  { label: 'Gérer les rôles', to: '/roles' },
+  { label: 'Gérer les privilèges', to: '/privileges' },
+  { label: 'Gérer la base de données', to: '/database' },
+  { label: 'Accueil', to: '/welcome' },
+  { label: 'Gérer les utilisateurs', to: '/users' },
+  { label: 'Gérer les rôles', to: '/roles' },
+  { label: 'Gérer les privilèges', to: '/privileges' },
+  { label: 'Gérer la base de données', to: '/database' },
 ]
 
 const handleLogout = async () => {
