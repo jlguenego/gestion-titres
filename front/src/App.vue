@@ -11,15 +11,19 @@ const userStore = useUserStore()
 const isLoading = ref(true)
 
 onMounted(async () => {
-  await Promise.all([
-    (async () => {
-      if (userStore.users === undefined) {
-        await database.init()
-      }
-    })(),
-    sleep(600),
-  ])
-  isLoading.value = false
+  try {
+    await Promise.all([
+      (async () => {
+        if (userStore.users === undefined) {
+          await database.init()
+        }
+      })(),
+      sleep(600),
+    ])
+    isLoading.value = false
+  } catch (err) {
+    alert(`error: ${err}`)
+  }
 })
 </script>
 

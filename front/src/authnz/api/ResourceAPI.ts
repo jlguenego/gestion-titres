@@ -1,5 +1,6 @@
 import type { New, ObjectWithId } from '@/interfaces/utilities'
 import { ErrorMessage } from '../interfaces/ErrorMessage'
+import { generateId } from '../misc/generateId'
 
 const getKey = (resourceName: string) => {
   return `backEnd.${resourceName}`
@@ -11,7 +12,7 @@ export class ResourceAPI<T extends ObjectWithId> {
   async add(newResource: New<T>) {
     const resources = await this.retrieveAll()
     const key = getKey(this.resourceName)
-    const resource: T = { ...newResource, id: window.crypto.randomUUID() } as T
+    const resource: T = { ...newResource, id: generateId() } as T
     resources.push(resource)
     localStorage.setItem(key, JSON.stringify(resources))
   }
