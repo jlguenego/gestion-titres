@@ -1,7 +1,12 @@
 import type { Functionality } from '../interfaces/Functionality'
 
-export const functionalities: Functionality[] = [
-  { id: 'users:all', name: 'Utilisateurs - Tout' },
-  { id: 'users:read', name: 'Utilisateurs - Lecture' },
-  { id: 'current-user:write', name: 'Utilisateur courant - Tout' },
+export const readOnlyFunctionalities: Functionality[] = [
+  { id: 'users:read', name: 'Utilisateurs' },
+  { id: 'current-user:read', name: 'Mon Compte' },
+]
+
+export const mutationFunctionalities: Functionality[] = [
+  { id: 'database:reset', name: 'Database Reset' },
+  { id: 'users:write', name: 'Utilisateurs' },
+  { id: 'current-user:write', name: 'Mon Compte' },
 ]

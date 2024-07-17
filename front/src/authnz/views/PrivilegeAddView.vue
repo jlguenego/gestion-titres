@@ -3,10 +3,10 @@ import type { New } from '@/interfaces/utilities'
 import { PlusIcon } from '@heroicons/vue/24/outline'
 import { reactive, ref } from 'vue'
 import { useRouter } from 'vue-router'
+import SelectItems from '../components/SelectItems.vue'
 import type { Privilege } from '../interfaces/Privilege'
-import { functionalities } from '../misc/functionalities'
+import { readOnlyFunctionalities, mutationFunctionalities } from '../misc/functionalities'
 import { usePrivilegeStore } from '../stores/PrivilegeStore'
-import type { Functionality } from '../interfaces/Functionality'
 
 const router = useRouter()
 const privilegeStore = usePrivilegeStore()
@@ -14,20 +14,11 @@ const privilegeStore = usePrivilegeStore()
 const newPrivilege = reactive<New<Privilege>>({
   name: '',
   description: '',
-  functionalities: [],
+  readOnlyFunctionalities: [],
+  mutationFunctionalities: [],
 })
 
 const errorMsg = ref('')
-
-const toggleFunctionality = async (f: Functionality) => {
-  const functionalities = newPrivilege.functionalities
-  const index = functionalities.indexOf(f.id)
-  if (index !== -1) {
-    functionalities.splice(index, 1)
-    return
-  }
-  functionalities.push(f.id)
-}
 
 const onSubmit = async () => {
   try {
@@ -62,17 +53,14 @@ const onSubmit = async () => {
           </label>
         </div>
 
-        <ul class="flex flex-wrap gap-2 rounded-lg border border-gray-400 p-2">
-          <li
-            v-for="f in functionalities"
-            :key="f.id"
-            @click="toggleFunctionality(f)"
-            class="item-selectable"
-            :class="{ selected: newPrivilege.functionalities.includes(f.id) }"
-          >
-            {{ f.name }}
-          </li>
-        </ul>
+        <SelectItems
+          :items="readOnlyFunctionalities"
+          v-model="newPrivilege.readOnlyFunctionalities"
+        />
+        <SelectItems
+          :items="mutationFunctionalities"
+          v-model="newPrivilege.mutationFunctionalities"
+        />
 
         <div class="error">{{ errorMsg }}</div>
         <button class="primary">
