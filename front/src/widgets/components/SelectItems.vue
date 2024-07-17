@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import { type Item } from '@/interfaces/utilities'
+import { CheckIcon, PlusIcon } from '@heroicons/vue/24/outline'
 
 const model = defineModel<Item[]>({ required: true })
 console.log('model: ', model)
@@ -30,8 +31,8 @@ const toggleItem = async (item: Item) => {
 
 <template>
   <div
-    class="flex flex-wrap gap-2 rounded-lg border border-gray-400 p-2"
-    :class="{ 'border-transparent': props.disabled, 'bg-gray-100': props.disabled }"
+    class="flex flex-wrap gap-2 rounded-lg border border-gray-400 p-1"
+    :class="{ 'border-transparent': props.disabled, 'bg-gray-50': props.disabled }"
   >
     <button
       type="button"
@@ -42,7 +43,9 @@ const toggleItem = async (item: Item) => {
       :class="{ selected: isSelectedItem(item) }"
       :disabled="props.disabled"
     >
-      {{ item.name }}
+      <CheckIcon class="size-4" v-if="isSelectedItem(item)" />
+      <PlusIcon class="size-4 text-gray-400" v-else />
+      <span :class="{ 'text-gray-400': !isSelectedItem(item) }">{{ item.name }}</span>
     </button>
   </div>
 </template>
