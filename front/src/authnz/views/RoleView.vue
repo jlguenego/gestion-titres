@@ -42,7 +42,7 @@ onMounted(async () => {
               <RouterLink
                 :to="'/privileges/' + privilege"
                 class="rounded-full border p-2 shadow-md hover:bg-gray-100 active:shadow-sm"
-                v-for="privilege in item.privileges"
+                v-for="privilege in item.privilegeIds"
                 :key="privilege"
               >
                 {{ privilege }}

@@ -4,6 +4,6 @@ export interface Role {
    * Name of the Role
    */
   name: string
-  privileges: string[]
+  privilegeIds: string[]
   description: string
 }

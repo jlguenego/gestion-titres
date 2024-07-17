@@ -8,33 +8,35 @@ import {
 } from '@heroicons/vue/24/outline'
 import { onMounted, reactive, ref, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
-import type { Privilege } from '../interfaces/Privilege'
-import { mutationFunctionalities, readOnlyFunctionalities } from '../misc/functionalities'
+import { type Privilege } from '../interfaces/Privilege'
+import type { Role } from '../interfaces/Role'
 import { usePrivilegeStore } from '../stores/PrivilegeStore'
+import { useRoleStore } from '../stores/RoleStore'
 
 const route = useRoute()
 const router = useRouter()
+const roleStore = useRoleStore()
 const privilegeStore = usePrivilegeStore()
 
-const privilege = reactive<Privilege>({
+const privileges = ref<Privilege[]>([])
+
+const role = reactive<Role>({
   id: '',
   name: '',
   description: '',
-  readOnlyFunctionalities: [],
-  mutationFunctionalities: [],
+  privilegeIds: [],
 })
 
-const originalPrivilege = reactive<Privilege>({
+const originalRole = reactive<Role>({
   id: '',
   name: '',
   description: '',
-  readOnlyFunctionalities: [],
-  mutationFunctionalities: [],
+  privilegeIds: [],
 })
 
 const message = ref('')
 const isEditing = ref(false)
-const isPrivilegeDifferent = ref(false)
+const isRoleDifferent = ref(false)
 
 const check = () => {
   console.log('check')
@@ -42,12 +44,14 @@ const check = () => {
   if (isEditing.value === false) {
     return
   }
-  const originalPrivilegeStr = JSON.stringify(originalPrivilege)
-  const privilegeStr = JSON.stringify(privilege)
-  isPrivilegeDifferent.value = originalPrivilegeStr !== privilegeStr
+  role.privilegeIds = privileges.value.map((p) => p.id)
+  const originalRoleStr = JSON.stringify(originalRole)
+  const roleStr = JSON.stringify(role)
+  isRoleDifferent.value = originalRoleStr !== roleStr
 }
 
-watch(privilege, check, { deep: true })
+watch(role, check, { deep: true })
+// watch(privileges, check, { deep: true })
 
 const selectEditMode = () => {
   message.value = ''
@@ -55,17 +59,17 @@ const selectEditMode = () => {
 }
 
 const handleRemove = async () => {
-  console.log('privilege.id: ', privilege.id)
+  console.log('role.id: ', role.id)
 
-  await privilegeStore.remove([privilege.id])
-  await router.replace('/privileges')
+  await roleStore.remove([role.id])
+  await router.replace('/roles')
 }
 
 const onSubmit = async () => {
   try {
     message.value = ''
-    await privilegeStore.replace({ ...privilege })
-    Object.assign(originalPrivilege, clone(privilege))
+    await roleStore.replace({ ...role })
+    Object.assign(originalRole, clone(role))
     check()
     isEditing.value = false
     message.value = 'Enregistré avec succès.'
@@ -77,27 +81,40 @@ const onSubmit = async () => {
 }
 
 onMounted(async () => {
-  const name = route.params.name
   if (privilegeStore.privileges === undefined) {
     await privilegeStore.refresh()
   }
   if (privilegeStore.privileges === undefined) {
     return
   }
-  const selectedPrivilege = privilegeStore.privileges.find((u) => u.name === name)
-  if (selectedPrivilege === undefined) {
+  const privilegeList: Privilege[] = privilegeStore.privileges
+  const name = route.params.name
+  if (roleStore.roles === undefined) {
+    await roleStore.refresh()
+  }
+  if (roleStore.roles === undefined) {
     return
   }
-  Object.assign(privilege, clone(selectedPrivilege))
-  Object.assign(originalPrivilege, clone(selectedPrivilege))
-  check()
+  const selectedRole = roleStore.roles.find((u) => u.name === name)
+  if (selectedRole === undefined) {
+    return
+  }
+  Object.assign(role, clone(selectedRole))
+  Object.assign(originalRole, clone(selectedRole))
+  // privileges.value = role.privilegeIds.map((id) => {
+  //   const result = privilegeList.find((p) => p.id === id)
+  //   if (result === undefined) {
+  //     throw new Error('should not happen')
+  //   }
+  //   return result
+  // })
 })
 </script>
 
 <template>
-  <PageLayout>
+  <PageLayout v-if="privilegeStore.privileges">
     <HeaderPage>
-      <h1>Détails du privilège {{ privilege.name }}</h1>
+      <h1>Détails du rôle {{ role.name }}</h1>
     </HeaderPage>
     <MainPage>
       <form @submit.prevent="onSubmit()">
@@ -112,19 +129,14 @@ onMounted(async () => {
         <div class="flex flex-wrap gap-4">
           <label>
             <span>Nom *</span>
-            <input
-              type="text"
-              placeholder="Ex: admin"
-              v-model="privilege.name"
-              :disabled="!isEditing"
-            />
+            <input type="text" placeholder="Ex: admin" v-model="role.name" :disabled="!isEditing" />
             <span class="error">{{ '' }}</span>
           </label>
           <label>
             <span>Description *</span>
             <input
               type="text"
-              v-model="privilege.description"
+              v-model="role.description"
               autocomplete="new-password"
               :disabled="!isEditing"
             />
@@ -133,30 +145,17 @@ onMounted(async () => {
         </div>
 
         <label>
-          <span
-            >Fonctionalité avec accès base de données en
-            <span class="font-bold">lecture seule</span>
-          </span>
+          <span> Liste de privilèges </span>
           <SelectItems
-            :items="readOnlyFunctionalities"
-            v-model="privilege.readOnlyFunctionalities"
-            :disabled="!isEditing"
-          />
-        </label>
-        <label>
-          <span
-            >Fonctionalité avec accès base de données en <span class="font-bold">écriture</span>
-          </span>
-          <SelectItems
-            :items="mutationFunctionalities"
-            v-model="privilege.mutationFunctionalities"
+            :items="privilegeStore.privileges"
+            v-model="privileges"
             :disabled="!isEditing"
           />
         </label>
 
         <div class="error">{{ message }}</div>
         <div class="flex flex-col gap-2">
-          <button class="button primary" v-if="isEditing && isPrivilegeDifferent">
+          <button class="button primary" v-if="isEditing && isRoleDifferent">
             <FolderArrowDownIcon class="size-6" />
             <span>Enregistrer les modifications</span>
           </button>

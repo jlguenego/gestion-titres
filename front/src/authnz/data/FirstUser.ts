@@ -21,7 +21,7 @@ export const adminPrivilege: New<Privilege> = {
 
 export const adminRole: New<Role> = {
   name: 'admin',
-  privileges: ['admin'],
+  privilegeIds: ['admin'],
   description:
     "Le rôle administrateur possède juste le privilège administrateur qui permet d'accéder à toutes les fonctionnalités de l'application.",
 }
