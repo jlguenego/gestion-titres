@@ -1,13 +1,19 @@
 <script setup lang="ts">
 import { clone } from '@/utils/misc'
-import { ChevronLeftIcon, FolderArrowDownIcon, PencilIcon } from '@heroicons/vue/24/outline'
+import {
+  ChevronLeftIcon,
+  FolderArrowDownIcon,
+  PencilIcon,
+  TrashIcon,
+} from '@heroicons/vue/24/outline'
 import { onMounted, reactive, ref, watch } from 'vue'
-import { useRoute } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 import type { Privilege } from '../interfaces/Privilege'
 import { mutationFunctionalities, readOnlyFunctionalities } from '../misc/functionalities'
 import { usePrivilegeStore } from '../stores/PrivilegeStore'
 
 const route = useRoute()
+const router = useRouter()
 const privilegeStore = usePrivilegeStore()
 
 const privilege = reactive<Privilege>({
@@ -46,6 +52,13 @@ watch(privilege, check, { deep: true })
 const selectEditMode = () => {
   message.value = ''
   isEditing.value = !isEditing.value
+}
+
+const handleRemove = async () => {
+  console.log('privilege.id: ', privilege.id)
+
+  await privilegeStore.remove([privilege.id])
+  await router.replace('/privileges')
 }
 
 const onSubmit = async () => {
@@ -88,9 +101,12 @@ onMounted(async () => {
     </HeaderPage>
     <MainPage>
       <form @submit.prevent="onSubmit()">
-        <nav>
+        <nav class="flex gap-2">
           <button class="button" type="button" @click="selectEditMode()" title="Mode édition">
             <PencilIcon class="size-6" />
+          </button>
+          <button class="button" type="button" @click="handleRemove()" title="Mode édition">
+            <TrashIcon class="size-6" />
           </button>
         </nav>
         <div class="flex flex-wrap gap-4">

@@ -30,7 +30,7 @@ export class ResourceAPI<T extends ObjectWithId> {
   async remove(ids: string[]) {
     const resources = await this.retrieveAll()
     const key = getKey(this.resourceName)
-    const filteredResources = resources.filter((r) => ids.includes(r.id))
+    const filteredResources = resources.filter((r) => !ids.includes(r.id))
     localStorage.setItem(key, JSON.stringify(filteredResources))
   }
 
