@@ -7,7 +7,7 @@ import MenuContent from '@/authnz/components/MenuContent.vue'
     <MenuPage>
       <MenuContent />
     </MenuPage>
-    <main class="flex grow items-start justify-center">
+    <main class="flex grow justify-center">
       <router-view></router-view>
     </main>
   </div>
