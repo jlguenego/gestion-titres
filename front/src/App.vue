@@ -43,7 +43,6 @@ onMounted(async () => {
     >
       <HeaderLayout />
       <BodyLayout />
-      <FooterLayout />
     </div>
   </div>
 </template>

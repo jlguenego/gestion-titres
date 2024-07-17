@@ -11,31 +11,11 @@ const menus = [
   { label: 'Gérer les rôles', to: '/roles' },
   { label: 'Gérer les privilèges', to: '/privileges' },
   { label: 'Gérer la base de données', to: '/database' },
-  { label: 'Accueil', to: '/welcome' },
-  { label: 'Gérer les utilisateurs', to: '/users' },
-  { label: 'Gérer les rôles', to: '/roles' },
-  { label: 'Gérer les privilèges', to: '/privileges' },
-  { label: 'Gérer la base de données', to: '/database' },
-  { label: 'Accueil', to: '/welcome' },
-  { label: 'Gérer les utilisateurs', to: '/users' },
-  { label: 'Gérer les rôles', to: '/roles' },
-  { label: 'Gérer les privilèges', to: '/privileges' },
-  { label: 'Gérer la base de données', to: '/database' },
-  { label: 'Accueil', to: '/welcome' },
-  { label: 'Gérer les utilisateurs', to: '/users' },
-  { label: 'Gérer les rôles', to: '/roles' },
-  { label: 'Gérer les privilèges', to: '/privileges' },
-  { label: 'Gérer la base de données', to: '/database' },
 ]
-
-const handleLogout = async () => {
-  await authenticationStore.logout()
-  await router.replace('/')
-}
 </script>
 
 <template>
-  <div class="flex h-full flex-col justify-between gap-6 py-4">
+  <div class="flex h-full flex-col justify-between gap-6 pt-4">
     <nav class="flex flex-col divide-y border-y border-gray-200">
       <RouterLink
         v-for="item in menus"
@@ -46,6 +26,11 @@ const handleLogout = async () => {
         {{ item.label }}
       </RouterLink>
     </nav>
-    <button class="danger self-center" @click="handleLogout()">Se deconnecter</button>
+
+    <footer class="flex flex-col gap-2">
+      <RouterLink to="/legal" class="grow bg-gray-100 p-2 text-center hover:bg-gray-200">
+        Mentions Légales
+      </RouterLink>
+    </footer>
   </div>
 </template>
