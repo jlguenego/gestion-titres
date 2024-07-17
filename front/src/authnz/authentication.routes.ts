@@ -6,6 +6,7 @@ import LoginView from './views/LoginView.vue'
 import PrivilegeAddView from './views/PrivilegeAddView.vue'
 import PrivilegeDetailView from './views/PrivilegeDetailView.vue'
 import PrivilegeView from './views/PrivilegeView.vue'
+import RoleDetailView from './views/RoleDetailView.vue'
 import RoleView from './views/RoleView.vue'
 import UserAddView from './views/UserAddView.vue'
 import UserDetailView from './views/UserDetailView.vue'
@@ -61,6 +62,11 @@ export const authenticationRoutes = [
     path: '/roles',
     name: 'roles',
     component: RoleView,
+  },
+  {
+    path: '/roles/:name',
+    name: 'roles-detail',
+    component: RoleDetailView,
   },
   {
     path: '/database',
