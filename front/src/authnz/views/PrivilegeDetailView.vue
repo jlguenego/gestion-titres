@@ -118,7 +118,8 @@ onMounted(async () => {
 
         <label>
           <span
-            >Fonctionalité avec accès base de donnée en <span class="font-bold">lecture seule</span>
+            >Fonctionalité avec accès base de données en
+            <span class="font-bold">lecture seule</span>
           </span>
           <SelectItems
             :items="readOnlyFunctionalities"
@@ -128,7 +129,7 @@ onMounted(async () => {
         </label>
         <label>
           <span
-            >Fonctionalité avec accès base de donnée en <span class="font-bold">écriture</span>
+            >Fonctionalité avec accès base de données en <span class="font-bold">écriture</span>
           </span>
           <SelectItems
             :items="mutationFunctionalities"
