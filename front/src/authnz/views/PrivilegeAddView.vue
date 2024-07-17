@@ -53,14 +53,24 @@ const onSubmit = async () => {
           </label>
         </div>
 
-        <SelectItems
-          :items="readOnlyFunctionalities"
-          v-model="newPrivilege.readOnlyFunctionalities"
-        />
-        <SelectItems
-          :items="mutationFunctionalities"
-          v-model="newPrivilege.mutationFunctionalities"
-        />
+        <label>
+          <span
+            >Fonctionalité avec accès base de donnée en <span class="font-bold">lecture seule</span>
+          </span>
+          <SelectItems
+            :items="readOnlyFunctionalities"
+            v-model="newPrivilege.readOnlyFunctionalities"
+          />
+        </label>
+        <label>
+          <span
+            >Fonctionalité avec accès base de donnée en <span class="font-bold">écriture</span>
+          </span>
+          <SelectItems
+            :items="mutationFunctionalities"
+            v-model="newPrivilege.mutationFunctionalities"
+          />
+        </label>
 
         <div class="error">{{ errorMsg }}</div>
         <button class="primary">
