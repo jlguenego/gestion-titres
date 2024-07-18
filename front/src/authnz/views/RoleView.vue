@@ -3,20 +3,25 @@ import { ArrowPathIcon, PlusIcon } from '@heroicons/vue/24/outline'
 import { useRoleStore } from '../stores/RoleStore'
 import { onMounted } from 'vue'
 import { usePrivilegeStore } from '../stores/PrivilegeStore'
+import type { Privilege } from '../interfaces/Privilege'
+import type { Role } from '../interfaces/Role'
 
 const roleStore = useRoleStore()
 const privilegeStore = usePrivilegeStore()
 
-const getPrivilegeName = (privilegeId: string): string => {
-  console.log('privilegeId: ', privilegeId)
-  if (privilegeStore.privileges === undefined) {
-    return ''
+const getPrivileges = (role: Role): Privilege[] => {
+  const privileges = privilegeStore.privileges
+  if (privileges === undefined) {
+    return []
   }
-  const privilege = privilegeStore.privileges.find((p) => p.id === privilegeId)
-  if (privilege === undefined) {
-    return ''
-  }
-  return privilege.name
+
+  return role.privilegeIds.map((id) => {
+    const privilege = privileges.find((p) => id === p.id)
+    if (privilege === undefined) {
+      throw new Error('Cannot get privilege')
+    }
+    return privilege
+  })
 }
 
 onMounted(async () => {
@@ -55,12 +60,12 @@ onMounted(async () => {
             <span class="flex items-center gap-2 self-start">
               <span>Privilèges:</span>
               <RouterLink
-                :to="'/privileges/' + privilege"
+                :to="'/privileges/' + privilege.name"
                 class="rounded-full border p-2 shadow-md hover:bg-gray-100 active:shadow-sm"
-                v-for="privilege in role.privilegeIds"
-                :key="privilege"
+                v-for="privilege in getPrivileges(role)"
+                :key="privilege.id"
               >
-                {{ getPrivilegeName(privilege) }}
+                {{ privilege.name }}
               </RouterLink>
             </span>
           </div>

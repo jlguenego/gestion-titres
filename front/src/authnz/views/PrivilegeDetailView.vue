@@ -160,9 +160,16 @@ onMounted(async () => {
             <FolderArrowDownIcon class="size-6" />
             <span>Enregistrer les modifications</span>
           </button>
-          <button v-else class="button" @click="$router.back()">
+          <button
+            v-if="
+              !(isEditing && isPrivilegeDifferent) &&
+              $router.options.history.state.back === '/privileges'
+            "
+            class="button"
+            @click="$router.back()"
+          >
             <ChevronLeftIcon class="size-6" />
-            <span>Retour Liste des utilisateurs</span>
+            <span>Retour Liste des privilèges</span>
           </button>
         </div>
       </form>
