@@ -9,12 +9,14 @@ const getKey = (resourceName: string) => {
 export class ResourceAPI<T extends ObjectWithId> {
   constructor(private resourceName: string) {}
 
-  async add(newResource: New<T>) {
+  async add(newResource: New<T>): Promise<string> {
     const resources = await this.retrieveAll()
     const key = getKey(this.resourceName)
-    const resource: T = { ...newResource, id: generateId() } as T
+    const id = generateId()
+    const resource: T = { id, ...newResource } as T
     resources.push(resource)
     localStorage.setItem(key, JSON.stringify(resources))
+    return id
   }
 
   async retrieveAll(): Promise<T[]> {

@@ -15,9 +15,12 @@ class Database {
     if (users.length > 0) {
       return
     }
-    await privilegeApi.add(adminPrivilege)
-    await userApi.add(firstUser)
+    const id = await privilegeApi.add(adminPrivilege)
+
+    adminRole.privilegeIds = [id]
     await roleApi.add(adminRole)
+
+    await userApi.add(firstUser)
   }
 
   async reset() {

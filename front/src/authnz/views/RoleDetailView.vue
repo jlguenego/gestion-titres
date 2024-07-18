@@ -51,7 +51,7 @@ const check = () => {
 }
 
 watch(role, check, { deep: true })
-// watch(privileges, check, { deep: true })
+watch(privileges, check, { deep: true })
 
 const selectEditMode = () => {
   message.value = ''
@@ -87,7 +87,8 @@ onMounted(async () => {
   if (privilegeStore.privileges === undefined) {
     return
   }
-  const privilegeList: Privilege[] = privilegeStore.privileges
+  const privilegeList = privilegeStore.privileges
+
   const name = route.params.name
   if (roleStore.roles === undefined) {
     await roleStore.refresh()
@@ -102,11 +103,11 @@ onMounted(async () => {
   Object.assign(role, clone(selectedRole))
   Object.assign(originalRole, clone(selectedRole))
   privileges.value = role.privilegeIds.map((id) => {
-    const result = privilegeList.find((p) => p.id === id)
-    if (result === undefined) {
+    const privilege = privilegeList.find((p) => p.id === id)
+    if (privilege === undefined) {
       throw new Error('should not happen')
     }
-    return result
+    return privilege
   })
 })
 </script>

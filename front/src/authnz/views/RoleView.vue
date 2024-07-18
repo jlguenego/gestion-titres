@@ -2,8 +2,23 @@
 import { ArrowPathIcon, PlusIcon } from '@heroicons/vue/24/outline'
 import { useRoleStore } from '../stores/RoleStore'
 import { onMounted } from 'vue'
+import { usePrivilegeStore } from '../stores/PrivilegeStore'
 
 const roleStore = useRoleStore()
+const privilegeStore = usePrivilegeStore()
+
+const getPrivilegeName = (privilegeId: string): string => {
+  console.log('privilegeId: ', privilegeId)
+  if (privilegeStore.privileges === undefined) {
+    return ''
+  }
+  const privilege = privilegeStore.privileges.find((p) => p.id === privilegeId)
+  if (privilege === undefined) {
+    return ''
+  }
+  return privilege.name
+}
+
 onMounted(async () => {
   if (roleStore.roles === undefined) {
     await roleStore.refresh()
@@ -29,23 +44,23 @@ onMounted(async () => {
       </nav>
       <div class="flex w-full max-w-md flex-col gap-2">
         <RouterLink
-          :to="'/roles/' + item.name"
-          v-for="item in roleStore.roles"
-          :key="item.name"
+          :to="'/roles/' + role.name"
+          v-for="role in roleStore.roles"
+          :key="role.name"
           class="flex w-full flex-wrap justify-center gap-x-8 gap-y-4 rounded-xl border p-4 shadow-md hover:bg-gray-50"
         >
           <div class="flex grow flex-col items-center justify-center gap-1">
-            <span class="text-2xl font-bold">{{ item.name }}</span>
-            <span>{{ item.description }}</span>
+            <span class="text-2xl font-bold">{{ role.name }}</span>
+            <span>{{ role.description }}</span>
             <span class="flex items-center gap-2 self-start">
               <span>Privilèges:</span>
               <RouterLink
                 :to="'/privileges/' + privilege"
                 class="rounded-full border p-2 shadow-md hover:bg-gray-100 active:shadow-sm"
-                v-for="privilege in item.privilegeIds"
+                v-for="privilege in role.privilegeIds"
                 :key="privilege"
               >
-                {{ privilege }}
+                {{ getPrivilegeName(privilege) }}
               </RouterLink>
             </span>
           </div>
