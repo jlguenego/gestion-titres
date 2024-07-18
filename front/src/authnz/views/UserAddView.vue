@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { New } from '@/interfaces/utilities'
 import { PlusIcon } from '@heroicons/vue/24/outline'
-import { onMounted, reactive, ref } from 'vue'
+import { reactive, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { Gender, type User } from '../interfaces/User'
 import { useUserStore } from '../stores/UserStore'
@@ -25,7 +25,7 @@ const onSubmit = async () => {
   try {
     errorMsg.value = ''
     await userStore.add({ ...newUser })
-    router.push('/users')
+    router.replace('/users')
   } catch (err) {
     if (err instanceof Error) {
       errorMsg.value = err.message

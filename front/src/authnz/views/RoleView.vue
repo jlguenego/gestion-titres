@@ -43,7 +43,7 @@ onMounted(async () => {
         <button class="button" title="Rafraîchir" @click="roleStore.refresh()">
           <ArrowPathIcon class="size-6" />
         </button>
-        <RouterLink to="/forms/new-user" title="Ajouter" class="button">
+        <RouterLink to="/forms/new-role" title="Ajouter" class="button">
           <PlusIcon class="size-6" />
         </RouterLink>
       </nav>
