@@ -38,20 +38,28 @@ const message = ref('')
 const isEditing = ref(false)
 const isRoleDifferent = ref(false)
 
-const check = () => {
-  console.log('check')
+const checkPrivilege = () => {
+  console.log('checkPrivilege')
   message.value = ''
   if (isEditing.value === false) {
     return
   }
   role.privilegeIds = privileges.value.map((p) => p.id)
+}
+
+const checkRole = () => {
+  console.log('checkRole')
+  message.value = ''
+  if (isEditing.value === false) {
+    return
+  }
   const originalRoleStr = JSON.stringify(originalRole)
   const roleStr = JSON.stringify(role)
   isRoleDifferent.value = originalRoleStr !== roleStr
 }
 
-watch(role, check, { deep: true })
-watch(privileges, check, { deep: true })
+watch(privileges, checkPrivilege, { deep: true })
+watch(role, checkRole, { deep: true })
 
 const selectEditMode = () => {
   message.value = ''
@@ -70,7 +78,7 @@ const onSubmit = async () => {
     message.value = ''
     await roleStore.replace({ ...role })
     Object.assign(originalRole, clone(role))
-    check()
+    checkRole()
     isEditing.value = false
     message.value = 'Enregistré avec succès.'
   } catch (err) {
@@ -160,9 +168,15 @@ onMounted(async () => {
             <FolderArrowDownIcon class="size-6" />
             <span>Enregistrer les modifications</span>
           </button>
-          <button v-else class="button" @click="$router.back()">
+          <button
+            v-if="
+              !(isEditing && isRoleDifferent) && $router.options.history.state.back === '/roles'
+            "
+            class="button"
+            @click="$router.back()"
+          >
             <ChevronLeftIcon class="size-6" />
-            <span>Retour Liste des utilisateurs</span>
+            <span>Retour Liste des rôles</span>
           </button>
         </div>
       </form>
