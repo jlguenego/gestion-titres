@@ -44,7 +44,7 @@ jobs:
       - name: Install dependencies
         run: npm ci
       - name: Build
-        run: npm run build
+        run: npm run build:gh-pages
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
@@ -52,7 +52,7 @@ jobs:
         uses: actions/upload-pages-artifact@v3
         with:
           # Upload entire repository
-          path: "./dist"
+          path: "./front/dist"
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
