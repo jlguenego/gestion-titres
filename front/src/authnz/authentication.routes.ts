@@ -35,7 +35,7 @@ export const authenticationRoutes = [
     component: UserAddView,
   },
   {
-    path: '/users/:username',
+    path: '/users/:name',
     name: 'user-detail',
     component: UserDetailView,
   },

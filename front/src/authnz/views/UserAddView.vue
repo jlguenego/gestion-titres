@@ -10,7 +10,7 @@ const router = useRouter()
 const userStore = useUserStore()
 
 const newUser = reactive<New<User>>({
-  username: '',
+  name: '',
   password: '',
   displayName: '',
   email: '',
@@ -46,7 +46,7 @@ const onSubmit = async () => {
             <legend>Information de connexion</legend>
             <label>
               <span>Identifiant *</span>
-              <input type="text" placeholder="Ex: admin" v-model="newUser.username" v-focus />
+              <input type="text" placeholder="Ex: admin" v-model="newUser.name" v-focus />
               <span class="error">{{ '' }}</span>
             </label>
             <label>

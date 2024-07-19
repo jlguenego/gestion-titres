@@ -12,19 +12,24 @@ import { type Privilege } from '../interfaces/Privilege'
 import type { Group } from '../interfaces/Group'
 import { usePrivilegeStore } from '../stores/PrivilegeStore'
 import { useGroupStore } from '../stores/GroupStore'
+import { useUserStore } from '../stores/UserStore'
+import type { User } from '../interfaces/User'
 
 const route = useRoute()
 const router = useRouter()
 const groupStore = useGroupStore()
 const privilegeStore = usePrivilegeStore()
+const userStore = useUserStore()
 
 const privileges = ref<Privilege[]>([])
+const users = ref<User[]>([])
 
 const group = reactive<Group>({
   id: '',
   name: '',
   description: '',
   privilegeIds: [],
+  userIds: [],
 })
 
 const originalGroup = reactive<Group>({
@@ -32,6 +37,7 @@ const originalGroup = reactive<Group>({
   name: '',
   description: '',
   privilegeIds: [],
+  userIds: [],
 })
 
 const message = ref('')
@@ -47,6 +53,15 @@ const checkPrivilege = () => {
   group.privilegeIds = privileges.value.map((p) => p.id)
 }
 
+const checkUser = () => {
+  console.log('checkUser')
+  message.value = ''
+  if (isEditing.value === false) {
+    return
+  }
+  group.userIds = users.value.map((p) => p.id)
+}
+
 const checkGroup = () => {
   message.value = ''
   if (isEditing.value === false) {
@@ -58,6 +73,7 @@ const checkGroup = () => {
 }
 
 watch(privileges, checkPrivilege, { deep: true })
+watch(users, checkUser, { deep: true })
 watch(group, checkGroup, { deep: true })
 
 const selectEditMode = () => {
@@ -87,12 +103,14 @@ const onSubmit = async () => {
 
 onMounted(async () => {
   if (privilegeStore.privileges === undefined) {
-    await privilegeStore.refresh()
-  }
-  if (privilegeStore.privileges === undefined) {
     return
   }
   const privilegeList = privilegeStore.privileges
+
+  if (userStore.users === undefined) {
+    return
+  }
+  const userList = userStore.users
 
   const name = route.params.name
   if (groupStore.groups === undefined) {
@@ -114,11 +132,18 @@ onMounted(async () => {
     }
     return privilege
   })
+  users.value = group.userIds.map((id) => {
+    const user = userList.find((p) => p.id === id)
+    if (user === undefined) {
+      throw new Error('should not happen')
+    }
+    return user
+  })
 })
 </script>
 
 <template>
-  <PageLayout v-if="privilegeStore.privileges">
+  <PageLayout v-if="privilegeStore.privileges && userStore.users">
     <HeaderPage>
       <h1>Détails du groupe {{ group.name }}</h1>
     </HeaderPage>
@@ -162,6 +187,10 @@ onMounted(async () => {
             v-model="privileges"
             :disabled="!isEditing"
           />
+        </label>
+        <label>
+          <span> Liste des membres utilisateurs </span>
+          <SelectItems :items="userStore.users" v-model="users" :disabled="!isEditing" />
         </label>
 
         <div class="error">{{ message }}</div>

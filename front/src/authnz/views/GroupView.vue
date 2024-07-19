@@ -81,12 +81,12 @@ const getUsers = (group: Group): User[] => {
             <span class="flex items-center gap-2 self-start">
               <span>Membres du groupe:</span>
               <RouterLink
-                :to="'/users/' + user.username"
+                :to="'/users/' + user.name"
                 class="rounded-full border p-2 shadow-md hover:bg-gray-100 active:shadow-sm"
                 v-for="user in getUsers(group)"
                 :key="user.id"
               >
-                {{ user.username }}
+                {{ user.name }}
               </RouterLink>
             </span>
           </div>

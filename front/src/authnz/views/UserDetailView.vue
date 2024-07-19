@@ -10,7 +10,7 @@ const userStore = useUserStore()
 
 const user = reactive<User>({
   id: '',
-  username: '',
+  name: '',
   password: '',
   displayName: '',
   email: '',
@@ -21,7 +21,7 @@ const user = reactive<User>({
 
 const originalUser = reactive<User>({
   id: '',
-  username: '',
+  name: '',
   password: '',
   displayName: '',
   email: '',
@@ -67,14 +67,14 @@ const onSubmit = async () => {
 }
 
 onMounted(async () => {
-  const username = route.params.username
+  const name = route.params.name
   if (userStore.users === undefined) {
     await userStore.refresh()
   }
   if (userStore.users === undefined) {
     return
   }
-  const selectedUser = userStore.users.find((u) => u.username === username)
+  const selectedUser = userStore.users.find((u) => u.name === name)
   if (selectedUser === undefined) {
     return
   }
@@ -104,7 +104,7 @@ onMounted(async () => {
               <input
                 type="text"
                 placeholder="Ex: admin"
-                v-model="user.username"
+                v-model="user.name"
                 :disabled="!isEditing"
               />
               <span class="error">{{ '' }}</span>

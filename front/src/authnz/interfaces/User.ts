@@ -6,7 +6,7 @@ export enum Gender {
 
 export interface User {
   id: string
-  username: string
+  name: string
   displayName: string
   password: string
   jobTitle?: string

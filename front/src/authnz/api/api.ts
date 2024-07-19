@@ -10,7 +10,7 @@ class API {
     // go to the pseudo backend and check
     const users = await resourceAPI.retrieveAll()
     const user = users.find(
-      (u) => u.username === credentials.username && u.password === credentials.password,
+      (u) => u.name === credentials.username && u.password === credentials.password,
     )
     if (user === undefined) {
       throw new Error(ErrorMessage.BAD_LOGIN)

@@ -5,7 +5,7 @@ import type { Group } from '../interfaces/Group'
 import { mutationFunctionalities, readOnlyFunctionalities } from '../misc/functionalities'
 
 export const firstUser: New<User> = {
-  username: 'admin',
+  name: 'admin',
   password: 'truc1234!',
   displayName: 'Jean-Louis GUENEGO',
   jobTitle: 'Administrateur',
