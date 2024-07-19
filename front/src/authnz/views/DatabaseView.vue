@@ -27,6 +27,7 @@ const handleImport = async () => {
     const str = await openFile()
     const db = JSON.parse(str)
     await database.import(db)
+    window.location.reload()
   } catch (err) {
     console.log('err: ', err)
   }
