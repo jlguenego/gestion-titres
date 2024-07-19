@@ -1,14 +1,8 @@
 <script setup lang="ts">
-import { useRouter } from 'vue-router'
-import { useAuthenticationStore } from '../stores/AuthenticationStore'
-
-const router = useRouter()
-const authenticationStore = useAuthenticationStore()
-
 const menus = [
   { label: 'Accueil', to: '/welcome' },
   { label: 'Gérer les utilisateurs', to: '/users' },
-  { label: 'Gérer les rôles', to: '/roles' },
+  { label: 'Gérer les groupes', to: '/groups' },
   { label: 'Gérer les privilèges', to: '/privileges' },
   { label: 'Gérer la base de données', to: '/database' },
 ]

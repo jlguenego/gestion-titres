@@ -6,9 +6,9 @@ import LoginView from './views/LoginView.vue'
 import PrivilegeAddView from './views/PrivilegeAddView.vue'
 import PrivilegeDetailView from './views/PrivilegeDetailView.vue'
 import PrivilegeView from './views/PrivilegeView.vue'
-import RoleAddView from './views/RoleAddView.vue'
-import RoleDetailView from './views/RoleDetailView.vue'
-import RoleView from './views/RoleView.vue'
+import GroupAddView from './views/GroupAddView.vue'
+import GroupDetailView from './views/GroupDetailView.vue'
+import GroupView from './views/GroupView.vue'
 import UserAddView from './views/UserAddView.vue'
 import UserDetailView from './views/UserDetailView.vue'
 import UserView from './views/UserView.vue'
@@ -60,19 +60,19 @@ export const authenticationRoutes = [
     component: PrivilegeDetailView,
   },
   {
-    path: '/roles',
-    name: 'roles',
-    component: RoleView,
+    path: '/groups',
+    name: 'groups',
+    component: GroupView,
   },
   {
-    path: '/roles/:name',
-    name: 'roles-detail',
-    component: RoleDetailView,
+    path: '/groups/:name',
+    name: 'groups-detail',
+    component: GroupDetailView,
   },
   {
-    path: '/forms/new-role',
-    name: 'add-role',
-    component: RoleAddView,
+    path: '/forms/new-group',
+    name: 'add-group',
+    component: GroupAddView,
   },
   {
     path: '/database',

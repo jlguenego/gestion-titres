@@ -7,9 +7,9 @@
   - entierement en tailwind de preference
   - s'inspirer du site de tailwind
 - composant d'edition
-- lister les roles (avec un role admin initial)
-- ajouter des roles
-- ajouter des roles a un utilisateur
+- lister les groupes (avec un groupe admin initial)
+- ajouter des groupes
+- ajouter des groupes a un utilisateur
 - ajouter un privilege
 - validation de champ
 

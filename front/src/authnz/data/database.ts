@@ -1,13 +1,13 @@
 import { databaseApi } from '../api/DatabaseAPI'
 import { ResourceAPI } from '../api/ResourceAPI'
 import type { Privilege } from '../interfaces/Privilege'
-import type { Role } from '../interfaces/Role'
+import type { Group } from '../interfaces/Group'
 import type { User } from '../interfaces/User'
-import { adminPrivilege, adminRole, firstUser } from './FirstUser'
+import { adminPrivilege, adminGroup, firstUser } from './FirstUser'
 
 export const userApi = new ResourceAPI<User>('user')
 export const privilegeApi = new ResourceAPI<Privilege>('privilege')
-export const roleApi = new ResourceAPI<Role>('role')
+export const groupApi = new ResourceAPI<Group>('group')
 
 class Database {
   async init() {
@@ -17,8 +17,8 @@ class Database {
     }
     const id = await privilegeApi.add(adminPrivilege)
 
-    adminRole.privilegeIds = [id]
-    await roleApi.add(adminRole)
+    adminGroup.privilegeIds = [id]
+    await groupApi.add(adminGroup)
 
     await userApi.add(firstUser)
   }

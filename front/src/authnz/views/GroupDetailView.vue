@@ -9,25 +9,25 @@ import {
 import { onMounted, reactive, ref, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { type Privilege } from '../interfaces/Privilege'
-import type { Role } from '../interfaces/Role'
+import type { Group } from '../interfaces/Group'
 import { usePrivilegeStore } from '../stores/PrivilegeStore'
-import { useRoleStore } from '../stores/RoleStore'
+import { useGroupStore } from '../stores/GroupStore'
 
 const route = useRoute()
 const router = useRouter()
-const roleStore = useRoleStore()
+const groupStore = useGroupStore()
 const privilegeStore = usePrivilegeStore()
 
 const privileges = ref<Privilege[]>([])
 
-const role = reactive<Role>({
+const group = reactive<Group>({
   id: '',
   name: '',
   description: '',
   privilegeIds: [],
 })
 
-const originalRole = reactive<Role>({
+const originalGroup = reactive<Group>({
   id: '',
   name: '',
   description: '',
@@ -36,7 +36,7 @@ const originalRole = reactive<Role>({
 
 const message = ref('')
 const isEditing = ref(false)
-const isRoleDifferent = ref(false)
+const isDifferent = ref(false)
 
 const checkPrivilege = () => {
   console.log('checkPrivilege')
@@ -44,22 +44,21 @@ const checkPrivilege = () => {
   if (isEditing.value === false) {
     return
   }
-  role.privilegeIds = privileges.value.map((p) => p.id)
+  group.privilegeIds = privileges.value.map((p) => p.id)
 }
 
-const checkRole = () => {
-  console.log('checkRole')
+const checkGroup = () => {
   message.value = ''
   if (isEditing.value === false) {
     return
   }
-  const originalRoleStr = JSON.stringify(originalRole)
-  const roleStr = JSON.stringify(role)
-  isRoleDifferent.value = originalRoleStr !== roleStr
+  const originalGroupStr = JSON.stringify(originalGroup)
+  const groupStr = JSON.stringify(group)
+  isDifferent.value = originalGroupStr !== groupStr
 }
 
 watch(privileges, checkPrivilege, { deep: true })
-watch(role, checkRole, { deep: true })
+watch(group, checkGroup, { deep: true })
 
 const selectEditMode = () => {
   message.value = ''
@@ -67,18 +66,16 @@ const selectEditMode = () => {
 }
 
 const handleRemove = async () => {
-  console.log('role.id: ', role.id)
-
-  await roleStore.remove([role.id])
-  await router.replace('/roles')
+  await groupStore.remove([group.id])
+  await router.replace('/groups')
 }
 
 const onSubmit = async () => {
   try {
     message.value = ''
-    await roleStore.replace({ ...role })
-    Object.assign(originalRole, clone(role))
-    checkRole()
+    await groupStore.replace({ ...group })
+    Object.assign(originalGroup, clone(group))
+    checkGroup()
     isEditing.value = false
     message.value = 'Enregistré avec succès.'
   } catch (err) {
@@ -98,19 +95,19 @@ onMounted(async () => {
   const privilegeList = privilegeStore.privileges
 
   const name = route.params.name
-  if (roleStore.roles === undefined) {
-    await roleStore.refresh()
+  if (groupStore.groups === undefined) {
+    await groupStore.refresh()
   }
-  if (roleStore.roles === undefined) {
+  if (groupStore.groups === undefined) {
     return
   }
-  const selectedRole = roleStore.roles.find((u) => u.name === name)
-  if (selectedRole === undefined) {
+  const selectedGroup = groupStore.groups.find((u) => u.name === name)
+  if (selectedGroup === undefined) {
     return
   }
-  Object.assign(role, clone(selectedRole))
-  Object.assign(originalRole, clone(selectedRole))
-  privileges.value = role.privilegeIds.map((id) => {
+  Object.assign(group, clone(selectedGroup))
+  Object.assign(originalGroup, clone(selectedGroup))
+  privileges.value = group.privilegeIds.map((id) => {
     const privilege = privilegeList.find((p) => p.id === id)
     if (privilege === undefined) {
       throw new Error('should not happen')
@@ -123,7 +120,7 @@ onMounted(async () => {
 <template>
   <PageLayout v-if="privilegeStore.privileges">
     <HeaderPage>
-      <h1>Détails du rôle {{ role.name }}</h1>
+      <h1>Détails du groupe {{ group.name }}</h1>
     </HeaderPage>
     <MainPage>
       <form @submit.prevent="onSubmit()">
@@ -138,14 +135,19 @@ onMounted(async () => {
         <div class="flex flex-wrap gap-4">
           <label>
             <span>Nom *</span>
-            <input type="text" placeholder="Ex: admin" v-model="role.name" :disabled="!isEditing" />
+            <input
+              type="text"
+              placeholder="Ex: admin"
+              v-model="group.name"
+              :disabled="!isEditing"
+            />
             <span class="error">{{ '' }}</span>
           </label>
           <label>
             <span>Description *</span>
             <input
               type="text"
-              v-model="role.description"
+              v-model="group.description"
               autocomplete="new-password"
               :disabled="!isEditing"
             />
@@ -164,19 +166,17 @@ onMounted(async () => {
 
         <div class="error">{{ message }}</div>
         <div class="flex flex-col gap-2">
-          <button class="button primary" v-if="isEditing && isRoleDifferent">
+          <button class="button primary" v-if="isEditing && isDifferent">
             <FolderArrowDownIcon class="size-6" />
             <span>Enregistrer les modifications</span>
           </button>
           <button
-            v-if="
-              !(isEditing && isRoleDifferent) && $router.options.history.state.back === '/roles'
-            "
+            v-if="!(isEditing && isDifferent) && $router.options.history.state.back === '/groups'"
             class="button"
             @click="$router.back()"
           >
             <ChevronLeftIcon class="size-6" />
-            <span>Retour Liste des rôles</span>
+            <span>Retour Liste des groupes</span>
           </button>
         </div>
       </form>

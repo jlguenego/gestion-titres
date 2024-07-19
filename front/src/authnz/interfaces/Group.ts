@@ -1,7 +1,7 @@
-export interface Role {
+export interface Group {
   id: string
   /**
-   * Name of the Role
+   * Name of the Group
    */
   name: string
   privilegeIds: string[]
