@@ -3,6 +3,7 @@ import { ArrowDownOnSquareIcon, ArrowUpOnSquareIcon, TrashIcon } from '@heroicon
 import { database } from '../data/database'
 import { useRouter } from 'vue-router'
 import { saveFile } from '@/utils/saveFile'
+import { openFile } from '@/utils/openFile'
 
 const router = useRouter()
 
@@ -17,9 +18,18 @@ const handleReset = async () => {
 }
 
 const handleExport = async () => {
-  console.log('export database xxx')
   const db = await database.export()
   saveFile('gestion-titre.json', JSON.stringify(db, undefined, 2))
+}
+
+const handleImport = async () => {
+  try {
+    const str = await openFile()
+    const db = JSON.parse(str)
+    await database.import(db)
+  } catch (err) {
+    console.log('err: ', err)
+  }
 }
 </script>
 
@@ -35,7 +45,7 @@ const handleExport = async () => {
           <ArrowUpOnSquareIcon class="size-6" />
           <span>Exporter JSON</span>
         </button>
-        <button class="button" @click="handleExport()">
+        <button class="button" @click="handleImport()">
           <ArrowDownOnSquareIcon class="size-6" />
           <span>Importer JSON</span>
         </button>

@@ -1,10 +1,6 @@
 import { DATABASE_PREFIX } from './ResourceAPI'
 
 export class DatabaseAPI {
-  async reset() {
-    localStorage.clear()
-  }
-
   async export(): Promise<object> {
     const keys = Object.fromEntries(
       Object.entries(localStorage)
@@ -17,6 +13,17 @@ export class DatabaseAPI {
     )
     console.log('keys: ', keys)
     return keys
+  }
+
+  async import(obj: object): Promise<void> {
+    console.log('obj: ', obj)
+    for (const [key, value] of Object.entries(obj)) {
+      localStorage.setItem(key, JSON.stringify(value))
+    }
+  }
+
+  async reset() {
+    localStorage.clear()
   }
 }
 

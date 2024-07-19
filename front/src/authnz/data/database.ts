@@ -30,6 +30,10 @@ class Database {
   async export(): Promise<object> {
     return await databaseApi.export()
   }
+
+  async import(obj: object): Promise<void> {
+    await databaseApi.import(obj)
+  }
 }
 
 export const database = new Database()
