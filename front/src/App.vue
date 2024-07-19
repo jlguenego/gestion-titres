@@ -2,13 +2,18 @@
 import { onMounted, ref } from 'vue'
 import { database } from './authnz/data/database'
 import { useUserStore } from './authnz/stores/UserStore'
+import LoadingPage from './components/LoadingPage.vue'
 import BodyLayout from './layout/BodyLayout.vue'
 import FooterLayout from './layout/FooterLayout.vue'
 import HeaderLayout from './layout/HeaderLayout.vue'
-import LoadingPage from './components/LoadingPage.vue'
 import { sleep } from './utils/misc'
+import { usePrivilegeStore } from './authnz/stores/PrivilegeStore'
+import { useGroupStore } from './authnz/stores/GroupStore'
 
 const userStore = useUserStore()
+const privilegeStore = usePrivilegeStore()
+const groupStore = useGroupStore()
+
 const isLoading = ref(true)
 
 onMounted(async () => {
@@ -17,6 +22,13 @@ onMounted(async () => {
       (async () => {
         if (userStore.users === undefined) {
           await database.init()
+          await userStore.refresh()
+        }
+        if (privilegeStore.privileges === undefined) {
+          await privilegeStore.refresh()
+        }
+        if (groupStore.groups === undefined) {
+          await groupStore.refresh()
         }
       })(),
       sleep(600),

@@ -1,13 +1,15 @@
 <script setup lang="ts">
 import { ArrowPathIcon, PlusIcon } from '@heroicons/vue/24/outline'
-import { useGroupStore } from '../stores/GroupStore'
-import { onMounted } from 'vue'
-import { usePrivilegeStore } from '../stores/PrivilegeStore'
-import type { Privilege } from '../interfaces/Privilege'
 import type { Group } from '../interfaces/Group'
+import type { Privilege } from '../interfaces/Privilege'
+import type { User } from '../interfaces/User'
+import { useGroupStore } from '../stores/GroupStore'
+import { usePrivilegeStore } from '../stores/PrivilegeStore'
+import { useUserStore } from '../stores/UserStore'
 
 const groupStore = useGroupStore()
 const privilegeStore = usePrivilegeStore()
+const userStore = useUserStore()
 
 const getPrivileges = (group: Group): Privilege[] => {
   const privileges = privilegeStore.privileges
@@ -24,11 +26,20 @@ const getPrivileges = (group: Group): Privilege[] => {
   })
 }
 
-onMounted(async () => {
-  if (groupStore.groups === undefined) {
-    await groupStore.refresh()
+const getUsers = (group: Group): User[] => {
+  const users = userStore.users
+  if (users === undefined) {
+    return []
   }
-})
+
+  return group.userIds.map((id) => {
+    const user = users.find((p) => id === p.id)
+    if (user === undefined) {
+      throw new Error('Cannot get user')
+    }
+    return user
+  })
+}
 </script>
 
 <template>
@@ -65,6 +76,17 @@ onMounted(async () => {
                 :key="privilege.id"
               >
                 {{ privilege.name }}
+              </RouterLink>
+            </span>
+            <span class="flex items-center gap-2 self-start">
+              <span>Membres du groupe:</span>
+              <RouterLink
+                :to="'/users/' + user.username"
+                class="rounded-full border p-2 shadow-md hover:bg-gray-100 active:shadow-sm"
+                v-for="user in getUsers(group)"
+                :key="user.id"
+              >
+                {{ user.username }}
               </RouterLink>
             </span>
           </div>

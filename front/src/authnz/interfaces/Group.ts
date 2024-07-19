@@ -4,6 +4,7 @@ export interface Group {
    * Name of the Group
    */
   name: string
-  privilegeIds: string[]
   description: string
+  privilegeIds: string[]
+  userIds: string[]
 }

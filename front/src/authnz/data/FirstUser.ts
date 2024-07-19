@@ -23,7 +23,9 @@ export const adminPrivilege: New<Privilege> = {
 
 export const adminGroup: New<Group> = {
   name: 'admin',
-  privilegeIds: [],
+
   description:
     "Le groupe administrateur possède juste le privilège administrateur qui permet d'accéder à toutes les fonctionnalités de l'application.",
+  privilegeIds: [],
+  userIds: [],
 }
