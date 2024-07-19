@@ -41,8 +41,6 @@ jobs:
           cache: "npm"
           cache-dependency-path: "front/package-lock.json"
 
-      - name: Go to the directory front
-        run: cd front
       - name: Install dependencies
         run: npm ci
       - name: Build
