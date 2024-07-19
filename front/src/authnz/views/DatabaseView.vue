@@ -2,6 +2,7 @@
 import { TrashIcon } from '@heroicons/vue/24/outline'
 import { database } from '../data/database'
 import { useRouter } from 'vue-router'
+import { saveFile } from '@/utils/saveFile'
 
 const router = useRouter()
 
@@ -17,6 +18,8 @@ const handleReset = async () => {
 
 const handleExport = async () => {
   console.log('export database xxx')
+  const db = await database.export()
+  saveFile('gestion-titre.json', JSON.stringify(db, undefined, 2))
 }
 </script>
 

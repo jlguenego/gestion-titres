@@ -2,8 +2,10 @@ import type { New, ObjectWithId } from '@/interfaces/utilities'
 import { ErrorMessage } from '../interfaces/ErrorMessage'
 import { generateId } from '../misc/generateId'
 
+export const DATABASE_PREFIX = 'backEnd.'
+
 const getKey = (resourceName: string) => {
-  return `backEnd.${resourceName}`
+  return `${DATABASE_PREFIX}${resourceName}`
 }
 
 export class ResourceAPI<T extends ObjectWithId> {

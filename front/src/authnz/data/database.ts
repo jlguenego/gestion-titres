@@ -26,6 +26,10 @@ class Database {
   async reset() {
     await databaseApi.reset()
   }
+
+  async export(): Promise<object> {
+    return await databaseApi.export()
+  }
 }
 
 export const database = new Database()
