@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { TrashIcon } from '@heroicons/vue/24/outline'
+import { ArrowDownOnSquareIcon, ArrowUpOnSquareIcon, TrashIcon } from '@heroicons/vue/24/outline'
 import { database } from '../data/database'
 import { useRouter } from 'vue-router'
 import { saveFile } from '@/utils/saveFile'
@@ -29,15 +29,21 @@ const handleExport = async () => {
       <h1>Base de données</h1>
     </HeaderPage>
 
-    <MainPage>
+    <MainPage class="gap-10">
+      <nav class="flex gap-2">
+        <button class="button" @click="handleExport()">
+          <ArrowUpOnSquareIcon class="size-6" />
+          <span>Exporter JSON</span>
+        </button>
+        <button class="button" @click="handleExport()">
+          <ArrowDownOnSquareIcon class="size-6" />
+          <span>Importer JSON</span>
+        </button>
+      </nav>
       <nav class="flex gap-2">
         <button class="button danger" @click="handleReset()">
           <TrashIcon class="size-6" />
-          <span>Réinitialiser la base de données</span>
-        </button>
-        <button class="button" @click="handleExport()">
-          <TrashIcon class="size-6" />
-          <span>Exporter la base de données</span>
+          <span>Réinitialiser</span>
         </button>
       </nav>
     </MainPage>
