@@ -14,6 +14,10 @@ const handleReset = async () => {
   await router.replace('/')
   window.location.reload()
 }
+
+const handleExport = async () => {
+  console.log('export database')
+}
 </script>
 
 <template>
@@ -27,6 +31,10 @@ const handleReset = async () => {
         <button class="button danger" @click="handleReset()">
           <TrashIcon class="size-6" />
           <span>Réinitialiser la base de données</span>
+        </button>
+        <button class="button" @click="handleExport()">
+          <TrashIcon class="size-6" />
+          <span>Exporter la base de données</span>
         </button>
       </nav>
     </MainPage>
