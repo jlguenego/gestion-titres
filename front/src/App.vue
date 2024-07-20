@@ -22,14 +22,10 @@ onMounted(async () => {
       (async () => {
         if (userStore.users === undefined) {
           await database.init()
-          await userStore.refresh()
         }
-        if (privilegeStore.privileges === undefined) {
-          await privilegeStore.refresh()
-        }
-        if (groupStore.groups === undefined) {
-          await groupStore.refresh()
-        }
+        await userStore.refresh()
+        await privilegeStore.refresh()
+        await groupStore.refresh()
       })(),
       sleep(600),
     ])

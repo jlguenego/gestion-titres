@@ -4,8 +4,12 @@ import { database } from '../data/database'
 import { useRouter } from 'vue-router'
 import { saveFile } from '@/utils/saveFile'
 import { openFile } from '@/utils/openFile'
+import { useAuthenticationStore } from '../stores/AuthenticationStore'
+import { useMenuStore } from '@/layout/stores/MenuStore'
 
 const router = useRouter()
+const authenticationStore = useAuthenticationStore()
+const menuStore = useMenuStore()
 
 const handleReset = async () => {
   if (!window.confirm('Etes vous sûr ?')) {
@@ -27,7 +31,9 @@ const handleImport = async () => {
     const str = await openFile()
     const db = JSON.parse(str)
     await database.import(db)
-    window.location.reload()
+    await authenticationStore.logout()
+    await menuStore.hideMenu()
+    await window.location.reload()
   } catch (err) {
     console.log('err: ', err)
   }

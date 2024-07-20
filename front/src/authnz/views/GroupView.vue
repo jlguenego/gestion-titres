@@ -35,7 +35,7 @@ const getUsers = (group: Group): User[] => {
   return group.userIds.map((id) => {
     const user = users.find((p) => id === p.id)
     if (user === undefined) {
-      throw new Error('Cannot get user')
+      throw new Error(`Cannot get user with id = ${id}`)
     }
     return user
   })
