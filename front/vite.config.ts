@@ -31,6 +31,7 @@ export default defineConfig({
         short_name: 'Gestion Titres',
         description: 'Gestion efficace de vos portefeuilles de titres.',
         theme_color: '#ffffff',
+        lang: 'fr',
       },
 
       workbox: {
