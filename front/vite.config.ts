@@ -21,6 +21,8 @@ export default defineConfig({
       registerType: 'prompt',
       injectRegister: false,
 
+      includeAssets: ['*.svg'],
+
       pwaAssets: {
         disabled: false,
         config: true,
