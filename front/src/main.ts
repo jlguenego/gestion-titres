@@ -6,6 +6,7 @@ import { createApp } from 'vue'
 import App from './App.vue'
 import { layout } from './layout/LayoutPlugin'
 import { piniaPersist } from './plugins/pinia/PersistPlugin'
+import { initPWA } from './pwa.ts'
 import router from './router'
 import { widget } from './widgets/WidgetPlugin'
 
@@ -20,3 +21,5 @@ app.use(widget)
 app.use(layout)
 
 app.mount('#app')
+
+initPWA(app)
