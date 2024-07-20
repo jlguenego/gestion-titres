@@ -13,6 +13,7 @@ const newGroup = reactive<New<Group>>({
   name: '',
   description: '',
   privilegeIds: [],
+  userIds: [],
 })
 
 const errorMsg = ref('')
