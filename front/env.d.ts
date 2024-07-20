@@ -1,5 +1,8 @@
 /// <reference types="vite/client" />
 
+// vite build time
+declare const BUILD_DATE: string
+
 // vite markdown plugin
 declare module '*.md' {
   // "unknown" would be more detailed depends on how you structure frontmatter

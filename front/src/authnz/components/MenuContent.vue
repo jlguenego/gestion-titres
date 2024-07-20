@@ -6,6 +6,8 @@ const menus = [
   { label: 'Gérer les privilèges', to: '/privileges' },
   { label: 'Gérer la base de données', to: '/database' },
 ]
+
+const buildDate = BUILD_DATE
 </script>
 
 <template>
@@ -21,8 +23,9 @@ const menus = [
       </RouterLink>
     </nav>
 
-    <footer class="flex flex-col gap-2">
-      <RouterLink to="/legal" class="grow bg-gray-100 p-2 text-center hover:bg-gray-200">
+    <footer class="flex flex-col items-center gap-2 bg-gray-100">
+      <div class="p-2">#Fab: {{ buildDate }}</div>
+      <RouterLink to="/legal" class="w-full grow p-2 text-center hover:bg-gray-200">
         Mentions Légales
       </RouterLink>
     </footer>
