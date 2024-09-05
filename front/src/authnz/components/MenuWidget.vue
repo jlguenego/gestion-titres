@@ -25,13 +25,13 @@ const toggle = (menu: MenuDirectory) => {
     class="flex cursor-pointer justify-between p-2 hover:bg-gray-100"
     @click="toggle(props.menu as MenuDirectory)"
   >
-    <span>{{ props.menu.label }}</span>
+    <span class="">{{ props.menu.label }}</span>
     <ChevronRightIcon v-if="!props.menu.isExpanded" class="size-6" />
     <ChevronDownIcon v-else class="size-6" />
   </div>
   <nav
     v-if="props.menu.type === 'directory' && props.menu.isExpanded"
-    class="flex flex-col divide-y border-gray-200 px-2"
+    class="flex flex-col border-gray-200 pb-4 pl-4"
   >
     <div v-for="item in props.menu.content" :key="item.label">
       <MenuWidget :menu="item" />
