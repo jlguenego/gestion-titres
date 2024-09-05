@@ -43,7 +43,7 @@ const getUsers = (group: Group): User[] => {
 </script>
 
 <template>
-  <PageLayout class="h-full gap-9">
+  <PageLayout class="h-full">
     <HeaderPage>
       <h1>Liste des groupes</h1>
     </HeaderPage>
