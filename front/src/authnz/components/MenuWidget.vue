@@ -1,6 +1,9 @@
 <script setup lang="ts">
 import { ChevronDownIcon, ChevronRightIcon } from '@heroicons/vue/24/outline'
+import { useRoute } from 'vue-router'
 import type { Menu, MenuDirectory } from '../interfaces/Menu'
+
+const route = useRoute()
 
 const props = defineProps<{
   menu: Menu
@@ -10,6 +13,8 @@ const toggle = (menu: MenuDirectory) => {
   console.log('toggle', menu)
   menu.isExpanded = !menu.isExpanded
 }
+
+const isActive = (name: string) => route.name === name
 </script>
 
 <template>
@@ -17,6 +22,7 @@ const toggle = (menu: MenuDirectory) => {
     v-if="props.menu.type === 'item'"
     :to="props.menu.name"
     class="flex p-2 hover:bg-gray-100"
+    :class="{ 'font-bold': isActive(props.menu.name) }"
   >
     {{ props.menu.label }}
   </RouterLink>
