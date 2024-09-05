@@ -11,7 +11,7 @@ const buildDate = BUILD_DATE
 
 <template>
   <div class="flex h-full flex-col justify-between gap-6 pt-4">
-    <nav class="flex flex-col border-gray-200">
+    <nav class="no-scrollbar flex flex-col overflow-auto border-gray-200">
       <div v-for="item in menus" :key="item.label">
         <MenuWidget :menu="item" />
       </div>
