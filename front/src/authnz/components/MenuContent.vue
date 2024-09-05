@@ -10,14 +10,14 @@ const buildDate = BUILD_DATE
 </script>
 
 <template>
-  <div class="flex h-full flex-col justify-between gap-6 pt-4">
-    <nav class="no-scrollbar flex flex-col overflow-auto border-gray-200">
+  <div class="no-scrollbar flex h-full flex-col justify-between gap-6 overflow-auto pt-4">
+    <nav class="flex flex-col border-gray-200">
       <div v-for="item in menus" :key="item.label">
         <MenuWidget :menu="item" />
       </div>
     </nav>
 
-    <footer class="flex flex-col items-center gap-2 bg-gray-100">
+    <footer class="flex flex-col items-center gap-2 bg-gray-100 text-gray-500">
       <div class="p-2">#Fab: {{ buildDate }}</div>
       <RouterLink to="/legal" class="w-full grow p-2 text-center hover:bg-gray-200">
         Mentions Légales
