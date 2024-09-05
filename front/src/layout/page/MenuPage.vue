@@ -30,12 +30,12 @@ const responsiveStore = useResponsiveStore()
     :class="{ hidden: !menuStore.showMenu }"
     class="fixed bottom-0 left-0 right-0 top-16 flex flex-col bg-black bg-opacity-20"
   >
-    <div class="flex w-4/5 flex-col overflow-hidden rounded-tr-3xl bg-white shadow-xl shadow-black">
-      <header class="flex w-full items-center justify-center bg-gray-700 p-2 text-white">
+    <div class="flex w-full flex-col rounded-tr-3xl bg-white shadow-xl shadow-black">
+      <header class="flex h-12 w-full items-center justify-center bg-black text-white">
         <h1>Menu</h1>
       </header>
     </div>
-    <div class="w-4/5 grow overflow-y-scroll bg-white">
+    <div class="w-full grow overflow-y-scroll bg-white">
       <slot></slot>
     </div>
   </aside>
