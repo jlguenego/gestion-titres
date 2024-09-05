@@ -2,7 +2,7 @@ export type Menu = MenuItem | MenuDirectory
 
 export interface MenuItem {
   label: string
-  to: string
+  name: string
   type: 'item'
 }
 

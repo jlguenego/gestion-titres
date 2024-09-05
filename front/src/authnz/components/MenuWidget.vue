@@ -15,7 +15,7 @@ const toggle = (menu: MenuDirectory) => {
 <template>
   <RouterLink
     v-if="props.menu.type === 'item'"
-    :to="props.menu.to"
+    :to="props.menu.name"
     class="flex p-2 hover:bg-gray-100"
   >
     {{ props.menu.label }}
