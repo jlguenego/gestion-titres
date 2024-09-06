@@ -1,5 +1,10 @@
 <script setup lang="ts">
 import { HomeIcon } from '@heroicons/vue/24/outline'
+import { useAuthenticationStore } from '../authnz/stores/AuthenticationStore'
+
+const authenticationStore = useAuthenticationStore()
+
+const page = authenticationStore.user ? '/welcome' : '/'
 </script>
 
 <template>
@@ -14,7 +19,7 @@ import { HomeIcon } from '@heroicons/vue/24/outline'
           Page en cours d'implémentation... <br />
           🚜🚜🚜
         </span>
-        <RouterLink to="/" class="button primary">
+        <RouterLink :to="page" class="button primary">
           <HomeIcon class="size-6" />
           <span>Accueil</span>
         </RouterLink>
