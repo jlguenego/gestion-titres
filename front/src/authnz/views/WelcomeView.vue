@@ -28,8 +28,8 @@ if (isDesktop()) {
       <ul>
         <li>
           <strong>Etre maintenable</strong> par des ingénieurs informatiques connaissant les
-          nouvelles technologies Web. Ils sont moins cher et plus facile à trouver sur le marché que
-          des ingénieurs Cobol NetExpress.
+          nouvelles technologies Web. Ils sont moins chers et plus faciles à trouver sur le marché
+          que des ingénieurs Cobol NetExpress.
         </li>
         <li>
           Etre <strong>esthétique et ergonomique</strong>. Avoir davantage de possibilité dans le
