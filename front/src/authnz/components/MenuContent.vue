@@ -15,7 +15,7 @@ const menus = ref<Menu[]>(menuDefaults)
       </div>
     </nav>
 
-    <footer class="flex flex-col items-center gap-2 bg-gray-100 text-gray-500">
+    <footer class="flex shrink-0 flex-col items-center bg-gray-100 text-gray-500">
       <RouterLink to="/legal" class="w-full grow p-2 text-center hover:bg-gray-200">
         Mentions Légales
       </RouterLink>
