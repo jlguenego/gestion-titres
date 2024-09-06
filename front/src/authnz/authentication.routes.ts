@@ -13,6 +13,7 @@ import UserAddView from './views/UserAddView.vue'
 import UserDetailView from './views/UserDetailView.vue'
 import UserView from './views/UserView.vue'
 import WelcomeView from './views/WelcomeView.vue'
+import CurrentUserView from './views/CurrentUserView.vue'
 
 const LOGIN_PATH = '/login'
 const anonymousAllowedPaths = ['/', '/legal']
@@ -22,6 +23,12 @@ export const authenticationRoutes = [
     path: LOGIN_PATH,
     name: 'login',
     component: LoginView,
+  },
+  {
+    path: '/current-user',
+    name: 'current-user',
+    component: CurrentUserView,
+    meta: { title: 'Utilisateur Courant' },
   },
   {
     path: '/welcome',

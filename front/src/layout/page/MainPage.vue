@@ -5,7 +5,7 @@ const buildDate = BUILD_DATE
 <template>
   <div class="no-scrollbar w-full grow overflow-auto">
     <div class="flex h-full flex-col items-center justify-between">
-      <main class="flex flex-col gap-2 p-4">
+      <main class="flex max-w-2xl flex-col gap-2 p-4">
         <slot></slot>
       </main>
       <footer

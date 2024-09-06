@@ -4,7 +4,7 @@ import { useMenuStore } from '../stores/MenuStore'
 
 const menuStore = useMenuStore()
 
-withDefaults(
+const props = withDefaults(
   defineProps<{
     menu?: boolean
   }>(),
@@ -20,7 +20,7 @@ withDefaults(
       <button
         @click="menuStore.toggleMenu()"
         class="button hidden rounded-none bg-transparent text-white hover:bg-gray-700 sm:flex"
-        v-if="menuStore.showMenu === false && $props.menu"
+        v-if="props.menu && menuStore.showMenu === false"
       >
         <Bars3Icon class="size-6" />
       </button>

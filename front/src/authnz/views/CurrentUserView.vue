@@ -12,8 +12,14 @@ const handleLogout = async () => {
 </script>
 
 <template>
-  <PageLayout class="max-w-96 gap-9" v-if="authenticationStore.user">
-    <h1>Utilisateur : {{ authenticationStore.user.displayName }}</h1>
-    <button class="button danger" @click="handleLogout()">Se déconnecter</button>
+  <PageLayout class="self-stretch" v-if="authenticationStore.user">
+    <HeaderPage>
+      <h1>{{ authenticationStore.user.displayName }}</h1>
+    </HeaderPage>
+    <MainPage>
+      <p>Groupe(s) : Administrateurs</p>
+
+      <button class="button danger" @click="handleLogout()">Se déconnecter</button>
+    </MainPage>
   </PageLayout>
 </template>

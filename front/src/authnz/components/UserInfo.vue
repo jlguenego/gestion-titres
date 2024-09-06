@@ -12,7 +12,7 @@ const responsiveStore = useResponsiveStore()
 
 const handleClick = () => {
   if (responsiveStore.isDesktop) {
-    router.push('/welcome')
+    router.push('/current-user')
     return
   }
   menuStore.toggleMenu()

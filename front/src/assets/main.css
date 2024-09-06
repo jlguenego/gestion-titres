@@ -36,6 +36,20 @@
   }
 
   p {
-    @apply w-full p-6;
+    @apply w-full py-6;
+  }
+
+  ol,
+  ul,
+  menu {
+    list-style: disc;
+    padding-left: 2rem;
+    li {
+      padding-bottom: 1rem;
+    }
+  }
+
+  main a {
+    @apply text-blue-500 hover:underline;
   }
 }
