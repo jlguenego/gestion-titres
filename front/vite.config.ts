@@ -19,7 +19,7 @@ export default defineConfig({
     vueDevTools(),
     VitePWA({
       registerType: 'prompt',
-      injectRegister: false,
+      injectRegister: 'auto',
 
       includeAssets: ['*.svg'],
 
