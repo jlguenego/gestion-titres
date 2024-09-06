@@ -1,4 +1,5 @@
 import { authenticationGuard, authenticationRoutes } from '@/authnz/authentication.routes'
+import { menuGuard } from '@/authnz/stores/MenuStore'
 import { createRouter, createWebHashHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import NotFoundView from '../views/NotFoundView.vue'
@@ -31,5 +32,6 @@ const router = createRouter({
 router.beforeEach(authenticationGuard)
 router.afterEach(titleGuard)
 router.afterEach(responsiveGuard)
+router.afterEach(menuGuard)
 
 export default router

@@ -6,7 +6,7 @@ export const menuDefaults: Menu[] = [
     label: 'Opérations',
     type: 'directory',
     content: [
-      { label: 'Saisie opération', name: 'operation', type: 'item' },
+      { label: 'Saisie opération', name: 'saisie_operation', type: 'item' },
       { label: 'Compte courant', name: 'compte_courant', type: 'item' },
       { label: 'Mise à jour des cours', name: 'maj_cours', type: 'item' },
       { label: 'Arrêtés', name: 'arretes', type: 'item' },

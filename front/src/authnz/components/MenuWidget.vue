@@ -14,7 +14,12 @@ const toggle = (menu: MenuDirectory) => {
   menu.isExpanded = !menu.isExpanded
 }
 
-const isActive = (name: string) => route.name === name
+const isActive = (name: string) => {
+  console.log('route.fullPath.substring(1): ', route.fullPath.substring(1))
+  console.log('route.fullPath: ', route.fullPath)
+  console.log('name: ', name)
+  return route.fullPath.substring(1) === name
+}
 </script>
 
 <template>
