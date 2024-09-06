@@ -1,13 +1,19 @@
 <script setup lang="ts">
 import MenuWidget from './MenuWidget.vue'
 import { useMenuStore } from '../stores/MenuStore'
+import { FolderMinusIcon } from '@heroicons/vue/24/outline'
 
 const menuStore = useMenuStore()
 </script>
 
 <template>
-  <div class="no-scrollbar flex h-full flex-col justify-between gap-6 overflow-auto pt-4">
-    <nav class="flex flex-col border-gray-200">
+  <nav class="sticky flex w-full justify-end gap-2 bg-white px-2">
+    <button class="button" @click="menuStore.collapseAll()">
+      <FolderMinusIcon class="size-6" />
+    </button>
+  </nav>
+  <div class="no-scrollbar flex h-full flex-col justify-between gap-6 overflow-auto">
+    <nav class="relative flex flex-col border-gray-200">
       <div v-for="item in menuStore.menus" :key="item.label">
         <MenuWidget :menu="item" />
       </div>
