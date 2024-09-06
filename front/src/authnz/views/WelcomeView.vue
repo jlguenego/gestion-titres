@@ -22,8 +22,8 @@ if (isDesktop()) {
     <MainPage>
       <p>
         Ce logiciel se propose de succéder de
-        <a href="http://wintit.com/" target="_blank">Wintit</a>. Il est progressivement refondu pour
-        diverses raisons :
+        <a class="link" href="http://wintit.com/" target="_blank">Wintit</a>. Il est progressivement
+        refondu pour diverses raisons :
       </p>
       <ul>
         <li>
