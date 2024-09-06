@@ -3,7 +3,7 @@ import { useAuthenticationStore } from '@/authnz/stores/AuthenticationStore'
 import PageLayout from '@/layout/page/PageLayout.vue'
 import { useMenuStore } from '@/layout/stores/MenuStore'
 import { isDesktop } from '@/utils/responsive'
-import { BookOpenIcon, PlusIcon } from '@heroicons/vue/24/outline'
+import { BookOpenIcon, CircleStackIcon, PlusIcon } from '@heroicons/vue/24/outline'
 
 const authenticationStore = useAuthenticationStore()
 const menuStore = useMenuStore()
@@ -49,6 +49,10 @@ if (isDesktop()) {
         <RouterLink class="button" to="/saisie_operation">
           <PlusIcon class="size-6" />
           <span>Saisie opération</span>
+        </RouterLink>
+        <RouterLink class="button" to="/database">
+          <CircleStackIcon class="size-6" />
+          <span>Database</span>
         </RouterLink>
         <RouterLink class="button primary" to="/compte_courant">
           <BookOpenIcon class="size-6" />

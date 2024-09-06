@@ -12,7 +12,7 @@ const menuStore = useMenuStore()
       <FolderMinusIcon class="size-6" />
     </button>
   </nav>
-  <div class="no-scrollbar flex h-full flex-col justify-between gap-6 overflow-auto">
+  <div class="menu-content no-scrollbar flex h-full flex-col justify-between gap-6 overflow-auto">
     <nav class="relative flex flex-col border-gray-200">
       <div v-for="item in menuStore.menus" :key="item.label">
         <MenuWidget :menu="item" />

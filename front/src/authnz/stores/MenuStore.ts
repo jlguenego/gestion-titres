@@ -69,6 +69,16 @@ export const useMenuStore = defineStore('menuStore', () => {
 export const menuGuard: NavigationHookAfter = (to) => {
   const menuStore = useMenuStore()
   menuStore.expand(to.fullPath.substring(1))
+  console.log('to: ', to)
+
+  // scroll
+  if ('href' in to) {
+    const elt = document.querySelector<HTMLElement>(`.menu-content a[href="${to.href}"]`)
+    if (elt === null) {
+      return true
+    }
+    elt.scrollIntoView({ behavior: 'instant', block: 'nearest', inline: 'nearest' })
+  }
 
   return true
 }
