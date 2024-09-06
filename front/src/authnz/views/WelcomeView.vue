@@ -42,7 +42,7 @@ if (isDesktop()) {
         </li>
       </ul>
       <p>
-        Vous pouvez reconnaître les menus de Wintit et leur écran correspondant, refondu en web.
+        Vous pouvez reconnaître les menus de Wintit et leurs écrans correspondant, refondus en web.
         Bonne utilisation !
       </p>
       <div class="flex flex-wrap justify-center gap-2">
