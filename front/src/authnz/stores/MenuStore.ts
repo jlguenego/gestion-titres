@@ -35,6 +35,28 @@ export const useMenuStore = defineStore('menuStore', () => {
     }
   }
 
+  const expandAll = () => {
+    console.log('expandAll')
+    for (const item of menus.value) {
+      if (item.type === 'item') {
+        continue
+      }
+      item.isExpanded = true
+      expandAllFrom(item)
+    }
+  }
+
+  const expandAllFrom = (menuDir: MenuDirectory) => {
+    console.log('expandFrom')
+    for (const item of menuDir.content) {
+      if (item.type === 'item') {
+        continue
+      }
+      item.isExpanded = true
+      expandAllFrom(item)
+    }
+  }
+
   const expand = (routeName: string): boolean => {
     console.log('expanding to ', routeName)
     for (const item of menus.value) {
@@ -70,7 +92,7 @@ export const useMenuStore = defineStore('menuStore', () => {
     }
     return false
   }
-  return { menus, favorites, collapse, collapseAll, collapseDeep, expand }
+  return { menus, favorites, collapse, collapseAll, collapseDeep, expand, expandAll }
 })
 
 export const menuGuard: NavigationHookAfter = (to) => {
