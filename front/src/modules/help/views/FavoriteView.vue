@@ -111,7 +111,7 @@ const handleMoveDown = () => {
             v-for="f in favorites"
             :key="f.name"
             @click="handleSelect(f)"
-            class="item"
+            class="item cursor-pointer"
             :class="{ selected: selectedFavorite?.name === f.name }"
           >
             {{ f.label }}
