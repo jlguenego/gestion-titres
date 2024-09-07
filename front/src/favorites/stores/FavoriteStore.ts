@@ -6,7 +6,7 @@ import { getMenuItem } from '../utils/favorites'
 
 export const useFavoriteStore = defineStore('favoriteStore', () => {
   const menuStore = useMenuStore()
-  const defaultFavorites = ['database', 'welcome', 'saisie_operation'].map((name) =>
+  const defaultFavorites = ['database', 'introduction', 'saisie_operation'].map((name) =>
     getMenuItem(menuStore.menus, name),
   )
   const favorites = ref<MenuItem[]>(defaultFavorites)

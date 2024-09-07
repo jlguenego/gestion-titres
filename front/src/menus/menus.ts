@@ -153,6 +153,7 @@ export const menuDefaults: Menu[] = [
     label: 'Documentations',
     type: 'directory',
     content: [
+      { label: 'Introduction', name: 'introduction', type: 'item' },
       { label: 'Menu', name: 'menu', type: 'item' },
       {
         label: 'Paramétrages',

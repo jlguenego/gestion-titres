@@ -1,12 +1,13 @@
 import { authenticationGuard, authenticationRoutes } from '@/authnz/authentication.routes'
 import { menuGuard } from '@/authnz/stores/MenuStore'
+import { favoriteRoutes } from '@/favorites/favorite.routes'
+import { documentRoutes } from '@/modules/documents/document.routes'
 import { createRouter, createWebHashHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import NotFoundView from '../views/NotFoundView.vue'
 import { NOTFOUND_NAME } from './constants'
 import { responsiveGuard } from './ResponsiveGuard'
 import { titleGuard } from './TitleGuard'
-import { favoriteRoutes } from '@/favorites/favorite.routes'
 
 const router = createRouter({
   history: createWebHashHistory(import.meta.env.BASE_URL),
@@ -18,6 +19,7 @@ const router = createRouter({
     },
     ...authenticationRoutes,
     ...favoriteRoutes,
+    ...documentRoutes,
     {
       path: '/legal',
       name: 'legal',

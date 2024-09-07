@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { iconMap } from '@/utils/icons'
+import { DocumentIcon } from '@heroicons/vue/24/outline'
 import { useFavoriteStore } from './stores/FavoriteStore'
 
 const favoriteStore = useFavoriteStore()
@@ -15,7 +17,7 @@ const favorites = favoriteStore.favorites
       :class="{ primary: index === favorites.length - 1 }"
       :to="'/' + f.name"
     >
-      <component :is="f.icon" class="size-6" />
+      <component :is="iconMap.get(f.name) ?? DocumentIcon" class="size-6" />
       <span>{{ f.label }}</span>
     </RouterLink>
   </div>

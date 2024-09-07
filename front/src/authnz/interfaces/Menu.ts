@@ -1,10 +1,12 @@
+import type { Component } from 'vue'
+
 export type Menu = MenuItem | MenuDirectory
 
 export interface MenuItem {
   label: string
   name: string
   type: 'item'
-  icon?: unknown
+  icon?: Component
   favorite?: number
 }
 
