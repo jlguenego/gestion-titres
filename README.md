@@ -1,6 +1,7 @@
 # Todo
 
-- Terminer la PWA (initialiser le service worker)
+- merger les favoris dans l'utilisateur
+
 - revoir le CSS des boutons
   - faire seulement des boutons avec la classe .button
   - bouton papier, bouton plat
