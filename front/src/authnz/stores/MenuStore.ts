@@ -1,13 +1,16 @@
 import { scrollToMenu } from '@/utils/element'
 import { retryUntil } from '@/utils/misc'
 import { defineStore } from 'pinia'
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 import type { NavigationHookAfter } from 'vue-router'
 import { menuDefaults } from '../../menus/menus'
 import type { Menu, MenuDirectory } from '../interfaces/Menu'
+import { getFavorites } from '@/favorites/utils/favorites'
 
 export const useMenuStore = defineStore('menuStore', () => {
   const menus = ref<Menu[]>(menuDefaults)
+
+  const favorites = computed(() => getFavorites(menus.value))
 
   const collapse = (menuDir: MenuDirectory) => {
     menuDir.isExpanded = false
@@ -67,7 +70,7 @@ export const useMenuStore = defineStore('menuStore', () => {
     }
     return false
   }
-  return { menus, collapse, collapseAll, collapseDeep, expand }
+  return { menus, favorites, collapse, collapseAll, collapseDeep, expand }
 })
 
 export const menuGuard: NavigationHookAfter = (to) => {

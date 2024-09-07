@@ -1,4 +1,5 @@
 import type { Menu } from '@/authnz/interfaces/Menu'
+import { BookOpenIcon, CircleStackIcon, PlusIcon } from '@heroicons/vue/24/outline'
 
 export const menuDefaults: Menu[] = [
   { label: 'Accueil', name: 'welcome', type: 'item' },
@@ -6,8 +7,20 @@ export const menuDefaults: Menu[] = [
     label: 'Opérations',
     type: 'directory',
     content: [
-      { label: 'Saisie opération', name: 'saisie_operation', type: 'item' },
-      { label: 'Compte courant', name: 'compte_courant', type: 'item' },
+      {
+        label: 'Saisie opération',
+        name: 'saisie_operation',
+        type: 'item',
+        icon: PlusIcon,
+        favorite: 10,
+      },
+      {
+        label: 'Compte courant',
+        name: 'compte_courant',
+        type: 'item',
+        icon: BookOpenIcon,
+        favorite: 2,
+      },
       { label: 'Mise à jour des cours', name: 'maj_cours', type: 'item' },
       { label: 'Arrêtés', name: 'arretes', type: 'item' },
       { label: 'Changement dépositaire', name: 'changement_depositaire', type: 'item' },
@@ -122,7 +135,13 @@ export const menuDefaults: Menu[] = [
       { label: 'Sauvegarde', name: 'users', type: 'item' },
       { label: 'Restauration', name: 'groups', type: 'item' },
       { label: 'Vérification utilisation', name: 'privileges', type: 'item' },
-      { label: 'Base de données', name: 'database', type: 'item' },
+      {
+        label: 'Base de données',
+        name: 'database',
+        type: 'item',
+        icon: CircleStackIcon,
+        favorite: 3,
+      },
       { label: 'Intervention/fichiers', name: 'intervention_fichiers', type: 'item' },
       { label: 'Epuration dépositaires', name: 'epuration_depositaires', type: 'item' },
       { label: 'Inversion des classements', name: 'inversion_classements', type: 'item' },

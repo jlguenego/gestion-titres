@@ -4,6 +4,8 @@ export interface MenuItem {
   label: string
   name: string
   type: 'item'
+  icon?: unknown
+  favorite?: number
 }
 
 export interface MenuDirectory {

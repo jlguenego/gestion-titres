@@ -27,6 +27,9 @@
 }
 
 @layer components {
+  section {
+    @apply my-2 rounded-md p-2 pb-6;
+  }
   h1 {
     @apply text-center font-bold;
   }
