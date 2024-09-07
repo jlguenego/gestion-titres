@@ -6,6 +6,7 @@ import NotFoundView from '../views/NotFoundView.vue'
 import { NOTFOUND_NAME } from './constants'
 import { responsiveGuard } from './ResponsiveGuard'
 import { titleGuard } from './TitleGuard'
+import { favoriteRoutes } from '@/favorites/favorite.routes'
 
 const router = createRouter({
   history: createWebHashHistory(import.meta.env.BASE_URL),
@@ -16,6 +17,7 @@ const router = createRouter({
       component: HomeView,
     },
     ...authenticationRoutes,
+    ...favoriteRoutes,
     {
       path: '/legal',
       name: 'legal',

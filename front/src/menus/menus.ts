@@ -180,7 +180,7 @@ export const menuDefaults: Menu[] = [
     label: 'Aide',
     type: 'directory',
     content: [
-      { label: 'Favoris', name: 'favoris', type: 'item' },
+      { label: 'Favoris', name: 'favorites', type: 'item' },
       { label: 'A propos', name: 'about', type: 'item' },
     ],
   },
