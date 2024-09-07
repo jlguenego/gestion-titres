@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useAuthenticationStore } from '@/authnz/stores/AuthenticationStore'
 import PageLayout from '@/layout/page/PageLayout.vue'
-import FavoriteList from '@/favorites/FavoriteList.vue'
+import FavoriteList from '@/modules/help/FavoriteList.vue'
 
 import { useMenuStore } from '@/layout/stores/MenuStore'
 import { isDesktop } from '@/utils/responsive'

@@ -1,7 +1,7 @@
 import { authenticationGuard, authenticationRoutes } from '@/authnz/authentication.routes'
 import { menuGuard } from '@/authnz/stores/MenuStore'
-import { favoriteRoutes } from '@/favorites/favorite.routes'
 import { documentRoutes } from '@/modules/documents/document.routes'
+import { helpRoutes } from '@/modules/help/help.routes'
 import { createRouter, createWebHashHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import NotFoundView from '../views/NotFoundView.vue'
@@ -18,8 +18,8 @@ const router = createRouter({
       component: HomeView,
     },
     ...authenticationRoutes,
-    ...favoriteRoutes,
     ...documentRoutes,
+    ...helpRoutes,
     {
       path: '/legal',
       name: 'legal',

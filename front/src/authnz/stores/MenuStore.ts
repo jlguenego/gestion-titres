@@ -5,7 +5,7 @@ import { computed, ref } from 'vue'
 import type { NavigationHookAfter } from 'vue-router'
 import { menuDefaults } from '../../menus/menus'
 import type { Menu, MenuDirectory } from '../interfaces/Menu'
-import { getFavorites } from '@/favorites/utils/favorites'
+import { getFavorites } from '@/modules/help/utils/favorites'
 
 export const useMenuStore = defineStore('menuStore', () => {
   const menus = ref<Menu[]>(menuDefaults)

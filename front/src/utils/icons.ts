@@ -1,4 +1,4 @@
-import { getAllMenuItems } from '@/favorites/utils/favorites'
+import { getAllMenuItems } from '@/modules/help/utils/favorites'
 import { menuDefaults } from '@/menus/menus'
 import type { Component } from 'vue'
 
