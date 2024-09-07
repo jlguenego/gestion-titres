@@ -1,10 +1,10 @@
 import { scrollToMenu } from '@/utils/element'
+import { retryUntil } from '@/utils/misc'
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
-import type { NavigationHookAfter, RouteRecordNameGeneric } from 'vue-router'
+import type { NavigationHookAfter } from 'vue-router'
 import { menuDefaults } from '../../menus/menus'
 import type { Menu, MenuDirectory } from '../interfaces/Menu'
-import { retryUntil } from '@/utils/misc'
 
 export const useMenuStore = defineStore('menuStore', () => {
   const menus = ref<Menu[]>(menuDefaults)
