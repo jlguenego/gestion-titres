@@ -22,7 +22,7 @@ const handleDrag = (menu: MenuItem) => (event: DragEvent) => {
   if (event.dataTransfer === null) {
     return
   }
-  event.dataTransfer.setData('menu.name', menu.name)
+  event.dataTransfer.setData('text', menu.name)
 }
 </script>
 
@@ -33,7 +33,7 @@ const handleDrag = (menu: MenuItem) => (event: DragEvent) => {
     class="flex p-2 hover:bg-gray-100"
     :class="{ 'font-bold': isActive(props.menu.name) }"
     draggable="true"
-    @dragstart="handleDrag(props.menu)"
+    @dragstart="handleDrag(props.menu)($event)"
   >
     {{ props.menu.label }}
   </RouterLink>

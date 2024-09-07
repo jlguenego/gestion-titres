@@ -9,8 +9,8 @@ const handleDrop = (event: DragEvent) => {
   if (event.dataTransfer === null) {
     return
   }
-  const name = event.dataTransfer.getData('menu.name')
-  favorites.value.push({ name: 'truc' + name, label: name, type: 'item' })
+  const name = event.dataTransfer.getData('text')
+  favorites.value.push({ name: name, label: name, type: 'item' })
   console.log('favorites.value: ', favorites.value)
 }
 const handleDragOver = (event: Event) => {
