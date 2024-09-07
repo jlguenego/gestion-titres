@@ -1,4 +1,4 @@
-import type { Menu } from '@/authnz/interfaces/Menu'
+import type { Menu, MenuItem } from '@/authnz/interfaces/Menu'
 
 const menuFlat = (menu: Menu): Menu[] => {
   if (menu.type === 'item') {
@@ -20,4 +20,17 @@ export const getFavorites = (menus: Menu[]) => {
       }
       return Math.sign(m1.favorite - m2.favorite)
     })
+}
+
+export const getMenuItem = (menus: Menu[], name: string): MenuItem => {
+  const menuItems = menus
+    .map((m) => menuFlat(m))
+    .flat(1)
+    .filter((m) => m.type === 'item')
+
+  const menuItem = menuItems.find((m) => m.name === name)
+  if (menuItem === undefined) {
+    throw new Error('Menu item not found')
+  }
+  return menuItem
 }

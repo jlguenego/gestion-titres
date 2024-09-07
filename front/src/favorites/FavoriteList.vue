@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { useMenuStore } from '@/authnz/stores/MenuStore'
+import { useFavoriteStore } from './stores/FavoriteStore'
 
-const menuStore = useMenuStore()
+const favoriteStore = useFavoriteStore()
 
-const favorites = menuStore.favorites
+const favorites = favoriteStore.favorites
 </script>
 
 <template>

@@ -56,7 +56,10 @@
     @apply text-blue-500 hover:underline;
   }
 
-  .selected {
-    @apply font-bold text-green-500;
+  .item {
+    @apply rounded-xl bg-white p-2;
+    &.selected {
+      @apply bg-green-200 font-bold;
+    }
   }
 }
