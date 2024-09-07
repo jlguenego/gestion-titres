@@ -22,7 +22,7 @@ if (isDesktop()) {
 
     <MainPage>
       <section>
-        <p>Vos favoris :</p>
+        <p>Vos <RouterLink to="/favorites" class="link">favoris</RouterLink> :</p>
         <FavoriteList />
       </section>
       <section class="bg-gray-100 shadow-md">
