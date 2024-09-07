@@ -27,10 +27,10 @@
   }
 
   .flat-button {
-    @apply flex items-center justify-center gap-2 rounded-lg px-4 py-2;
+    @apply flex items-center justify-center gap-2 rounded-lg bg-gray-100 px-4 py-2;
     @apply text-black;
-    @apply hover:bg-gray-100 hover:no-underline;
-    @apply active:bg-gray-200;
+    @apply hover:bg-gray-200 hover:no-underline;
+    @apply active:bg-gray-300;
     @apply text-center;
     @apply disabled:bg-gray-200 disabled:text-gray-400 disabled:shadow-none;
 

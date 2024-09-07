@@ -1,8 +1,10 @@
+import { scrollToMenu } from '@/utils/element'
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
 import type { NavigationHookAfter } from 'vue-router'
 import { menuDefaults } from '../../menus/menus'
 import type { Menu, MenuDirectory } from '../interfaces/Menu'
+import { retryUntil } from '@/utils/misc'
 
 export const useMenuStore = defineStore('menuStore', () => {
   const menus = ref<Menu[]>(menuDefaults)
@@ -31,10 +33,10 @@ export const useMenuStore = defineStore('menuStore', () => {
   }
 
   const expand = (routeName: string) => {
+    console.log('expanding to ', routeName)
     for (const item of menus.value) {
       if (item.type === 'item') {
         if (item.name === routeName) {
-          console.log('trouveeeeee expand')
           return
         }
       }
@@ -48,7 +50,6 @@ export const useMenuStore = defineStore('menuStore', () => {
     for (const item of menuDir.content) {
       if (item.type === 'item') {
         if (item.name === routeName) {
-          console.log('trouveeeeee expandFrom')
           menuDir.isExpanded = true
           return true
         }
@@ -67,18 +68,16 @@ export const useMenuStore = defineStore('menuStore', () => {
 })
 
 export const menuGuard: NavigationHookAfter = (to) => {
+  console.log('apply menuGuard: ', to)
   const menuStore = useMenuStore()
   menuStore.expand(to.fullPath.substring(1))
   console.log('to: ', to)
 
-  // scroll
-  if ('href' in to) {
-    const elt = document.querySelector<HTMLElement>(`.menu-content a[href="${to.href}"]`)
-    if (elt === null) {
-      return true
-    }
-    elt.scrollIntoView({ behavior: 'instant', block: 'nearest', inline: 'nearest' })
-  }
+  // wait menuStore propagate to the components.
+
+  retryUntil(() => {
+    scrollToMenu(to)
+  }, 2000)
 
   return true
 }
