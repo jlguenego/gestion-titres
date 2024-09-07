@@ -1,0 +1,8 @@
+@layer components {
+  h1 {
+    @apply text-2xl;
+  }
+  a {
+    @apply text-blue-500;
+  }
+}

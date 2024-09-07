@@ -2,6 +2,7 @@
 
 @import './css/button.css';
 @import './css/form.css';
+@import './css/markdown.css';
 
 @tailwind base;
 @tailwind components;

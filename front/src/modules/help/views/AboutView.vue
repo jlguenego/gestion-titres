@@ -1,11 +1,14 @@
-<script setup lang="ts"></script>
+<script lang="ts" setup>
+import { VueComponent } from '@/markdown/AboutContent.md'
+</script>
 
 <template>
-  <PageLayout class="h-full gap-9">
+  <PageLayout>
     <HeaderPage>
-      <h1>A propos</h1>
+      <h1>Mentions Légales</h1>
     </HeaderPage>
-
-    <MainPage> A propos a remplir </MainPage>
+    <MainPage class="markdown">
+      <VueComponent />
+    </MainPage>
   </PageLayout>
 </template>
