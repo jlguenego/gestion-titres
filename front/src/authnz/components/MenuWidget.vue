@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ChevronDownIcon, ChevronRightIcon } from '@heroicons/vue/24/outline'
 import { useRoute } from 'vue-router'
-import type { Menu, MenuDirectory } from '../interfaces/Menu'
+import type { Menu, MenuDirectory, MenuItem } from '../interfaces/Menu'
 
 const route = useRoute()
 
@@ -16,6 +16,14 @@ const toggle = (menu: MenuDirectory) => {
 const isActive = (name: string) => {
   return route.fullPath.substring(1) === name
 }
+
+const handleDrag = (menu: MenuItem) => (event: DragEvent) => {
+  console.log('dragevent: ', event)
+  if (event.dataTransfer === null) {
+    return
+  }
+  event.dataTransfer.setData('menu.name', menu.name)
+}
 </script>
 
 <template>
@@ -25,6 +33,7 @@ const isActive = (name: string) => {
     class="flex p-2 hover:bg-gray-100"
     :class="{ 'font-bold': isActive(props.menu.name) }"
     draggable="true"
+    @dragstart="handleDrag(props.menu)"
   >
     {{ props.menu.label }}
   </RouterLink>
