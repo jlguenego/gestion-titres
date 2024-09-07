@@ -8,9 +8,9 @@
     @apply disabled:bg-gray-200 disabled:text-gray-400 disabled:shadow-none;
 
     &.primary {
-      @apply bg-gray-800 text-white;
-      @apply hover:bg-gray-700;
-      @apply active:bg-gray-600;
+      @apply bg-blue-500 text-white;
+      @apply hover:bg-blue-700;
+      @apply active:bg-blue-600;
     }
 
     &.danger {

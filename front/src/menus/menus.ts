@@ -132,9 +132,9 @@ export const menuDefaults: Menu[] = [
     label: 'Maintenance',
     type: 'directory',
     content: [
-      { label: 'Sauvegarde', name: 'users', type: 'item' },
-      { label: 'Restauration', name: 'groups', type: 'item' },
-      { label: 'Vérification utilisation', name: 'privileges', type: 'item' },
+      { label: 'Sauvegarde', name: 'sauvegarde', type: 'item' },
+      { label: 'Restauration', name: 'restauration', type: 'item' },
+      { label: 'Vérification utilisation', name: 'verification_utilisation', type: 'item' },
       {
         label: 'Base de données',
         name: 'database',
