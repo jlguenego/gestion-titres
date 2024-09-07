@@ -1,7 +1,7 @@
 import { scrollToMenu } from '@/utils/element'
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
-import type { NavigationHookAfter } from 'vue-router'
+import type { NavigationHookAfter, RouteRecordNameGeneric } from 'vue-router'
 import { menuDefaults } from '../../menus/menus'
 import type { Menu, MenuDirectory } from '../interfaces/Menu'
 import { retryUntil } from '@/utils/misc'
@@ -32,18 +32,21 @@ export const useMenuStore = defineStore('menuStore', () => {
     }
   }
 
-  const expand = (routeName: string) => {
+  const expand = (routeName: string): boolean => {
     console.log('expanding to ', routeName)
     for (const item of menus.value) {
       if (item.type === 'item') {
         if (item.name === routeName) {
-          return
+          return true
         }
       }
       if (item.type === 'directory') {
-        expandFrom(item, routeName)
+        if (expandFrom(item, routeName)) {
+          return true
+        }
       }
     }
+    return false
   }
 
   const expandFrom = (menuDir: MenuDirectory, routeName: string) => {
@@ -68,16 +71,12 @@ export const useMenuStore = defineStore('menuStore', () => {
 })
 
 export const menuGuard: NavigationHookAfter = (to) => {
-  console.log('apply menuGuard: ', to)
   const menuStore = useMenuStore()
-  menuStore.expand(to.fullPath.substring(1))
-  console.log('to: ', to)
-
-  // wait menuStore propagate to the components.
-
-  retryUntil(() => {
-    scrollToMenu(to)
-  }, 2000)
+  if (menuStore.expand(to.fullPath.substring(1))) {
+    retryUntil(() => {
+      scrollToMenu(to)
+    }, 2000)
+  }
 
   return true
 }
