@@ -18,7 +18,5 @@ module.exports = {
   parserOptions: {
     ecmaVersion: 'latest',
   },
-  rules: {
-    'no-constant-condition': ['off'],
-  },
+  rules: {},
 }
