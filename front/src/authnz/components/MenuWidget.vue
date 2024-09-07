@@ -24,6 +24,7 @@ const isActive = (name: string) => {
     :to="props.menu.name"
     class="flex p-2 hover:bg-gray-100"
     :class="{ 'font-bold': isActive(props.menu.name) }"
+    draggable="true"
   >
     {{ props.menu.label }}
   </RouterLink>
