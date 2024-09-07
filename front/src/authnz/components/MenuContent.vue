@@ -7,8 +7,8 @@ const menuStore = useMenuStore()
 </script>
 
 <template>
-  <nav class="sticky flex w-full justify-end gap-2 bg-white px-2">
-    <button class="button" @click="menuStore.collapseAll()">
+  <nav class="sticky flex w-full justify-end gap-2 bg-white p-2">
+    <button class="flat-button" @click="menuStore.collapseAll()">
       <FolderMinusIcon class="size-6" />
     </button>
   </nav>

@@ -25,4 +25,25 @@
       @apply hover:bg-gray-100 hover:text-opacity-80 hover:shadow-2xl hover:shadow-black;
     }
   }
+
+  .flat-button {
+    @apply flex items-center justify-center gap-2 rounded-lg px-4 py-2;
+    @apply text-black;
+    @apply hover:bg-gray-100 hover:no-underline;
+    @apply active:bg-gray-200;
+    @apply text-center;
+    @apply disabled:bg-gray-200 disabled:text-gray-400 disabled:shadow-none;
+
+    &.primary {
+      @apply bg-gray-800 text-white;
+      @apply hover:bg-gray-700;
+      @apply active:bg-gray-600;
+    }
+
+    &.danger {
+      @apply bg-red-600 text-white;
+      @apply hover:bg-red-700;
+      @apply active:bg-red-800;
+    }
+  }
 }
