@@ -1,20 +1,9 @@
 <script setup lang="ts">
-import { useAuthenticationStore } from '@/authnz/stores/AuthenticationStore'
 import PageLayout from '@/layout/page/PageLayout.vue'
-
-import { useMenuStore } from '@/layout/stores/MenuStore'
-import { isDesktop } from '@/utils/responsive'
-
-const authenticationStore = useAuthenticationStore()
-const menuStore = useMenuStore()
-
-if (isDesktop()) {
-  menuStore.openMenu()
-}
 </script>
 
 <template>
-  <PageLayout class="self-stretch" v-if="authenticationStore.user">
+  <PageLayout class="self-stretch">
     <HeaderPage>
       <h1>Documentation - Introduction</h1>
     </HeaderPage>

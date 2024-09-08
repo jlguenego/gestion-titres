@@ -29,7 +29,7 @@ const handleDrag = (menu: MenuItem) => (event: DragEvent) => {
 <template>
   <RouterLink
     v-if="props.menu.type === 'item'"
-    :to="props.menu.name"
+    :to="'/' + props.menu.name"
     class="flex p-2 hover:bg-gray-100"
     :class="{ 'font-bold': isActive(props.menu.name) }"
     draggable="true"

@@ -12,7 +12,7 @@ export const firstUser: New<User> = {
   email: 'jlguenego@gmail.com',
   phone: '+33612341234',
   gender: Gender.MALE,
-  favorites: ['database', 'introduction'],
+  favorites: ['database', 'documentation/introduction'],
 }
 
 export const adminPrivilege: New<Privilege> = {

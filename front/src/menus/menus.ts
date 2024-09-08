@@ -150,11 +150,11 @@ export const menuDefaults: Menu[] = [
     ],
   },
   {
-    label: 'Documentations',
+    label: 'Documentation',
     type: 'directory',
     content: [
-      { label: 'Introduction', name: 'introduction', type: 'item' },
-      { label: 'Menu', name: 'menu', type: 'item' },
+      { label: 'Introduction', name: 'documentation/introduction', type: 'item' },
+      { label: 'Menu', name: 'documentation/menu', type: 'item' },
       {
         label: 'Paramétrages',
         type: 'directory',
