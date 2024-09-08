@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import type { MenuItem } from '@/authnz/interfaces/Menu'
 import { useAuthenticationStore } from '@/authnz/stores/AuthenticationStore'
 import { ArrowDownIcon, ArrowUpIcon, TrashIcon } from '@heroicons/vue/24/outline'
 import { computed, ref } from 'vue'
@@ -11,7 +10,7 @@ const user = authenticationStore.needUser()
 const favorites = computed(() => {
   return user.favorites.map((name) => getMenuItem(name))
 })
-const selectedFavorite = ref<MenuItem | undefined>(undefined)
+const selectedFavorite = ref<string | undefined>(undefined)
 
 const patch = () => {
   authenticationStore.patch({ favorites: favorites.value.map((mi) => mi.name) })
@@ -37,29 +36,29 @@ const handleRemove = () => {
   if (selectedFavorite.value === undefined) {
     return
   }
-  const index = user.favorites.indexOf(selectedFavorite.value.name)
+  const index = user.favorites.indexOf(selectedFavorite.value)
   user.favorites.splice(index, 1)
   patch()
 }
 
-const handleSelect = (menuItem: MenuItem) => {
-  if (selectedFavorite.value && selectedFavorite.value.name === menuItem.name) {
+const handleSelect = (menuItemName: string) => {
+  if (selectedFavorite.value && selectedFavorite.value === menuItemName) {
     selectedFavorite.value = undefined
     return
   }
-  selectedFavorite.value = menuItem
+  selectedFavorite.value = menuItemName
 }
 
 const handleMoveUp = () => {
   if (selectedFavorite.value === undefined) {
     return
   }
-  const index = user.favorites.indexOf(selectedFavorite.value.name)
+  const index = user.favorites.indexOf(selectedFavorite.value)
   if (index === -1 || index === 0) {
     return
   }
   user.favorites.splice(index, 1)
-  user.favorites.splice(index - 1, 0, selectedFavorite.value.name)
+  user.favorites.splice(index - 1, 0, selectedFavorite.value)
   patch()
 }
 
@@ -67,12 +66,12 @@ const handleMoveDown = () => {
   if (selectedFavorite.value === undefined) {
     return
   }
-  const index = user.favorites.indexOf(selectedFavorite.value.name)
+  const index = user.favorites.indexOf(selectedFavorite.value)
   if (index === -1 || index === user.favorites.length - 1) {
     return
   }
   user.favorites.splice(index, 1)
-  user.favorites.splice(index + 1, 0, selectedFavorite.value.name)
+  user.favorites.splice(index + 1, 0, selectedFavorite.value)
   patch()
 }
 </script>
@@ -119,9 +118,9 @@ const handleMoveDown = () => {
           <div
             v-for="f in favorites"
             :key="f.name"
-            @click="handleSelect(f)"
+            @click="handleSelect(f.name)"
             class="item cursor-pointer"
-            :class="{ selected: selectedFavorite?.name === f.name }"
+            :class="{ selected: selectedFavorite === f.name }"
           >
             {{ f.label }}
           </div>
