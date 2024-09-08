@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { useAuthenticationStore } from '@/authnz/stores/AuthenticationStore'
-import { menuDefaults } from '@/menus/menus'
 import { iconMap } from '@/utils/icons'
 import { DocumentIcon } from '@heroicons/vue/24/outline'
 import { getMenuItem } from './utils/favorites'
@@ -8,7 +7,7 @@ import { getMenuItem } from './utils/favorites'
 const authenticationStore = useAuthenticationStore()
 const user = authenticationStore.needUser()
 
-const favorites = user.favorites.map((name) => getMenuItem(menuDefaults, name))
+const favorites = user.favorites.map((name) => getMenuItem(name))
 </script>
 
 <template>

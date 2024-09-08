@@ -1,4 +1,5 @@
 import type { Menu, MenuItem } from '@/authnz/interfaces/Menu'
+import { menuDefaults } from '@/menus/menus'
 
 export const menuFlat = (menu: Menu): Menu[] => {
   if (menu.type === 'item') {
@@ -30,8 +31,8 @@ export const getAllMenuItems = (menus: Menu[]): MenuItem[] => {
   return menuItems
 }
 
-export const getMenuItem = (menus: Menu[], name: string): MenuItem => {
-  const menuItems = menus
+export const getMenuItem = (name: string): MenuItem => {
+  const menuItems = menuDefaults
     .map((m) => menuFlat(m))
     .flat(1)
     .filter((m) => m.type === 'item')
