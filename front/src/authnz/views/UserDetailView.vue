@@ -17,6 +17,7 @@ const user = reactive<User>({
   jobTitle: '',
   gender: undefined,
   phone: '',
+  favorites: ['introduction'],
 })
 
 const originalUser = reactive<User>({
@@ -28,6 +29,7 @@ const originalUser = reactive<User>({
   jobTitle: '',
   gender: undefined,
   phone: '',
+  favorites: ['introduction'],
 })
 
 const message = ref('')

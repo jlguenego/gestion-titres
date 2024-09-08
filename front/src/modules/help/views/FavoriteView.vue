@@ -1,16 +1,22 @@
 <script setup lang="ts">
 import type { MenuItem } from '@/authnz/interfaces/Menu'
+import { useAuthenticationStore } from '@/authnz/stores/AuthenticationStore'
 import { useMenuStore } from '@/authnz/stores/MenuStore'
+import { menuDefaults } from '@/menus/menus'
 import { ArrowDownIcon, ArrowUpIcon, TrashIcon } from '@heroicons/vue/24/outline'
 import { ref } from 'vue'
 import { getMenuItem } from '../utils/favorites'
-import { useFavoriteStore } from '../stores/FavoriteStore'
 
 const menuStore = useMenuStore()
-const favoriteStore = useFavoriteStore()
-const favorites = favoriteStore.favorites
+const authenticationStore = useAuthenticationStore()
+const user = authenticationStore.needUser()
 
+const favorites = ref<MenuItem[]>(user.favorites.map((name) => getMenuItem(menuDefaults, name)))
 const selectedFavorite = ref<MenuItem | undefined>(undefined)
+
+const patch = () => {
+  authenticationStore.patch({ favorites: favorites.value.map((mi) => mi.name) })
+}
 
 const handleDrop = (event: DragEvent) => {
   console.log('handleDrop event: ', event)
@@ -19,20 +25,25 @@ const handleDrop = (event: DragEvent) => {
   }
   const name = event.dataTransfer.getData('text')
   const menuItem = getMenuItem(menuStore.menus, name)
-  if (favorites.find((m) => m.name === menuItem.name)) {
+  console.log('menuItem: ', menuItem)
+  if (favorites.value.find((m) => m.name === menuItem.name)) {
     return
   }
-  favorites.push(menuItem)
+  favorites.value.push(menuItem)
   console.log('favorites: ', favorites)
+  user.favorites = favorites.value.map((mi) => mi.name)
+  patch()
 }
 const handleDragOver = (event: Event) => {
   event.preventDefault()
 }
 
 const handleRemove = () => {
-  const index = favorites.findIndex((f) => f.name === selectedFavorite.value?.name)
-  favorites.splice(index, 1)
+  const index = favorites.value.findIndex((f) => f.name === selectedFavorite.value?.name)
+  favorites.value.splice(index, 1)
   selectedFavorite.value = undefined
+  user.favorites = favorites.value.map((mi) => mi.name)
+  patch()
 }
 
 const handleSelect = (menuItem: MenuItem) => {
@@ -47,24 +58,26 @@ const handleMoveUp = () => {
   if (selectedFavorite.value === undefined) {
     return
   }
-  const index = favorites.findIndex((m) => m === selectedFavorite.value)
+  const index = favorites.value.findIndex((m) => m === selectedFavorite.value)
   if (index === undefined || index === 0) {
     return
   }
-  favorites.splice(index, 1)
-  favorites.splice(index - 1, 0, selectedFavorite.value)
+  favorites.value.splice(index, 1)
+  favorites.value.splice(index - 1, 0, selectedFavorite.value)
+  patch()
 }
 
 const handleMoveDown = () => {
   if (selectedFavorite.value === undefined) {
     return
   }
-  const index = favorites.findIndex((m) => m === selectedFavorite.value)
-  if (index === undefined || index === favorites.length - 1) {
+  const index = favorites.value.findIndex((m) => m === selectedFavorite.value)
+  if (index === undefined || index === favorites.value.length - 1) {
     return
   }
-  favorites.splice(index, 1)
-  favorites.splice(index + 1, 0, selectedFavorite.value)
+  favorites.value.splice(index, 1)
+  favorites.value.splice(index + 1, 0, selectedFavorite.value)
+  patch()
 }
 </script>
 

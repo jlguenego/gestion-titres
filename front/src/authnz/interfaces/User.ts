@@ -13,4 +13,5 @@ export interface User {
   phone?: string
   email?: string
   gender?: Gender
+  favorites: string[]
 }

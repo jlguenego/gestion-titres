@@ -19,6 +19,11 @@ class API {
   }
 
   async logout() {}
+
+  async patch(id: string, partialUser: Partial<User>): Promise<User> {
+    const user = await resourceAPI.patch(id, partialUser)
+    return user
+  }
 }
 
 export const api = new API()

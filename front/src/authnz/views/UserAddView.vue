@@ -17,6 +17,7 @@ const newUser = reactive<New<User>>({
   jobTitle: '',
   gender: undefined,
   phone: '',
+  favorites: ['saisie_operation', 'introduction'],
 })
 
 const errorMsg = ref('')

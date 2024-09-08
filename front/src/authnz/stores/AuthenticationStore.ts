@@ -16,5 +16,21 @@ export const useAuthenticationStore = defineStore('authentication', () => {
     user.value = undefined
   }
 
-  return { user, isAuthenticated, login, logout }
+  const needUser = (): User => {
+    if (user.value === undefined) {
+      throw new Error('Need authentication')
+    }
+    return user.value
+  }
+
+  const patch = async (partialUser: Partial<User>) => {
+    console.log('authenticationStore patch: ', partialUser)
+    if (user.value === undefined) {
+      throw new Error('Need to be identified')
+    }
+    const id = user.value.id
+    user.value = await api.patch(id, partialUser)
+  }
+
+  return { user, isAuthenticated, login, logout, needUser, patch }
 })

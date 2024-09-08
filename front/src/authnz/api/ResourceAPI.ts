@@ -21,14 +21,17 @@ export class ResourceAPI<T extends ObjectWithId> {
     return id
   }
 
-  async retrieveAll(): Promise<T[]> {
+  async patch(id: string, partialResource: Partial<T>): Promise<T> {
+    console.log('patching resource with id', id)
+    const resources = await this.retrieveAll()
     const key = getKey(this.resourceName)
-    const str = localStorage.getItem(key)
-    if (str === null) {
-      return []
+    const resource = resources.find((r) => r.id === id)
+    if (resource === undefined) {
+      throw new Error(ErrorMessage.RESSOURCE_NOT_FOUND)
     }
-    const resources = JSON.parse(str)
-    return resources
+    Object.assign(resource, partialResource)
+    localStorage.setItem(key, JSON.stringify(resources))
+    return resource
   }
 
   async remove(ids: string[]) {
@@ -47,5 +50,15 @@ export class ResourceAPI<T extends ObjectWithId> {
     }
     resources.splice(index, 1, resource)
     localStorage.setItem(key, JSON.stringify(resources))
+  }
+
+  async retrieveAll(): Promise<T[]> {
+    const key = getKey(this.resourceName)
+    const str = localStorage.getItem(key)
+    if (str === null) {
+      return []
+    }
+    const resources = JSON.parse(str)
+    return resources
   }
 }
