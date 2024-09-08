@@ -16,7 +16,7 @@ const page = authenticationStore.user ? '/welcome' : '/'
       <div class="flex grow flex-col justify-center gap-12">
         <span class="text-center text-2xl font-bold sm:text-3xl">
           🚜🚜🚜 <br />
-          Page en cours d'implémentation... <br />
+          Page à implémenter... <br />
           🚜🚜🚜
         </span>
         <RouterLink :to="page" class="button primary">
