@@ -2,7 +2,11 @@ import type { New } from '@/interfaces/utilities'
 import { Gender, type User } from '../interfaces/User'
 import type { Privilege } from '../interfaces/Privilege'
 import type { Group } from '../interfaces/Group'
-import { mutationFunctionalities, readOnlyFunctionalities } from '../misc/functionalities'
+import {
+  adminFunctionalities,
+  mutationFunctionalities,
+  readOnlyFunctionalities,
+} from '../misc/functionalities'
 
 export const firstUser: New<User> = {
   name: 'admin',
@@ -16,10 +20,25 @@ export const firstUser: New<User> = {
 }
 
 export const adminPrivilege: New<Privilege> = {
-  name: 'admin',
+  name: 'adminPrivilege',
+  readOnlyFunctionalities: [...readOnlyFunctionalities],
+  mutationFunctionalities: [...adminFunctionalities],
+  description: "Un administrateur a accès à toutes les fonctionnalités de l'application",
+}
+
+export const userPrivilege: New<Privilege> = {
+  name: 'userPrivilege',
   readOnlyFunctionalities: [...readOnlyFunctionalities],
   mutationFunctionalities: [...mutationFunctionalities],
-  description: "Un administrateur a accès à toutes les fonctionnalités de l'application",
+  description:
+    "Ce privilège permet à un utilisateur de tout voir et mettre à jour sauf les activités d'administration",
+}
+
+export const readOnlyPrivilege: New<Privilege> = {
+  name: 'readOnlyPrivilege',
+  readOnlyFunctionalities: [...readOnlyFunctionalities],
+  mutationFunctionalities: [],
+  description: 'Ce privilège permet à un utilisateur de tout voir mais rien mettre à jour',
 }
 
 export const adminGroup: New<Group> = {
@@ -27,6 +46,22 @@ export const adminGroup: New<Group> = {
 
   description:
     "Le groupe administrateur possède juste le privilège administrateur qui permet d'accéder à toutes les fonctionnalités de l'application.",
+  privilegeIds: [],
+  userIds: [],
+}
+
+export const readonlyGroup: New<Group> = {
+  name: 'readonly',
+
+  description: 'Groupe des utilisateurs qui peuvent juste lire.',
+  privilegeIds: [],
+  userIds: [],
+}
+
+export const userGroup: New<Group> = {
+  name: 'user',
+
+  description: 'Groupe des utilisateurs qui peuvent lire et écrire.',
   privilegeIds: [],
   userIds: [],
 }

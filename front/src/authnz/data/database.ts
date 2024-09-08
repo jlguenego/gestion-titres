@@ -3,7 +3,15 @@ import { ResourceAPI } from '../api/ResourceAPI'
 import type { Privilege } from '../interfaces/Privilege'
 import type { Group } from '../interfaces/Group'
 import type { User } from '../interfaces/User'
-import { adminPrivilege, adminGroup, firstUser } from './FirstUser'
+import {
+  adminPrivilege,
+  adminGroup,
+  firstUser,
+  userPrivilege,
+  readOnlyPrivilege,
+  userGroup,
+  readonlyGroup,
+} from './FirstUser'
 
 export const userApi = new ResourceAPI<User>('user')
 export const privilegeApi = new ResourceAPI<Privilege>('privilege')
@@ -22,6 +30,14 @@ class Database {
     adminGroup.userIds = [userId]
 
     await groupApi.add(adminGroup)
+
+    const userPrivilegeId = await privilegeApi.add(userPrivilege)
+    userGroup.privilegeIds = [userPrivilegeId]
+    const readOnlyPrivilegeId = await privilegeApi.add(readOnlyPrivilege)
+    readonlyGroup.privilegeIds = [readOnlyPrivilegeId]
+
+    await groupApi.add(userGroup)
+    await groupApi.add(readonlyGroup)
   }
 
   async reset() {
