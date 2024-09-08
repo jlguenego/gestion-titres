@@ -1,5 +1,6 @@
 import IntroductionView from './views/IntroductionView.vue'
 import MenuView from './views/MenuView.vue'
+import MenuDocDetails from './components/MenuDocDetails.vue'
 
 export const documentRoutes = [
   {
@@ -11,5 +12,10 @@ export const documentRoutes = [
     path: '/documentation/menu',
     name: 'documentation/menu',
     component: MenuView,
+  },
+  {
+    path: '/documentation/menu/:pathMatch(.*)*',
+    name: 'documentation/menu/detail',
+    component: MenuDocDetails,
   },
 ]
