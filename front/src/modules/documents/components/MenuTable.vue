@@ -1,16 +1,14 @@
 <script setup lang="ts">
-import { collapse } from '@/utils/menu'
-import MenuDocWidget from './MenuDocWidget.vue'
+import type { MenuDirectory } from '@/authnz/interfaces/Menu'
 import { useMenuStore } from '@/authnz/stores/MenuStore'
+import { collapse } from '@/utils/menu'
 import { ref } from 'vue'
-import type { Menu } from '@/authnz/interfaces/Menu'
+import MenuDocWidget from './MenuDocWidget.vue'
 
 const menuStore = useMenuStore()
-const cloneMenus = JSON.parse(JSON.stringify(menuStore.menus))
-for (const menu of cloneMenus) {
-  collapse(menu)
-}
-const menus = ref<Menu[]>(cloneMenus)
+const cloneMenu = JSON.parse(JSON.stringify(menuStore.menu))
+collapse(cloneMenu)
+const menu = ref<MenuDirectory>(cloneMenu)
 </script>
 
 <template>
@@ -18,7 +16,7 @@ const menus = ref<Menu[]>(cloneMenus)
   <p>Cliquer sur un élément de menu pour obtenir sa documentation.</p>
 
   <nav class="relative flex flex-col border-gray-200">
-    <div v-for="item in menus" :key="item.label">
+    <div v-for="item in menu.content" :key="item.label">
       <MenuDocWidget :menu="item" />
     </div>
   </nav>

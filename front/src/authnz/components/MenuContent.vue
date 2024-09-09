@@ -17,7 +17,7 @@ const menuStore = useMenuStore()
   </nav>
   <div class="menu-content no-scrollbar flex h-full flex-col justify-between gap-6 overflow-auto">
     <nav class="relative flex flex-col border-gray-200">
-      <div v-for="item in menuStore.menus" :key="item.label">
+      <div v-for="item in menuStore.menu.content" :key="item.label">
         <MenuWidget :menu="item" />
       </div>
     </nav>

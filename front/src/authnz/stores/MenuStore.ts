@@ -1,65 +1,27 @@
+import { getFavorites } from '@/modules/help/utils/favorites'
 import { scrollToMenu } from '@/utils/element'
+import { collapse, expandAllFrom, expandFrom } from '@/utils/menu'
 import { retryUntil } from '@/utils/misc'
 import { defineStore } from 'pinia'
 import { computed, ref } from 'vue'
 import type { NavigationHookAfter } from 'vue-router'
-import { menuDefaults } from '../../menus/menus'
-import type { Menu, MenuDirectory } from '../interfaces/Menu'
-import { getFavorites } from '@/modules/help/utils/favorites'
+import { menuDefault } from '../../menus/menus'
 
 export const useMenuStore = defineStore('menuStore', () => {
-  const menus = ref<Menu[]>(menuDefaults)
+  const menu = ref(menuDefault)
 
-  const favorites = computed(() => getFavorites(menus.value))
-
-  const collapse = (menuDir: MenuDirectory) => {
-    menuDir.isExpanded = false
-  }
-
-  const collapseDeep = (menuDir: MenuDirectory) => {
-    collapse(menuDir)
-    for (const item of menuDir.content) {
-      if (item.type === 'item') {
-        continue
-      }
-      collapseDeep(item)
-    }
-  }
+  const favorites = computed(() => getFavorites(menu.value))
 
   const collapseAll = () => {
-    for (const item of menus.value) {
-      if (item.type === 'item') {
-        continue
-      }
-      collapseDeep(item)
-    }
+    collapse(menu.value)
   }
 
   const expandAll = () => {
-    console.log('expandAll')
-    for (const item of menus.value) {
-      if (item.type === 'item') {
-        continue
-      }
-      item.isExpanded = true
-      expandAllFrom(item)
-    }
-  }
-
-  const expandAllFrom = (menuDir: MenuDirectory) => {
-    console.log('expandFrom')
-    for (const item of menuDir.content) {
-      if (item.type === 'item') {
-        continue
-      }
-      item.isExpanded = true
-      expandAllFrom(item)
-    }
+    expandAllFrom(menu.value)
   }
 
   const expand = (routeName: string): boolean => {
-    console.log('expanding to ', routeName)
-    for (const item of menus.value) {
+    for (const item of menu.value.content) {
       if (item.type === 'item') {
         if (item.name === routeName) {
           return true
@@ -74,25 +36,7 @@ export const useMenuStore = defineStore('menuStore', () => {
     return false
   }
 
-  const expandFrom = (menuDir: MenuDirectory, routeName: string) => {
-    for (const item of menuDir.content) {
-      if (item.type === 'item') {
-        if (item.name === routeName) {
-          menuDir.isExpanded = true
-          return true
-        }
-      }
-      if (item.type === 'directory') {
-        const found = expandFrom(item, routeName)
-        if (found) {
-          menuDir.isExpanded = true
-          return true
-        }
-      }
-    }
-    return false
-  }
-  return { menus, favorites, collapse, collapseAll, collapseDeep, expand, expandAll }
+  return { menu, favorites, collapseAll, expand, expandAll }
 })
 
 export const menuGuard: NavigationHookAfter = (to) => {

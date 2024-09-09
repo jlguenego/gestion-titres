@@ -1,7 +1,7 @@
-import type { Menu, MenuItem } from '@/authnz/interfaces/Menu'
-import { menuDefaults } from '@/menus/menus'
+import type { Menu, MenuDirectory, MenuItem } from '@/authnz/interfaces/Menu'
+import { menuDefault } from '@/menus/menus'
 
-export const menuFlat = (menu: Menu): Menu[] => {
+export const menuFlat = (menu: Menu): MenuItem[] => {
   if (menu.type === 'item') {
     return [menu]
   }
@@ -9,9 +9,8 @@ export const menuFlat = (menu: Menu): Menu[] => {
   return menu.content.map((m) => menuFlat(m)).flat(1)
 }
 
-export const getFavorites = (menus: Menu[]) => {
-  return menus
-    .map((m) => menuFlat(m))
+export const getFavorites = (menu: Menu) => {
+  return menuFlat(menu)
     .flat(1)
     .filter((m) => m.type === 'item')
     .filter((m) => m.favorite !== undefined)
@@ -23,17 +22,15 @@ export const getFavorites = (menus: Menu[]) => {
     })
 }
 
-export const getAllMenuItems = (menus: Menu[]): MenuItem[] => {
-  const menuItems = menus
-    .map((m) => menuFlat(m))
+export const getAllMenuItems = (menu: MenuDirectory): MenuItem[] => {
+  const menuItems = menuFlat(menu)
     .flat(1)
     .filter((m) => m.type === 'item')
   return menuItems
 }
 
 export const getMenuItem = (name: string): MenuItem => {
-  const menuItems = menuDefaults
-    .map((m) => menuFlat(m))
+  const menuItems = menuFlat(menuDefault)
     .flat(1)
     .filter((m) => m.type === 'item')
 
