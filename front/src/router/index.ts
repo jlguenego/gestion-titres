@@ -8,6 +8,7 @@ import NotFoundView from '../views/NotFoundView.vue'
 import { NOTFOUND_NAME } from './constants'
 import { responsiveGuard } from './ResponsiveGuard'
 import { titleGuard } from './TitleGuard'
+import { settingsRoutes } from '../modules/settings/settings.routes'
 
 const router = createRouter({
   history: createWebHashHistory(import.meta.env.BASE_URL),
@@ -19,6 +20,7 @@ const router = createRouter({
     },
     ...authenticationRoutes,
     ...documentRoutes,
+    ...settingsRoutes,
     ...helpRoutes,
     {
       path: '/legal',
