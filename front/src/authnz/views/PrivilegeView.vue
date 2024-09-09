@@ -20,13 +20,13 @@ onMounted(async () => {
     </HeaderPage>
     <MainPage>
       <p>
-        Un privilège P est un ensemble de droits D1, D2, etc. qu'un utilisateur U dispose si U
+        Un privilège P est un ensemble de permissions P1, P2, etc. qu'un utilisateur U dispose si U
         appartient à un groupe G qui possède le privilège P.
       </p>
 
       <p>
-        Ainsi une fonctionnalité qui est autorisée avec le droit D1 peut être utilisée par un
-        utilisateur U, qui appartient à au moins un groupe G qui possède un privilège P contenant D1
+        Ainsi une fonctionnalité qui est autorisée avec la permission P1 peut être utilisée par un
+        utilisateur U, qui appartient à au moins un groupe G qui possède un privilège P contenant P1
       </p>
 
       <div class="flex flex-col gap-2">

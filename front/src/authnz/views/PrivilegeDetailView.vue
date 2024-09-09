@@ -134,7 +134,7 @@ onMounted(async () => {
 
         <label>
           <span>
-            Fonctionalités avec accès base de données en
+            Permissions avec accès base de données en
             <span class="font-bold">lecture seule</span>
           </span>
           <SelectItems
@@ -145,7 +145,7 @@ onMounted(async () => {
         </label>
         <label>
           <span>
-            Fonctionalités avec accès base de données en <span class="font-bold">écriture</span>
+            Permissions avec accès base de données en <span class="font-bold">écriture</span>
           </span>
           <SelectItems
             :items="mutationPermissions"

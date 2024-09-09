@@ -53,14 +53,14 @@ const onSubmit = async () => {
         </div>
 
         <label>
-          <span
-            >Fonctionalité avec accès base de donnée en <span class="font-bold">lecture seule</span>
+          <span>
+            Permissions avec accès base de donnée en <span class="font-bold">lecture seule</span>
           </span>
           <SelectItems :items="readOnlyPermissions" v-model="newPrivilege.readOnlyPermissions" />
         </label>
         <label>
-          <span
-            >Fonctionalité avec accès base de donnée en <span class="font-bold">écriture</span>
+          <span>
+            Permissions avec accès base de donnée en <span class="font-bold">écriture</span>
           </span>
           <SelectItems :items="mutationPermissions" v-model="newPrivilege.mutationPermissions" />
         </label>
