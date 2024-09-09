@@ -4,6 +4,7 @@ import { onMounted, reactive, ref, watch } from 'vue'
 import { useRoute } from 'vue-router'
 import { Gender, type User } from '../interfaces/User'
 import { useUserStore } from '../stores/UserStore'
+import PasswordInput from '@/widgets/components/forms/PasswordInput.vue'
 
 const route = useRoute()
 const userStore = useUserStore()
@@ -113,12 +114,12 @@ onMounted(async () => {
             </label>
             <label>
               <span>Mot de passe *</span>
-              <input
-                type="password"
+              <PasswordInput
                 v-model="user.password"
                 autocomplete="new-password"
                 :disabled="!isEditing"
               />
+
               <span class="error">{{ '' }}</span>
             </label>
           </fieldset>

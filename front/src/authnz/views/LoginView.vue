@@ -4,6 +4,7 @@ import { reactive, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import type { UserCredentials } from '../interfaces/UserCredentials'
 import { useAuthenticationStore } from '../stores/AuthenticationStore'
+import PasswordInput from '@/widgets/components/forms/PasswordInput.vue'
 
 const router = useRouter()
 const authenticationStore = useAuthenticationStore()
@@ -42,7 +43,7 @@ const onSubmit = async () => {
         </label>
         <label>
           <span>Mot de passe</span>
-          <input type="password" v-model="data.password" />
+          <PasswordInput v-model="data.password" />
           <span class="error">{{ '' }}</span>
         </label>
         <div class="error">{{ errorMsg }}</div>
