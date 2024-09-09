@@ -1,6 +1,6 @@
 import LoadingIcon from './components/LoadingIcon.vue'
 import type { vFocus } from './directives/FocusDirective'
-import SelectItems from './components/SelectItems.vue'
+import SelectItems from './components/forms/SelectItems.vue'
 
 declare module 'vue' {
   export interface GlobalComponents {
