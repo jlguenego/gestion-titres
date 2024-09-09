@@ -1,25 +1,24 @@
 import localforage from 'localforage'
 import { DATABASE_PREFIX } from './ResourceAPI'
+import { clone } from '@/utils/misc'
 
 export class DatabaseAPI {
   async export(): Promise<object> {
-    const keys = Object.fromEntries(
-      Object.entries(localStorage)
-        .filter(([key]) => {
-          return key.startsWith(DATABASE_PREFIX)
-        })
-        .map(([key, value]) => {
-          return [key, JSON.parse(value)]
-        }),
-    )
-    console.log('keys: ', keys)
-    return keys
+    console.log('localforage: ', localforage)
+    const localforageKeys = (await localforage.keys()).filter((key) => {
+      return key.startsWith(DATABASE_PREFIX)
+    })
+    const obj: { [key: string]: object | null } = {}
+    for (const key of localforageKeys) {
+      obj[key] = await localforage.getItem(key)
+    }
+    return obj
   }
 
   async import(obj: object): Promise<void> {
     console.log('obj: ', obj)
     for (const [key, value] of Object.entries(obj)) {
-      localStorage.setItem(key, JSON.stringify(value))
+      await localforage.setItem(key, clone(value))
     }
   }
 

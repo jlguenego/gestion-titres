@@ -1,6 +1,8 @@
 import type { New, ObjectWithId } from '@/interfaces/utilities'
 import { ErrorMessage } from '../interfaces/ErrorMessage'
 import { generateId } from '../misc/generateId'
+import localforage from 'localforage'
+import { clone } from '@/utils/misc'
 
 export const DATABASE_PREFIX = 'backEnd.'
 
@@ -17,7 +19,7 @@ export class ResourceAPI<T extends ObjectWithId> {
     const id = generateId()
     const resource: T = { id, ...newResource } as T
     resources.push(resource)
-    localStorage.setItem(key, JSON.stringify(resources))
+    await localforage.setItem(key, clone(resources))
     return id
   }
 
@@ -30,7 +32,7 @@ export class ResourceAPI<T extends ObjectWithId> {
       throw new Error(ErrorMessage.RESSOURCE_NOT_FOUND)
     }
     Object.assign(resource, partialResource)
-    localStorage.setItem(key, JSON.stringify(resources))
+    await localforage.setItem(key, clone(resources))
     return resource
   }
 
@@ -38,7 +40,7 @@ export class ResourceAPI<T extends ObjectWithId> {
     const resources = await this.retrieveAll()
     const key = getKey(this.resourceName)
     const filteredResources = resources.filter((r) => !ids.includes(r.id))
-    localStorage.setItem(key, JSON.stringify(filteredResources))
+    await localforage.setItem(key, clone(filteredResources))
   }
 
   async replace(resource: T) {
@@ -49,16 +51,16 @@ export class ResourceAPI<T extends ObjectWithId> {
       throw new Error(ErrorMessage.RESSOURCE_NOT_FOUND)
     }
     resources.splice(index, 1, resource)
-    localStorage.setItem(key, JSON.stringify(resources))
+    await localforage.setItem(key, clone(resources))
   }
 
   async retrieveAll(): Promise<T[]> {
     const key = getKey(this.resourceName)
-    const str = localStorage.getItem(key)
-    if (str === null) {
+    const obj: object | null = await localforage.getItem(key)
+    if (obj === null) {
       return []
     }
-    const resources = JSON.parse(str)
+    const resources = obj as T[]
     return resources
   }
 }
