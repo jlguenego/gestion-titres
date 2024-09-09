@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ChevronDownIcon, ChevronRightIcon } from '@heroicons/vue/24/outline'
 import { useRoute } from 'vue-router'
-import type { Menu, MenuDirectory, MenuItem } from '../interfaces/Menu'
+import type { Menu, MenuDirectory, MenuItem } from '../../interfaces/Menu'
 
 const route = useRoute()
 

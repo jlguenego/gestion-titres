@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { MenuDirectory } from '@/authnz/interfaces/Menu'
+import type { MenuDirectory } from '@/interfaces/Menu'
 import { useMenuStore } from '@/authnz/stores/MenuStore'
 import { collapse } from '@/utils/menu'
 import { ref } from 'vue'
