@@ -6,8 +6,28 @@ import type { UserCredentials } from '../interfaces/UserCredentials'
 import { useMenuStore } from './MenuStore'
 
 export const useAuthenticationStore = defineStore('authentication', () => {
+  const isReady = ref(false)
   const user = ref<User | undefined>(undefined)
   const isAuthenticated = computed(() => user.value !== undefined)
+
+  const waitUntilReady = (): Promise<void> => {
+    return new Promise((resolve) => {
+      if (isReady.value === true) {
+        resolve()
+        return
+      }
+      document.body.addEventListener(
+        'authentication_ready',
+        () => {
+          console.log('catched authentication_ready')
+          isReady.value = true
+          resolve()
+        },
+        { once: true },
+      )
+    })
+  }
+
   const login = async (credentials: UserCredentials) => {
     user.value = await api.login(credentials)
     const menuStore = useMenuStore()
@@ -35,5 +55,5 @@ export const useAuthenticationStore = defineStore('authentication', () => {
     user.value = await api.patch(id, partialUser)
   }
 
-  return { user, isAuthenticated, login, logout, needUser, patch }
+  return { user, isAuthenticated, login, logout, needUser, patch, waitUntilReady }
 })

@@ -1,16 +1,26 @@
+import { clone } from '@/utils/misc'
+import localforage from 'localforage'
 import type { PiniaPlugin } from 'pinia'
 
 export const piniaPersist: PiniaPlugin = ({ store }) => {
-  const key = `piniaState.${store.$id}`
+  ;(async () => {
+    const key = `piniaState.${store.$id}`
 
-  store.$subscribe((mutation, state) => {
-    localStorage.setItem(key, JSON.stringify(state))
-  })
+    store.$subscribe((mutation, state) => {
+      ;(async () => {
+        await localforage.setItem(key, clone(state))
+      })()
+    })
 
-  const str = localStorage.getItem(key)
-  if (str === null) {
-    localStorage.setItem(key, JSON.stringify(store.$state))
-    return
-  }
-  store.$patch(JSON.parse(str))
+    const obj: object | null = await localforage.getItem(key)
+    if (obj === null) {
+      localforage.setItem(key, clone(store.$state))
+      return
+    }
+    store.$patch(obj)
+    const eventName = store.$id + '_ready'
+    console.log('eventName: ', eventName)
+    console.log('about to send')
+    document.body.dispatchEvent(new Event(eventName))
+  })()
 }

@@ -88,12 +88,13 @@ export const authenticationRoutes = [
   },
 ]
 
-export const authenticationGuard: NavigationGuard = (to) => {
+export const authenticationGuard: NavigationGuard = async (to) => {
   if (to.name === NOTFOUND_NAME) {
     return true
   }
 
   const authenticationStore = useAuthenticationStore()
+  await authenticationStore.waitUntilReady()
   if (authenticationStore.user === undefined) {
     if (![...anonymousAllowedPaths, LOGIN_PATH].includes(to.path)) {
       return LOGIN_PATH

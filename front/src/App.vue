@@ -9,10 +9,12 @@ import HeaderLayout from './layout/HeaderLayout.vue'
 import { sleep } from './utils/misc'
 import { usePrivilegeStore } from './authnz/stores/PrivilegeStore'
 import { useGroupStore } from './authnz/stores/GroupStore'
+import { useAuthenticationStore } from './authnz/stores/AuthenticationStore'
 
 const userStore = useUserStore()
 const privilegeStore = usePrivilegeStore()
 const groupStore = useGroupStore()
+const authenticationStore = useAuthenticationStore()
 
 const isLoading = ref(true)
 
