@@ -1,6 +1,6 @@
 import { getFavorites } from '@/modules/help/utils/favorites'
 import { scrollToMenu } from '@/utils/element'
-import { authzFiltered, collapseAllFrom, expandAllFrom, expandFrom } from '@/utils/menu'
+import { authzFiltered, collapseAllFrom, expandAllFrom, expandFrom } from '@/utils/menu.utils'
 import { retryUntil } from '@/utils/misc'
 import { defineStore } from 'pinia'
 import { computed, ref } from 'vue'
