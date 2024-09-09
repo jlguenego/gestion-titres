@@ -1,5 +1,5 @@
 import { getAllMenuItems } from '@/modules/help/utils/favorites'
-import { menuDefault } from '@/menus/menus'
+import { menuDefault } from '@/menus/menuDefault'
 import type { Component } from 'vue'
 
 export const iconMap = new Map<string, Component | undefined>()

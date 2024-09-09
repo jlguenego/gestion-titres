@@ -1,5 +1,5 @@
 import type { Menu, MenuDirectory, MenuItem } from '@/interfaces/Menu'
-import { menuDefault } from '@/menus/menus'
+import { menuDefault } from '@/menus/menuDefault'
 
 export const menuFlat = (menu: Menu): MenuItem[] => {
   if (menu.type === 'item') {

@@ -94,7 +94,13 @@ export const menuDefault: MenuDirectory = {
         {
           label: 'Paramétrages généraux',
           type: 'directory',
-          content: [{ label: 'A definir', name: 'todo', type: 'item' }],
+          content: [
+            { label: 'Back-End', name: 'backend', type: 'item' },
+            { label: 'Contexte', name: 'todo', type: 'item' },
+            { label: 'Règles fonctionnement', name: 'todo', type: 'item' },
+            { label: 'Edition des contextes', name: 'todo', type: 'item' },
+            { label: 'Edition des règles', name: 'todo', type: 'item' },
+          ],
         },
         {
           label: 'Environnement utilisateur',
