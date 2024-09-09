@@ -28,7 +28,7 @@ onMounted(async () => {
     </HeaderPage>
     <MainPage>
       <p>
-        Groupe(s) : <span class="font-bold">{{ groupList }}</span>
+        Groupes : <span class="font-bold">{{ groupList }}</span>
       </p>
 
       <button class="button danger" @click="handleLogout()">Se déconnecter</button>
