@@ -1,4 +1,4 @@
-import type { Menu, MenuDirectory } from '@/authnz/interfaces/Menu'
+import type { Menu, MenuDirectory } from '@/interfaces/Menu'
 
 export const collapse = (menu: Menu) => {
   if (menu.type === 'item') {
