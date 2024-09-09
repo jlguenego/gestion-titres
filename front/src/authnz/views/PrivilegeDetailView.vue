@@ -133,8 +133,8 @@ onMounted(async () => {
         </div>
 
         <label>
-          <span
-            >Fonctionalité avec accès base de données en
+          <span>
+            Fonctionalités avec accès base de données en
             <span class="font-bold">lecture seule</span>
           </span>
           <SelectItems
@@ -144,8 +144,8 @@ onMounted(async () => {
           />
         </label>
         <label>
-          <span
-            >Fonctionalité avec accès base de données en <span class="font-bold">écriture</span>
+          <span>
+            Fonctionalités avec accès base de données en <span class="font-bold">écriture</span>
           </span>
           <SelectItems
             :items="mutationFunctionalities"
