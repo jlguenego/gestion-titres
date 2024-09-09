@@ -2,13 +2,13 @@ import { getFunctionalityIds } from '@/authnz/misc/user'
 import { useAuthenticationStore } from '@/authnz/stores/AuthenticationStore'
 import type { Menu, MenuDirectory } from '@/interfaces/Menu'
 
-export const collapse = (menu: Menu) => {
+export const collapseAllFrom = (menu: Menu) => {
   if (menu.type === 'item') {
     return
   }
   menu.isExpanded = false
   for (const item of menu.content) {
-    collapse(item)
+    collapseAllFrom(item)
   }
 }
 

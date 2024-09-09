@@ -1,13 +1,13 @@
 <script setup lang="ts">
 import type { MenuDirectory } from '@/interfaces/Menu'
 import { useMenuStore } from '@/authnz/stores/MenuStore'
-import { collapse } from '@/utils/menu'
+import { collapseAllFrom } from '@/utils/menu'
 import { ref } from 'vue'
 import MenuDocWidget from './MenuDocWidget.vue'
 
 const menuStore = useMenuStore()
 const cloneMenu = JSON.parse(JSON.stringify(menuStore.menu))
-collapse(cloneMenu)
+collapseAllFrom(cloneMenu)
 const menu = ref<MenuDirectory>(cloneMenu)
 </script>
 

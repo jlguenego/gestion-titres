@@ -1,6 +1,6 @@
 import { getFavorites } from '@/modules/help/utils/favorites'
 import { scrollToMenu } from '@/utils/element'
-import { authzFiltered, collapse, expandAllFrom, expandFrom } from '@/utils/menu'
+import { authzFiltered, collapseAllFrom, expandAllFrom, expandFrom } from '@/utils/menu'
 import { retryUntil } from '@/utils/misc'
 import { defineStore } from 'pinia'
 import { computed, ref } from 'vue'
@@ -28,7 +28,7 @@ export const useMenuStore = defineStore('menuStore', () => {
   const favorites = computed(() => getFavorites(menu.value))
 
   const collapseAll = () => {
-    collapse(menu.value)
+    collapseAllFrom(menu.value)
   }
 
   const expandAll = () => {
