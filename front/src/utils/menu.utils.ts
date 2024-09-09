@@ -41,27 +41,30 @@ export const expandFrom = (menuDir: MenuDirectory, routeName: string) => {
   return false
 }
 
-export const authzFiltered = async (menu: MenuDirectory): Promise<MenuDirectory> => {
+export const filterWithPermission = async (menu: MenuDirectory): Promise<MenuDirectory> => {
   const authenticationStore = useAuthenticationStore()
   const user = authenticationStore.needUser()
   const permissions = await getPermissionIds(user)
 
-  const filteredMenu = filterStructure(menu, permissions)
+  const filteredMenu = recursivelyFilterWithPermission(menu, permissions)
   return filteredMenu
 }
 
-const filterStructure = (menu: MenuDirectory, permissions: Set<string>): MenuDirectory => {
+const recursivelyFilterWithPermission = (
+  menu: MenuDirectory,
+  permissions: Set<string>,
+): MenuDirectory => {
   const result: MenuDirectory = { ...menu }
   result.content = []
   for (const item of menu.content) {
-    if (item.authz !== undefined && !permissions.has(item.authz)) {
+    if (item.permission !== undefined && !permissions.has(item.permission)) {
       continue
     }
     if (item.type === 'item') {
       result.content.push(item)
       continue
     }
-    result.content.push(filterStructure(item, permissions))
+    result.content.push(recursivelyFilterWithPermission(item, permissions))
   }
   return result
 }
