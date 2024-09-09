@@ -1,3 +1,4 @@
+import { clone } from '@/utils/misc'
 import localforage from 'localforage'
 import type { PiniaPlugin } from 'pinia'
 
@@ -7,17 +8,17 @@ export const piniaPersist: PiniaPlugin = ({ store }) => {
 
     store.$subscribe((mutation, state) => {
       ;(async () => {
-        await localforage.setItem(key, state)
+        await localforage.setItem(key, clone(state))
       })()
     })
 
     try {
-      const str: string | null = await localforage.getItem(key)
+      const str: object | null = await localforage.getItem(key)
       if (str === null) {
-        await localforage.setItem(key, JSON.stringify(store.$state))
+        await localforage.setItem(key, clone(store.$state))
         return
       }
-      store.$patch(JSON.parse(str))
+      store.$patch(str)
     } catch (err) {
       console.log('err: ', err)
     }
