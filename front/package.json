@@ -20,6 +20,7 @@
   "dependencies": {
     "@heroicons/vue": "^2.1.4",
     "@vite-pwa/assets-generator": "^0.2.4",
+    "localforage": "^1.10.0",
     "pinia": "^2.1.7",
     "vite-plugin-pwa": "^0.20.0",
     "vue": "^3.4.29",
