@@ -9,6 +9,7 @@ import { piniaPersist } from './plugins/pinia/PersistPlugin'
 import router from './router'
 import { widget } from './widgets/WidgetPlugin'
 import { log } from './utils/logging'
+import { printLocalStorageSizeInKB } from './utils/localstorage'
 
 const app = createApp(App)
 const pinia = createPinia()
@@ -23,3 +24,4 @@ app.use(layout)
 app.mount('#app')
 
 log('start the app')
+printLocalStorageSizeInKB()
