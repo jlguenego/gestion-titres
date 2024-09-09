@@ -5,7 +5,7 @@ import MainPage from './page/MainPage.vue'
 import MenuPage from './page/MenuPage.vue'
 import BodyPage from './page/BodyPage.vue'
 
-declare module '@vue/runtime-core' {
+declare module 'vue' {
   export interface GlobalComponents {
     PageLayout: typeof PageLayout
     HeaderPage: typeof HeaderPage
