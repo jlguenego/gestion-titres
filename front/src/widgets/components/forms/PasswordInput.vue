@@ -32,7 +32,8 @@ const toggle = () => {
     />
     <div
       @click="toggle()"
-      class="absolute right-0 top-0 flex w-12 cursor-pointer items-center justify-center rounded-r-lg p-2 hover:bg-gray-100"
+      v-if="!props.disabled"
+      class="absolute right-0 top-0 flex w-12 cursor-pointer items-center justify-center rounded-r-lg p-2"
     >
       <component :is="isVisible ? EyeSlashIcon : EyeIcon" class="size-6" />
     </div>

@@ -4,7 +4,6 @@ import { reactive, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import type { UserCredentials } from '../interfaces/UserCredentials'
 import { useAuthenticationStore } from '../stores/AuthenticationStore'
-import PasswordInput from '@/widgets/components/forms/PasswordInput.vue'
 
 const router = useRouter()
 const authenticationStore = useAuthenticationStore()
