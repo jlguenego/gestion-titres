@@ -11,18 +11,14 @@ import { retryUntil } from '@/utils/misc'
 import { defineStore } from 'pinia'
 import { computed, ref } from 'vue'
 import type { NavigationHookAfter } from 'vue-router'
-import { menuDefault } from '../../menus/menuDefault'
+import { emptyMenuDir, defaultMenuDir } from '../../menus/menuDefault'
 
 export const useMenuStore = defineStore('menuStore', () => {
-  const menu = ref<MenuDirectory>({
-    content: [],
-    label: '',
-    type: 'directory',
-  })
+  const menu = ref<MenuDirectory>(emptyMenuDir)
 
   const refresh = async () => {
     try {
-      menu.value = await filterWithPermission(menuDefault)
+      menu.value = await filterWithPermission(defaultMenuDir)
     } catch (err) {
       //
     }

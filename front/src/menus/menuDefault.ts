@@ -1,11 +1,28 @@
 import type { MenuDirectory } from '@/interfaces/Menu'
-import { BookOpenIcon, CircleStackIcon, PlusIcon } from '@heroicons/vue/24/outline'
+import {
+  BookOpenIcon,
+  BuildingLibraryIcon,
+  CircleStackIcon,
+  HomeIcon,
+  InformationCircleIcon,
+  PencilIcon,
+  PlusIcon,
+  ServerStackIcon,
+  StopCircleIcon,
+  TrashIcon,
+} from '@heroicons/vue/24/outline'
 
-export const menuDefault: MenuDirectory = {
+export const emptyMenuDir: MenuDirectory = {
+  content: [],
+  label: '',
+  type: 'directory',
+}
+
+export const defaultMenuDir: MenuDirectory = {
   label: 'Root',
   type: 'directory',
   content: [
-    { label: 'Accueil', name: 'welcome', type: 'item' },
+    { label: 'Accueil', name: 'welcome', type: 'item', icon: HomeIcon },
     {
       label: 'Opérations',
       type: 'directory',
@@ -24,11 +41,16 @@ export const menuDefault: MenuDirectory = {
           icon: BookOpenIcon,
           favorite: 2,
         },
-        { label: 'Mise à jour des cours', name: 'maj_cours', type: 'item' },
-        { label: 'Arrêtés', name: 'arretes', type: 'item' },
+        { label: 'Mise à jour des cours', name: 'maj_cours', type: 'item', icon: PencilIcon },
+        { label: 'Arrêtés', name: 'arretes', type: 'item', icon: StopCircleIcon },
         { label: 'Changement dépositaire', name: 'changement_depositaire', type: 'item' },
         { label: "Copie d'historique titre", name: 'copie_historique_titre', type: 'item' },
-        { label: "Suppression d'historique", name: 'suppression_historique', type: 'item' },
+        {
+          label: "Suppression d'historique",
+          name: 'suppression_historique',
+          type: 'item',
+          icon: TrashIcon,
+        },
       ],
     },
     {
@@ -95,7 +117,12 @@ export const menuDefault: MenuDirectory = {
           label: 'Paramétrages généraux',
           type: 'directory',
           content: [
-            { label: 'Back-End', name: 'settings/general/backend', type: 'item' },
+            {
+              label: 'Back-End',
+              name: 'settings/general/backend',
+              type: 'item',
+              icon: ServerStackIcon,
+            },
             { label: 'Contexte', name: 'todo', type: 'item' },
             { label: 'Règles fonctionnement', name: 'todo', type: 'item' },
             { label: 'Edition des contextes', name: 'todo', type: 'item' },
@@ -164,8 +191,13 @@ export const menuDefault: MenuDirectory = {
       label: 'Documentation',
       type: 'directory',
       content: [
-        { label: 'Introduction', name: 'documentation/introduction', type: 'item' },
-        { label: 'Menu', name: 'documentation/menu', type: 'item' },
+        {
+          label: 'Introduction',
+          name: 'documentation/introduction',
+          type: 'item',
+          icon: BuildingLibraryIcon,
+        },
+        { label: 'Menu', name: 'documentation/menu', type: 'item', icon: InformationCircleIcon },
         {
           label: 'Paramétrages',
           type: 'directory',

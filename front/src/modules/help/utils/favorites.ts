@@ -1,5 +1,5 @@
 import type { Menu, MenuDirectory, MenuItem } from '@/interfaces/Menu'
-import { menuDefault } from '@/menus/menuDefault'
+import { defaultMenuDir } from '@/menus/menuDefault'
 
 export const menuFlat = (menu: Menu): MenuItem[] => {
   if (menu.type === 'item') {
@@ -30,7 +30,7 @@ export const getAllMenuItems = (menu: MenuDirectory): MenuItem[] => {
 }
 
 export const getMenuItem = (name: string): MenuItem => {
-  const menuItems = menuFlat(menuDefault)
+  const menuItems = menuFlat(defaultMenuDir)
     .flat(1)
     .filter((m) => m.type === 'item')
   console.log('menuItems: ', menuItems)
