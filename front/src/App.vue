@@ -1,20 +1,18 @@
 <script lang="ts" setup>
 import { onMounted, ref } from 'vue'
 import { database } from './authnz/data/database'
+import { useGroupStore } from './authnz/stores/GroupStore'
+import { usePrivilegeStore } from './authnz/stores/PrivilegeStore'
 import { useUserStore } from './authnz/stores/UserStore'
 import LoadingPage from './components/LoadingPage.vue'
 import BodyLayout from './layout/BodyLayout.vue'
 import FooterLayout from './layout/FooterLayout.vue'
 import HeaderLayout from './layout/HeaderLayout.vue'
 import { sleep } from './utils/misc'
-import { usePrivilegeStore } from './authnz/stores/PrivilegeStore'
-import { useGroupStore } from './authnz/stores/GroupStore'
-import { useAuthenticationStore } from './authnz/stores/AuthenticationStore'
 
 const userStore = useUserStore()
 const privilegeStore = usePrivilegeStore()
 const groupStore = useGroupStore()
-const authenticationStore = useAuthenticationStore()
 
 const isLoading = ref(true)
 
