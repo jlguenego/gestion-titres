@@ -2,7 +2,7 @@ import type { New } from '@/interfaces/utilities'
 import { Gender, type User } from '../interfaces/User'
 import type { Privilege } from '../interfaces/Privilege'
 import type { Group } from '../interfaces/Group'
-import { mutationFunctionalities, readOnlyFunctionalities } from '../misc/functionalities'
+import { mutationPermissions, readOnlyPermissions } from '../misc/permissions'
 
 export const firstUser: New<User> = {
   name: 'admin',
@@ -17,23 +17,23 @@ export const firstUser: New<User> = {
 
 export const adminPrivilege: New<Privilege> = {
   name: 'adminPrivilege',
-  readOnlyFunctionalities: [...readOnlyFunctionalities],
-  mutationFunctionalities: [...mutationFunctionalities],
+  readOnlyPermissions: [...readOnlyPermissions],
+  mutationPermissions: [...mutationPermissions],
   description: "Un administrateur a accès à toutes les fonctionnalités de l'application",
 }
 
 export const userPrivilege: New<Privilege> = {
   name: 'userPrivilege',
-  readOnlyFunctionalities: [...readOnlyFunctionalities],
-  mutationFunctionalities: [...mutationFunctionalities.slice(3)],
+  readOnlyPermissions: [...readOnlyPermissions],
+  mutationPermissions: [...mutationPermissions.slice(3)],
   description:
     "Ce privilège permet à un utilisateur de tout voir et mettre à jour sauf les activités d'administration",
 }
 
 export const readOnlyPrivilege: New<Privilege> = {
   name: 'readOnlyPrivilege',
-  readOnlyFunctionalities: [...readOnlyFunctionalities],
-  mutationFunctionalities: [],
+  readOnlyPermissions: [...readOnlyPermissions],
+  mutationPermissions: [],
   description: 'Ce privilège permet à un utilisateur de tout voir mais rien mettre à jour',
 }
 

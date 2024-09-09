@@ -1,4 +1,4 @@
-import { getFunctionalityIds } from '@/authnz/misc/user'
+import { getPermissionIds } from '@/authnz/misc/user'
 import { useAuthenticationStore } from '@/authnz/stores/AuthenticationStore'
 import type { Menu, MenuDirectory } from '@/interfaces/Menu'
 
@@ -44,24 +44,24 @@ export const expandFrom = (menuDir: MenuDirectory, routeName: string) => {
 export const authzFiltered = async (menu: MenuDirectory): Promise<MenuDirectory> => {
   const authenticationStore = useAuthenticationStore()
   const user = authenticationStore.needUser()
-  const functionalities = await getFunctionalityIds(user)
+  const permissions = await getPermissionIds(user)
 
-  const filteredMenu = filterStructure(menu, functionalities)
+  const filteredMenu = filterStructure(menu, permissions)
   return filteredMenu
 }
 
-const filterStructure = (menu: MenuDirectory, functionalities: Set<string>): MenuDirectory => {
+const filterStructure = (menu: MenuDirectory, permissions: Set<string>): MenuDirectory => {
   const result: MenuDirectory = { ...menu }
   result.content = []
   for (const item of menu.content) {
-    if (item.authz !== undefined && !functionalities.has(item.authz)) {
+    if (item.authz !== undefined && !permissions.has(item.authz)) {
       continue
     }
     if (item.type === 'item') {
       result.content.push(item)
       continue
     }
-    result.content.push(filterStructure(item, functionalities))
+    result.content.push(filterStructure(item, permissions))
   }
   return result
 }

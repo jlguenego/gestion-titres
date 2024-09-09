@@ -1,11 +1,11 @@
-import type { Functionality } from '../interfaces/Functionality'
+import type { Permission } from '../interfaces/Functionality'
 
-export const readOnlyFunctionalities: Functionality[] = [
+export const readOnlyPermissions: Permission[] = [
   { id: 'users:read', name: 'Utilisateurs' },
   { id: 'current-user:read', name: 'Mon Compte' },
 ]
 
-export const mutationFunctionalities: Functionality[] = [
+export const mutationPermissions: Permission[] = [
   // for admins
   { id: 'menu:parametrage', name: 'Menu Parametrage' },
   { id: 'menu:maintenance', name: 'Menu Maintenance' },

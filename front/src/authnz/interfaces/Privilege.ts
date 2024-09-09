@@ -1,9 +1,9 @@
-import type { Functionality } from './Functionality'
+import type { Permission } from './Functionality'
 
 export interface Privilege {
   id: string
   name: string
   description: string
-  readOnlyFunctionalities: Functionality[]
-  mutationFunctionalities: Functionality[]
+  readOnlyPermissions: Permission[]
+  mutationPermissions: Permission[]
 }

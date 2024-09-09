@@ -3,11 +3,11 @@ import type { User } from '../interfaces/User'
 import { useGroupStore } from '../stores/GroupStore'
 import { usePrivilegeStore } from '../stores/PrivilegeStore'
 
-export const getFunctionalityIds = async (user: User): Promise<Set<string>> => {
+export const getPermissionIds = async (user: User): Promise<Set<string>> => {
   console.log('user: ', user)
   // look at the group of a user
   const groups = await getGroups(user)
-  const functionalities = new Set<string>()
+  const permissions = new Set<string>()
   const privileges = await usePrivilegeStore().needPrivileges()
   for (const group of groups) {
     for (const privilegeId of group.privilegeIds) {
@@ -15,15 +15,12 @@ export const getFunctionalityIds = async (user: User): Promise<Set<string>> => {
       if (privilege === undefined) {
         throw new Error(`privilege not found with id: ${privilegeId}`)
       }
-      for (const f of [
-        ...privilege.readOnlyFunctionalities,
-        ...privilege.mutationFunctionalities,
-      ]) {
-        functionalities.add(f.id)
+      for (const f of [...privilege.readOnlyPermissions, ...privilege.mutationPermissions]) {
+        permissions.add(f.id)
       }
     }
   }
-  return functionalities
+  return permissions
 }
 
 export const getGroups = async (user: User): Promise<Group[]> => {

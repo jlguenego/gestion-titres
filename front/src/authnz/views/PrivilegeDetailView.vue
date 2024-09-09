@@ -9,7 +9,7 @@ import {
 import { onMounted, reactive, ref, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import type { Privilege } from '../interfaces/Privilege'
-import { mutationFunctionalities, readOnlyFunctionalities } from '../misc/functionalities'
+import { mutationPermissions, readOnlyPermissions } from '../misc/permissions'
 import { usePrivilegeStore } from '../stores/PrivilegeStore'
 
 const route = useRoute()
@@ -20,16 +20,16 @@ const privilege = reactive<Privilege>({
   id: '',
   name: '',
   description: '',
-  readOnlyFunctionalities: [],
-  mutationFunctionalities: [],
+  readOnlyPermissions: [],
+  mutationPermissions: [],
 })
 
 const originalPrivilege = reactive<Privilege>({
   id: '',
   name: '',
   description: '',
-  readOnlyFunctionalities: [],
-  mutationFunctionalities: [],
+  readOnlyPermissions: [],
+  mutationPermissions: [],
 })
 
 const message = ref('')
@@ -138,8 +138,8 @@ onMounted(async () => {
             <span class="font-bold">lecture seule</span>
           </span>
           <SelectItems
-            :items="readOnlyFunctionalities"
-            v-model="privilege.readOnlyFunctionalities"
+            :items="readOnlyPermissions"
+            v-model="privilege.readOnlyPermissions"
             :disabled="!isEditing"
           />
         </label>
@@ -148,8 +148,8 @@ onMounted(async () => {
             Fonctionalités avec accès base de données en <span class="font-bold">écriture</span>
           </span>
           <SelectItems
-            :items="mutationFunctionalities"
-            v-model="privilege.mutationFunctionalities"
+            :items="mutationPermissions"
+            v-model="privilege.mutationPermissions"
             :disabled="!isEditing"
           />
         </label>

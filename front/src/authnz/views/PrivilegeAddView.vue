@@ -4,7 +4,7 @@ import { PlusIcon } from '@heroicons/vue/24/outline'
 import { reactive, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import type { Privilege } from '../interfaces/Privilege'
-import { readOnlyFunctionalities, mutationFunctionalities } from '../misc/functionalities'
+import { readOnlyPermissions, mutationPermissions } from '../misc/permissions'
 import { usePrivilegeStore } from '../stores/PrivilegeStore'
 
 const router = useRouter()
@@ -13,8 +13,8 @@ const privilegeStore = usePrivilegeStore()
 const newPrivilege = reactive<New<Privilege>>({
   name: '',
   description: '',
-  readOnlyFunctionalities: [],
-  mutationFunctionalities: [],
+  readOnlyPermissions: [],
+  mutationPermissions: [],
 })
 
 const errorMsg = ref('')
@@ -56,19 +56,13 @@ const onSubmit = async () => {
           <span
             >Fonctionalité avec accès base de donnée en <span class="font-bold">lecture seule</span>
           </span>
-          <SelectItems
-            :items="readOnlyFunctionalities"
-            v-model="newPrivilege.readOnlyFunctionalities"
-          />
+          <SelectItems :items="readOnlyPermissions" v-model="newPrivilege.readOnlyPermissions" />
         </label>
         <label>
           <span
             >Fonctionalité avec accès base de donnée en <span class="font-bold">écriture</span>
           </span>
-          <SelectItems
-            :items="mutationFunctionalities"
-            v-model="newPrivilege.mutationFunctionalities"
-          />
+          <SelectItems :items="mutationPermissions" v-model="newPrivilege.mutationPermissions" />
         </label>
 
         <div class="error">{{ errorMsg }}</div>
