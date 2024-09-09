@@ -9,6 +9,14 @@ const api = new ResourceAPI<Group>('group')
 export const useGroupStore = defineStore('group', () => {
   const groups = ref<Group[] | undefined>()
 
+  const needGroups = async (): Promise<Group[]> => {
+    await refresh()
+    if (groups.value === undefined) {
+      throw new Error('Cannot get group')
+    }
+    return groups.value
+  }
+
   const refresh = async () => {
     groups.value = await api.retrieveAll()
   }
@@ -28,5 +36,5 @@ export const useGroupStore = defineStore('group', () => {
     groups.value = await api.retrieveAll()
   }
 
-  return { groups, refresh, add, remove, replace }
+  return { groups, refresh, add, remove, replace, needGroups }
 })

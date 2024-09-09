@@ -8,6 +8,7 @@ export interface MenuItem {
   type: 'item'
   icon?: Component
   favorite?: number
+  authz?: string
 }
 
 export interface MenuDirectory {
@@ -15,4 +16,5 @@ export interface MenuDirectory {
   content: Menu[]
   type: 'directory'
   isExpanded?: boolean
+  authz?: string
 }

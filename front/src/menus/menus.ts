@@ -89,6 +89,7 @@ export const menuDefault: MenuDirectory = {
     {
       label: 'Paramétrage',
       type: 'directory',
+      authz: 'menu:parametrage',
       content: [
         {
           label: 'Paramétrages généraux',
@@ -133,6 +134,7 @@ export const menuDefault: MenuDirectory = {
     },
     {
       label: 'Maintenance',
+      authz: 'menu:maintenance',
       type: 'directory',
       content: [
         { label: 'Sauvegarde', name: 'sauvegarde', type: 'item' },

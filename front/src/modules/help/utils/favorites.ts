@@ -33,10 +33,11 @@ export const getMenuItem = (name: string): MenuItem => {
   const menuItems = menuFlat(menuDefault)
     .flat(1)
     .filter((m) => m.type === 'item')
+  console.log('menuItems: ', menuItems)
 
   const menuItem = menuItems.find((m) => m.name === name)
   if (menuItem === undefined) {
-    throw new Error('Menu item not found')
+    throw new Error(`Menu item not found: ${name}`)
   }
   return menuItem
 }

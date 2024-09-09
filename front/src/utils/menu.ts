@@ -1,3 +1,5 @@
+import { getFunctionalityIds } from '@/authnz/misc/user'
+import { useAuthenticationStore } from '@/authnz/stores/AuthenticationStore'
 import type { Menu, MenuDirectory } from '@/interfaces/Menu'
 
 export const collapse = (menu: Menu) => {
@@ -37,4 +39,29 @@ export const expandFrom = (menuDir: MenuDirectory, routeName: string) => {
     }
   }
   return false
+}
+
+export const authzFiltered = async (menu: MenuDirectory): Promise<MenuDirectory> => {
+  const authenticationStore = useAuthenticationStore()
+  const user = authenticationStore.needUser()
+  const functionalities = await getFunctionalityIds(user)
+
+  const filteredMenu = filterStructure(menu, functionalities)
+  return filteredMenu
+}
+
+const filterStructure = (menu: MenuDirectory, functionalities: Set<string>): MenuDirectory => {
+  const result: MenuDirectory = { ...menu }
+  result.content = []
+  for (const item of menu.content) {
+    if (item.authz !== undefined && !functionalities.has(item.authz)) {
+      continue
+    }
+    if (item.type === 'item') {
+      result.content.push(item)
+      continue
+    }
+    result.content.push(filterStructure(item, functionalities))
+  }
+  return result
 }

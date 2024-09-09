@@ -9,6 +9,14 @@ const api = new ResourceAPI<Privilege>('privilege')
 export const usePrivilegeStore = defineStore('privilege', () => {
   const privileges = ref<Privilege[] | undefined>()
 
+  const needPrivileges = async () => {
+    await refresh()
+    if (privileges.value === undefined) {
+      throw new Error('Cannot get privileges')
+    }
+    return privileges.value
+  }
+
   const refresh = async () => {
     privileges.value = await api.retrieveAll()
   }
@@ -28,5 +36,5 @@ export const usePrivilegeStore = defineStore('privilege', () => {
     privileges.value = await api.retrieveAll()
   }
 
-  return { privileges, refresh, add, remove, replace }
+  return { privileges, refresh, add, remove, replace, needPrivileges }
 })

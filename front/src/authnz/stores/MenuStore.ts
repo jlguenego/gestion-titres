@@ -1,14 +1,29 @@
 import { getFavorites } from '@/modules/help/utils/favorites'
 import { scrollToMenu } from '@/utils/element'
-import { collapse, expandAllFrom, expandFrom } from '@/utils/menu'
+import { authzFiltered, collapse, expandAllFrom, expandFrom } from '@/utils/menu'
 import { retryUntil } from '@/utils/misc'
 import { defineStore } from 'pinia'
 import { computed, ref } from 'vue'
 import type { NavigationHookAfter } from 'vue-router'
 import { menuDefault } from '../../menus/menus'
+import type { MenuDirectory } from '@/interfaces/Menu'
 
 export const useMenuStore = defineStore('menuStore', () => {
-  const menu = ref(menuDefault)
+  const menu = ref<MenuDirectory>({
+    content: [],
+    label: '',
+    type: 'directory',
+  })
+
+  const refresh = async () => {
+    try {
+      menu.value = await authzFiltered(menuDefault)
+    } catch (err) {
+      //
+    }
+  }
+
+  refresh()
 
   const favorites = computed(() => getFavorites(menu.value))
 
@@ -36,7 +51,7 @@ export const useMenuStore = defineStore('menuStore', () => {
     return false
   }
 
-  return { menu, favorites, collapseAll, expand, expandAll }
+  return { menu, favorites, collapseAll, expand, expandAll, refresh }
 })
 
 export const menuGuard: NavigationHookAfter = (to) => {

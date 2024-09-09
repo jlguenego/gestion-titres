@@ -25,7 +25,7 @@ export const adminPrivilege: New<Privilege> = {
 export const userPrivilege: New<Privilege> = {
   name: 'userPrivilege',
   readOnlyFunctionalities: [...readOnlyFunctionalities],
-  mutationFunctionalities: [...mutationFunctionalities.slice(1)],
+  mutationFunctionalities: [...mutationFunctionalities.slice(3)],
   description:
     "Ce privilège permet à un utilisateur de tout voir et mettre à jour sauf les activités d'administration",
 }
