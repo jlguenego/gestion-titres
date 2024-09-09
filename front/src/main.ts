@@ -21,6 +21,5 @@ app.use(widget)
 app.use(layout)
 
 app.mount('#app')
-// TODO: You must initialize the PWA service worker.
 
 log('start the app')

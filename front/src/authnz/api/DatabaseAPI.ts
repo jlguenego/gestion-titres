@@ -1,3 +1,4 @@
+import localforage from 'localforage'
 import { DATABASE_PREFIX } from './ResourceAPI'
 
 export class DatabaseAPI {
@@ -24,6 +25,7 @@ export class DatabaseAPI {
 
   async reset() {
     localStorage.clear()
+    await localforage.clear()
   }
 }
 

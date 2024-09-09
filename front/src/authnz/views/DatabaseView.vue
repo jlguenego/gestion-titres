@@ -32,8 +32,8 @@ const handleImport = async () => {
     const db = JSON.parse(str)
     await database.import(db)
     await authenticationStore.logout()
-    await menuStore.hideMenu()
-    await window.location.reload()
+    menuStore.hideMenu()
+    window.location.reload()
   } catch (err) {
     console.log('err: ', err)
   }
