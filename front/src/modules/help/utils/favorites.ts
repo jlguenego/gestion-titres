@@ -1,4 +1,4 @@
-import type { Menu, MenuDirectory, MenuItem } from '@/authnz/interfaces/Menu'
+import type { Menu, MenuDirectory, MenuItem } from '@/interfaces/Menu'
 import { menuDefault } from '@/menus/menus'
 
 export const menuFlat = (menu: Menu): MenuItem[] => {

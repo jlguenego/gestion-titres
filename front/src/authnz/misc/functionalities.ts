@@ -6,11 +6,7 @@ export const readOnlyFunctionalities: Functionality[] = [
 ]
 
 export const mutationFunctionalities: Functionality[] = [
+  { id: 'database:reset', name: 'Database Reset' },
   { id: 'users:write', name: 'Utilisateurs' },
   { id: 'current-user:write', name: 'Mon Compte' },
-]
-
-export const adminFunctionalities: Functionality[] = [
-  { id: 'database:reset', name: 'Database Reset' },
-  ...mutationFunctionalities,
 ]

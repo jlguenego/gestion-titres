@@ -2,11 +2,7 @@ import type { New } from '@/interfaces/utilities'
 import { Gender, type User } from '../interfaces/User'
 import type { Privilege } from '../interfaces/Privilege'
 import type { Group } from '../interfaces/Group'
-import {
-  adminFunctionalities,
-  mutationFunctionalities,
-  readOnlyFunctionalities,
-} from '../misc/functionalities'
+import { mutationFunctionalities, readOnlyFunctionalities } from '../misc/functionalities'
 
 export const firstUser: New<User> = {
   name: 'admin',
@@ -22,14 +18,14 @@ export const firstUser: New<User> = {
 export const adminPrivilege: New<Privilege> = {
   name: 'adminPrivilege',
   readOnlyFunctionalities: [...readOnlyFunctionalities],
-  mutationFunctionalities: [...adminFunctionalities],
+  mutationFunctionalities: [...mutationFunctionalities],
   description: "Un administrateur a accès à toutes les fonctionnalités de l'application",
 }
 
 export const userPrivilege: New<Privilege> = {
   name: 'userPrivilege',
   readOnlyFunctionalities: [...readOnlyFunctionalities],
-  mutationFunctionalities: [...mutationFunctionalities],
+  mutationFunctionalities: [...mutationFunctionalities.slice(1)],
   description:
     "Ce privilège permet à un utilisateur de tout voir et mettre à jour sauf les activités d'administration",
 }

@@ -1,4 +1,4 @@
-import type { MenuDirectory } from '@/authnz/interfaces/Menu'
+import type { MenuDirectory } from '@/interfaces/Menu'
 import { BookOpenIcon, CircleStackIcon, PlusIcon } from '@heroicons/vue/24/outline'
 
 export const menuDefault: MenuDirectory = {
