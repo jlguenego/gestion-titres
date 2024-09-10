@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { useMenuPageStore } from '@/layout/stores/MenuPageStore'
+import { isDesktop } from '@/utils/responsive'
 import { ArrowRightEndOnRectangleIcon } from '@heroicons/vue/24/outline'
 import { reactive, ref } from 'vue'
 import { useRouter } from 'vue-router'
@@ -7,6 +9,7 @@ import { useAuthenticationStore } from '../stores/AuthenticationStore'
 
 const router = useRouter()
 const authenticationStore = useAuthenticationStore()
+const menuPageStore = useMenuPageStore()
 
 const data = reactive<UserCredentials>({
   username: '',
@@ -19,7 +22,10 @@ const onSubmit = async () => {
   try {
     errorMsg.value = ''
     await authenticationStore.login(data)
-    router.replace('/welcome')
+    await router.replace(authenticationStore.redirectPath)
+    if (isDesktop()) {
+      menuPageStore.openMenu()
+    }
   } catch (err) {
     if (err instanceof Error) {
       errorMsg.value = err.message

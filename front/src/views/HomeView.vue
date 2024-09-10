@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import { useAuthenticationStore } from '@/authnz/stores/AuthenticationStore'
-import { useMenuStore } from '@/layout/stores/MenuStore'
+import { useMenuPageStore } from '@/layout/stores/MenuPageStore'
 import { ArrowRightEndOnRectangleIcon } from '@heroicons/vue/24/outline'
 
 const authenticationStore = useAuthenticationStore()
 
-const menuStore = useMenuStore()
-menuStore.hideMenu()
+const menuPageStore = useMenuPageStore()
+menuPageStore.hideMenu()
 </script>
 
 <template>

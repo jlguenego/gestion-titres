@@ -1,8 +1,8 @@
 <script lang="ts" setup>
 import { Bars3Icon, ChevronLeftIcon, XMarkIcon } from '@heroicons/vue/24/outline'
-import { useMenuStore } from '../stores/MenuStore'
+import { useMenuPageStore } from '../stores/MenuPageStore'
 
-const menuStore = useMenuStore()
+const menuStore = useMenuPageStore()
 
 const props = withDefaults(
   defineProps<{

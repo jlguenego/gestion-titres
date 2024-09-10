@@ -1,9 +1,9 @@
 <script lang="ts" setup>
 import { XMarkIcon } from '@heroicons/vue/24/outline'
-import { useMenuStore } from '../stores/MenuStore'
+import { useMenuPageStore } from '../stores/MenuPageStore'
 import { useResponsiveStore } from '@/stores/ResponsiveStore'
 
-const menuStore = useMenuStore()
+const menuStore = useMenuPageStore()
 const responsiveStore = useResponsiveStore()
 </script>
 

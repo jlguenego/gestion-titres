@@ -1,15 +1,18 @@
 import { loadingStore } from '@/utils/loadingStore'
 import { defineStore } from 'pinia'
 import { computed, ref } from 'vue'
+import { type RouteLocationNormalizedGeneric } from 'vue-router'
 import { api } from '../api/api'
 import type { User } from '../interfaces/User'
 import type { UserCredentials } from '../interfaces/UserCredentials'
 import { useMenuStore } from './MenuStore'
 
 export const useAuthenticationStore = defineStore('authentication', () => {
-  const { waitUntilReady } = loadingStore('authentication')
   const user = ref<User | undefined>(undefined)
-  const isAuthenticated = computed(() => user.value !== undefined)
+  const redirectRoute = ref<RouteLocationNormalizedGeneric | undefined>(undefined)
+  const redirectPath = computed(() => (redirectRoute.value ? redirectRoute.value.path : '/welcome'))
+
+  const { waitUntilReady } = loadingStore('authentication')
 
   const login = async (credentials: UserCredentials) => {
     user.value = await api.login(credentials)
@@ -38,5 +41,5 @@ export const useAuthenticationStore = defineStore('authentication', () => {
     user.value = await api.patch(id, partialUser)
   }
 
-  return { user, isAuthenticated, login, logout, needUser, patch, waitUntilReady }
+  return { user, redirectRoute, redirectPath, login, logout, needUser, patch, waitUntilReady }
 })

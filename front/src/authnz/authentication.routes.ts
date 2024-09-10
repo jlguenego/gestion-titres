@@ -89,11 +89,8 @@ export const authenticationRoutes = [
 ]
 
 export const authenticationGuard: NavigationGuard = async (to) => {
-  console.log('authenticationGuard')
   const authenticationStore = useAuthenticationStore()
-  console.log('authenticationGuard waitUntilReady')
   await authenticationStore.waitUntilReady()
-  console.log('authenticationGuard ready !!!')
 
   if (to.name === NOTFOUND_NAME) {
     return true
@@ -101,6 +98,7 @@ export const authenticationGuard: NavigationGuard = async (to) => {
 
   if (authenticationStore.user === undefined) {
     if (![...anonymousAllowedPaths, LOGIN_PATH].includes(to.path)) {
+      authenticationStore.redirectRoute = to
       return LOGIN_PATH
     }
   }

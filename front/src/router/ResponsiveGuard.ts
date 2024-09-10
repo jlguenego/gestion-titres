@@ -1,11 +1,11 @@
-import { useMenuStore } from '@/layout/stores/MenuStore'
+import { useMenuPageStore } from '@/layout/stores/MenuPageStore'
 import { useResponsiveStore } from '@/stores/ResponsiveStore'
 import type { NavigationHookAfter } from 'vue-router'
 
-export const responsiveGuard: NavigationHookAfter = (to) => {
+export const responsiveGuard: NavigationHookAfter = () => {
   const responsiveStore = useResponsiveStore()
-  const menuStore = useMenuStore()
+  const menuPageStore = useMenuPageStore()
   if (responsiveStore.isMobile) {
-    menuStore.hideMenu()
+    menuPageStore.hideMenu()
   }
 }

@@ -1,12 +1,12 @@
 <script lang="ts" setup>
-import { useMenuStore } from '@/layout/stores/MenuStore'
+import { useMenuPageStore } from '@/layout/stores/MenuPageStore'
 import { useResponsiveStore } from '@/stores/ResponsiveStore'
 import { Bars3Icon, UserIcon } from '@heroicons/vue/24/outline'
 import { useRouter } from 'vue-router'
 import { useAuthenticationStore } from '../stores/AuthenticationStore'
 
 const authenticationStore = useAuthenticationStore()
-const menuStore = useMenuStore()
+const menuPageStore = useMenuPageStore()
 const router = useRouter()
 const responsiveStore = useResponsiveStore()
 
@@ -15,7 +15,7 @@ const handleClick = () => {
     router.push('/current-user')
     return
   }
-  menuStore.toggleMenu()
+  menuPageStore.toggleMenu()
 }
 </script>
 
