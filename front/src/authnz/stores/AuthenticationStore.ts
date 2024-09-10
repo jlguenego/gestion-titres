@@ -17,7 +17,7 @@ export const useAuthenticationStore = defineStore('authentication', () => {
   const login = async (credentials: UserCredentials) => {
     user.value = await api.login(credentials)
     const menuStore = useMenuStore()
-    menuStore.refresh()
+    await menuStore.refresh()
   }
 
   const logout = async () => {
