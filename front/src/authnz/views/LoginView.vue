@@ -43,7 +43,7 @@ const onSubmit = async () => {
       <form @submit.prevent="onSubmit()">
         <label>
           <span>Identifiant</span>
-          <input type="text" placeholder="Ex: admin" v-model="data.username" />
+          <input type="text" placeholder="Ex: admin" v-model="data.username" v-focus />
           <span class="error">{{ '' }}</span>
         </label>
         <label>
