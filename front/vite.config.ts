@@ -4,6 +4,7 @@ import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
 import { defineConfig } from 'vite'
 import vueDevTools from 'vite-plugin-vue-devtools'
+import removeConsole from 'vite-plugin-remove-console'
 
 import { plugin as mdPlugin, Mode } from 'vite-plugin-markdown'
 import { VitePWA } from 'vite-plugin-pwa'
@@ -49,6 +50,7 @@ export default defineConfig({
         type: 'module',
       },
     }),
+    removeConsole(),
   ],
   resolve: {
     alias: {
