@@ -23,6 +23,7 @@ export const useAuthenticationStore = defineStore('authentication', () => {
   const logout = async () => {
     await api.logout()
     user.value = undefined
+    redirectRoute.value = undefined
   }
 
   const needUser = (): User => {
