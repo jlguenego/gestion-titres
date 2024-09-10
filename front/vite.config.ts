@@ -59,5 +59,6 @@ export default defineConfig({
   },
   define: {
     BUILD_DATE: Date.now(),
+    VERSION: "'1.2.1'",
   },
 })

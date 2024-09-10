@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 const buildDate = BUILD_DATE
+const version = VERSION
 </script>
 
 <template>
@@ -11,7 +12,7 @@ const buildDate = BUILD_DATE
       <footer
         class="flex flex-wrap items-center justify-evenly gap-2 self-stretch bg-gray-100 text-gray-500"
       >
-        <div class="p-2">Nº Fabrication : {{ buildDate }}</div>
+        <div class="p-2">Version : {{ version }} ({{ new Date(buildDate).toISOString() }})</div>
         <div class="p-2">@ JLG Consulting - 2024</div>
       </footer>
     </div>
