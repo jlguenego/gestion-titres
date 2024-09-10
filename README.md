@@ -2,7 +2,6 @@
 
 - voir pour une build electron
 - voir pour une version avec back-end
-- voir pour la redirection de page apres login : il faut que ce soit la page demandée originellement.
 
 - revoir le CSS des boutons
   - faire seulement des boutons avec la classe .button

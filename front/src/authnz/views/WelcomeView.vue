@@ -1,10 +1,17 @@
 <script setup lang="ts">
 import { useAuthenticationStore } from '@/authnz/stores/AuthenticationStore'
 import PageLayout from '@/layout/page/PageLayout.vue'
+import { useMenuPageStore } from '@/layout/stores/MenuPageStore'
 import FavoriteList from '@/modules/help/FavoriteList.vue'
+import { isDesktop } from '@/utils/responsive'
 
 const authenticationStore = useAuthenticationStore()
 const user = authenticationStore.needUser()
+const menuPageStore = useMenuPageStore()
+
+if (isDesktop()) {
+  menuPageStore.openMenu()
+}
 </script>
 
 <template>
