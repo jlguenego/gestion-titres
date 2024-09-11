@@ -4,6 +4,7 @@
 // vite build time
 declare const BUILD_DATE: string
 declare const VERSION: string
+declare const FAKE_BACKEND: boolean
 
 // vite markdown plugin
 declare module '*.md' {
