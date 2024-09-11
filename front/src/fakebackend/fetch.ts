@@ -1,11 +1,5 @@
-import { ResourceAPI } from '@/authnz/api/ResourceAPI'
-import { ErrorMessage } from '@/authnz/interfaces/ErrorMessage'
-import type { User } from '@/authnz/interfaces/User'
-import { clone } from '@/utils/misc'
-
-const responseTest = await fetch('/improbable')
-
-const resourceAPI = new ResourceAPI<User>('user')
+import { login } from './api/auth/login'
+import { getResponseModel } from './utils/response'
 
 export const fakeBackendFetch: typeof window.fetch = async (
   input: RequestInfo | URL,
@@ -14,19 +8,11 @@ export const fakeBackendFetch: typeof window.fetch = async (
   console.log('input: ', input)
   console.log('init: ', init)
 
-  const credentials = JSON.parse(init?.body as string)
-
-  const users = await resourceAPI.retrieveAll()
-  const user = users.find(
-    (u) => u.name === credentials.username && u.password === credentials.password,
-  )
-  if (user === undefined) {
-    throw new Error(ErrorMessage.BAD_LOGIN)
+  if (input === '/auth/login') {
+    if (init?.method === 'POST') {
+      return login(input, init)
+    }
   }
 
-  const response = clone(responseTest)
-  response.json = async () => {
-    return user
-  }
-  return response
+  return getResponseModel()
 }
