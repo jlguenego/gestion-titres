@@ -4,7 +4,7 @@ import type { User } from '../interfaces/User'
 import type { UserCredentials } from '../interfaces/UserCredentials'
 import { ResourceAPI } from './ResourceAPI'
 
-const fetch: typeof window.fetch = FAKE_BACKEND ? fakeBackendFetch : window.fetch
+const fetch = FAKE_BACKEND ? fakeBackendFetch : window.fetch
 
 const resourceAPI = new ResourceAPI<User>('user')
 
