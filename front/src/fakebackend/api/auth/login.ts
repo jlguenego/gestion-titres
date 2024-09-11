@@ -1,7 +1,7 @@
 import { ResourceAPI } from '@/authnz/api/ResourceAPI'
 import { ErrorMessage } from '@/authnz/interfaces/ErrorMessage'
 import type { User } from '@/authnz/interfaces/User'
-import { getResponseModel } from '@/fakebackend/utils/response'
+import { getResponseModel } from '@/utils/fetch'
 
 const resourceAPI = new ResourceAPI<User>('user')
 

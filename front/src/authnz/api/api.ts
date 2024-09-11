@@ -1,10 +1,8 @@
-import { fakeBackendFetch } from '@/fakebackend/fetch'
+import { getFetch } from '@/utils/fetch'
 import { ErrorMessage } from '../interfaces/ErrorMessage'
 import type { User } from '../interfaces/User'
 import type { UserCredentials } from '../interfaces/UserCredentials'
 import { ResourceAPI } from './ResourceAPI'
-
-const fetch = FAKE_BACKEND ? fakeBackendFetch : window.fetch
 
 const resourceAPI = new ResourceAPI<User>('user')
 
@@ -12,7 +10,7 @@ const loginUrl = '/auth/login'
 
 class API {
   async login(credentials: UserCredentials): Promise<User> {
-    // go to the pseudo backend and check
+    const fetch = getFetch()
     try {
       const response = await fetch(loginUrl, {
         method: 'POST',

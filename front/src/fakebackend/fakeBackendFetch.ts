@@ -1,5 +1,5 @@
+import { getResponseModel } from '@/utils/fetch'
 import { login } from './api/auth/login'
-import { getResponseModel } from './utils/response'
 
 export const fakeBackendFetch: typeof window.fetch = async (
   input: RequestInfo | URL,
