@@ -10,7 +10,7 @@ const loginUrl = '/auth/login'
 
 class API {
   async login(credentials: UserCredentials): Promise<User> {
-    const fetch = getFetch()
+    const fetch = await getFetch()
     try {
       const response = await fetch(loginUrl, {
         method: 'POST',

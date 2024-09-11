@@ -17,7 +17,7 @@ export const login = async (url: string | URL, init: RequestInit) => {
     throw new Error(ErrorMessage.BAD_LOGIN)
   }
 
-  const response = getResponseModel()
+  const response = await getResponseModel()
   response.json = async () => {
     return user
   }
