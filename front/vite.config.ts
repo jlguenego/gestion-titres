@@ -30,9 +30,9 @@ export default defineConfig({
       },
 
       manifest: {
-        name: 'Gestion Titres',
-        short_name: 'Gestion Titres',
-        description: 'Gestion efficace de vos portefeuilles de titres.',
+        name: 'Experipsy',
+        short_name: 'Experipsy',
+        description: 'Experience en psychologie',
         theme_color: '#ffffff',
         lang: 'fr',
       },
